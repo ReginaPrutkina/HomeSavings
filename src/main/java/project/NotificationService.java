@@ -51,7 +51,7 @@ public class NotificationService implements NeedToNotify{
         }
         notificationText += footerText(currencySet);
         return notificationText;
-    };
+    }
     private String footerText(Set<String> currencySet){
         String footer = "Всего: \n";
         for (String curCode: currencySet) {
@@ -108,7 +108,7 @@ public class NotificationService implements NeedToNotify{
                         "\n";
             }
         return notificationText;
-        };
+        }
 
     public boolean getNotifyFlag(){
         return notifyFlag;
@@ -123,7 +123,8 @@ public class NotificationService implements NeedToNotify{
     public boolean isDateToNotify() {
         return false;
     }
-     public String toFile(String notificationText){
+
+    public String toFile(String notificationText){
         String fileName = ".\\" + "info.txt";
         Path infoFile = Paths.get(fileName);
         try {

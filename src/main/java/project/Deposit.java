@@ -8,7 +8,6 @@ import java.util.HashMap;
 public class Deposit {
     private int id;
     private String bankName;
-    private String owner;
     private double sum;
     private double rateOfInterest;
     private String currencyCode;   //810,840,978
@@ -17,12 +16,11 @@ public class Deposit {
     private String comment;
     private TypeOfPercent typeOfPercent;
     private GetCurrencyRatesCB CurrencyRatesCB;
-    Deposit (HashMap<String,String> fieldsMap) {
+    Deposit (HashMap<String,String> fieldsMap) throws MyException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         try {
             this.id = Integer.parseInt(fieldsMap.get("id"));
             this.bankName = fieldsMap.get("bankName");
-            this.owner = fieldsMap.get("owner");
             this.sum = Double.parseDouble(fieldsMap.get("sum"));
             this.rateOfInterest = Double.parseDouble(fieldsMap.get("rateOfInterest"));
             this.currencyCode = fieldsMap.get("currencyCode");
@@ -36,9 +34,9 @@ public class Deposit {
             }
         }
         catch (ParseException e) {
-            e.printStackTrace();
+            throw new MyException( "Ошибка формата данных для депозита сообщения", e);
         }
-    };
+    }
 
     public Date getEndDate() {
         return endDate;
@@ -79,7 +77,6 @@ public class Deposit {
     public String header(){
         return String.format("%5s |","id") +
                 String.format("%25s |","Название банка") +
-                String.format("%15s |","Владелец") +
                 String.format("%15s |","Сумма")  +
                 String.format("%5s|","Ставка")  +
                 String.format("%6s |","Валюта")  +
@@ -94,7 +91,6 @@ public class Deposit {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         return String.format("%5d |",id) +
                 String.format("%25s |",bankName) +
-                String.format("%15s |",owner) +
                 String.format("%15.2f |",sum)  +
                 String.format("%5.2f |",rateOfInterest)  +
                 // Здесь надо заменить на буквенный код валюты из Currency

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MockData {
     public List<Deposit> depositList = new ArrayList<>();
-    public MockData() {
+    public MockData() throws MyException{
         //Mock данные для списка вкладов
         HashMap<String, String> hashMapDeposit = new HashMap<>();
         hashMapDeposit.put("id", "1");
