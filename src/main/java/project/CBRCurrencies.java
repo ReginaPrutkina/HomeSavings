@@ -17,14 +17,13 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
     //private List<Currency> currenciesList;
     private NodeList nodeCurrenciesList;
     private Date ratesDate;
-    BufferedInputStream fXmlFile;
 
-    CBRCurrencies() {
+    CBRCurrencies() throws MyException {
         //считываем файл из url
         this.nodeCurrenciesList =  getXML();
        }
 
-    public NodeList getXML() {
+    public NodeList getXML() throws MyException {
         //считываем файл из url
         NodeList nList = null;
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
@@ -38,7 +37,8 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
             nList = doc.getElementsByTagName("Valute");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new MyException("Не удалось считать курсы ЦБ с сайта " + url, e);
+
         }
         return nList;
     }

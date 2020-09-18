@@ -16,15 +16,21 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByLogin(String login) {
         Query query =  HibernateUtils.getSessionFactory().openSession().createQuery("From User where login = :param");
-        query.setParameter("param",login.trim());
-        return ((List<User>)query.getResultList()).get(0);
+        query.setParameter("param",login.trim().toLowerCase());
+        List<User> users = query.getResultList();
+        if (users.isEmpty())
+            return null;
+        return users.get(0);
     }
 
     @Override
     public User findUserByEmail(String email) {
         Query query =  HibernateUtils.getSessionFactory().openSession().createQuery("From User where email = :param");
-        query.setParameter("param",email.trim());
-        return ((List<User>)query.getResultList()).get(0);
+        query.setParameter("param",email.trim().toLowerCase());
+        List<User> users = query.getResultList();
+        if (users.isEmpty())
+            return null;
+        return users.get(0);
     }
 
     @Override

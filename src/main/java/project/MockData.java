@@ -31,7 +31,7 @@ public class MockData {
         hashMapDeposit.put("currencyCode", "810");
         hashMapDeposit.put("startDate", "03.04.2020");
         hashMapDeposit.put("endDate", "03.11.2020");
-        hashMapDeposit.put("comment", "не капитализируется");
+        hashMapDeposit.put("comment", "не капитализируется, доверенность на Джину");
         hashMapDeposit.put("percentType", "0");
         depositList.add(new Deposit(hashMapDeposit));
         depositList.get(depositList.size() - 1).setTypeOfPercent(new PercentAtTheEnd());

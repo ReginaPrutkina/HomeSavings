@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -25,20 +25,27 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d">
-        <schema name="home_savings" object-types="table, view, procedure, function" />
+        <schema name="home_savings" object-types="procedure, view, constraint, index, function, table, dataset trigger, column" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d">
-      <console name="Connection" type="STANDARD" schema="home_savings" session="Main" />
+      <console name="Connection" type="STANDARD" schema="home_savings" session="Main"><![CDATA[ALTER DATABASE home_savings CHARACTER SET utf8 COLLATE utf8_unicode_ci;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" object-ref="schemas/home_savings/tables/users" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.users" active-filter-id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65">
+      <filter id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />

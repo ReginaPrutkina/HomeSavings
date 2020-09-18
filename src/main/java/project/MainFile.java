@@ -12,8 +12,6 @@ try {   Scanner sc = new Scanner(System.in);
         String user_pass = sc.nextLine();
         SendMail sender = new SendMail(sender_mail,user_pass);
 
-        //sender.send("Test subject/Тест","Test message/Тестовое сообщение","rprutkina@mail.ru");
-
         //Используем mock - данные для создания списка депозитов
         List<Deposit> depositList = (new MockData()).depositList;
 
@@ -34,7 +32,7 @@ try {   Scanner sc = new Scanner(System.in);
        NotificationService notificationService = new NotificationService(depositList);
         System.out.println(notificationService.getRegularText());
         System.out.println(notificationService.getWarningText());
-
+/*
         sender.send("Информирование по депозитам",notificationService.getRegularText(),"rprutkina@mail.ru");
 
         sender.send("Истекает срок депозитов",notificationService.getWarningText(),"rprutkina@mail.ru");
@@ -43,6 +41,14 @@ try {   Scanner sc = new Scanner(System.in);
                 sender.sendFile("Информирование по депозитам",fileName,"rprutkina@mail.ru");
         }
 
+*/
+        //Регистрация пользователя
+        UserDAO userDAO = new UserDAOImpl();
+        UserService userService = new UserServiceImpl(userDAO);
+        userService.registerUser();
+        User user = userService.userAuth();
+        if ( user != null)
+            System.out.println("Приятной работы, "+ user.getName() + " " + user.getFamily());
 
         }catch (MyException myException) {
             myException.printStackTrace();

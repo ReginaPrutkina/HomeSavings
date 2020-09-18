@@ -25,7 +25,7 @@ public class User implements Serializable {
     public User(){}
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.trim().toLowerCase();
     }
 
     public String getEmail() {
@@ -33,7 +33,7 @@ public class User implements Serializable {
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.login = login.trim().toLowerCase();
     }
 
     public String getLogin() {
@@ -41,7 +41,7 @@ public class User implements Serializable {
     }
 
     public void setPasswordHash(String password) {
-        this.passwordHash = password.hashCode();
+        this.passwordHash = password.trim().hashCode();
     }
 
     public int getPasswordHash() {
@@ -49,7 +49,7 @@ public class User implements Serializable {
     }
 
     public void setFamily(String family) {
-        this.family = family;
+        this.family = family.trim();
     }
 
     public String getFamily() {
@@ -57,7 +57,7 @@ public class User implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     public String getName() {
