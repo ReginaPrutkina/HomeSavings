@@ -15,6 +15,8 @@ interface UserDAO {
 
     void update(User user);
 
+    void merge(User user);
+
     List<User> findAll();
 
 }

@@ -2,7 +2,9 @@ package project;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,13 +16,18 @@ public class User implements Serializable {
     @Column (unique = true, nullable = false)
     private String login;
     @Column (name = "password")
-    int passwordHash;
+    protected String passwordHash;
     @Column (unique = true, nullable = false)
     private String email;
     @Column
     private String family;
     @Column
     private String name;
+    @Column
+    private String role;
+
+    @OneToMany (mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Deposit> deposits = new HashSet<>();
 
     public User(){}
 
@@ -41,10 +48,10 @@ public class User implements Serializable {
     }
 
     public void setPasswordHash(String password) {
-        this.passwordHash = password.trim().hashCode();
+        this.passwordHash = Integer.toString(password.trim().hashCode());
     }
 
-    public int getPasswordHash() {
+    public String getPasswordHash() {
         return passwordHash;
     }
 
@@ -66,6 +73,26 @@ public class User implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Set<Deposit> getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(Set<Deposit> deposits) {
+        this.deposits = deposits;
+    }
+    public void addDeposit(Deposit deposit){
+        deposit.setUser(this);
+        deposits.add(deposit);
     }
 
     @Override

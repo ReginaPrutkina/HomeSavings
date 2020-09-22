@@ -32,12 +32,26 @@ public class UserServiceImpl implements UserService{
     @Override
     public User checkUserPassword(String login, String password) {
         User userCmp = userDAO.findUserByLogin(login);
-        if ((userCmp == null) || (userCmp.getPasswordHash() != password.hashCode()) ){
-            System.out.println("Неверный логин  или пароль");
-            return null;
+        if ((userCmp != null ) && userCmp.getRole().equals("admin")
+                && isAdminPasswordValid(login, password, (AdminSender)userCmp)){
+            System.out.println("Пользователь авторизован как администратор");
+            return (AdminSender) userCmp;
+        }else {
+            if ((userCmp == null) || (!userCmp.getPasswordHash().equals(Integer.toString(password.hashCode())))) {
+                System.out.println("Неверный логин  или пароль");
+                return null;
+            }
+                System.out.println("Пользователь авторизован");
+                return userCmp;
+
         }
-        System.out.println("Пользователь авторизован");
-        return userCmp;
+    }
+
+    private boolean isAdminPasswordValid(String login, String password, AdminSender adminSender) {
+          if  (!adminSender.getPassword().equals(password)){
+              return false;
+          }
+          return true;
     }
 
     @Override
@@ -57,6 +71,7 @@ public class UserServiceImpl implements UserService{
         String temp;
         String login;
         User user = new User();
+        user.setRole("user");
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите Фамилию");
@@ -77,10 +92,8 @@ public class UserServiceImpl implements UserService{
             System.out.println("Повторите ввод пароля ");
             temp = scanner.nextLine();
             warning = "Введенные пароли не совпали.";
-        } while (user.getPasswordHash() != temp.hashCode());
+        } while (!user.getPasswordHash().equals(Integer.toString(temp.hashCode())));
 
-
-        // проверить формат
         warning = "";
         do {
             System.out.println(warning);
@@ -100,7 +113,10 @@ public class UserServiceImpl implements UserService{
     }
 
     public boolean checkMailFormat (String email){
-        return true;
+        String  emailPattern =
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        return email.matches(emailPattern);
     }
 
 }

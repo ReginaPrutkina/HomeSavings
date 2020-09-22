@@ -1,21 +1,46 @@
 package project;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
-public class Deposit {
+@Entity
+@Table (name = "deposits")
+public class Deposit implements Serializable {
+    @Id
+    @Column
+    @GeneratedValue
     private int id;
+    @Column
     private String bankName;
+    @Column
     private double sum;
+    @Column
     private double rateOfInterest;
-    private String currencyCode;   //810,840,978
+    @Column
+    private String currencyCode;   //810,840,978...
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date startDate;
+    @Temporal(TemporalType.DATE)
     private Date endDate;
+    @Column
     private String comment;
+    @Column
+    private int percentType;
+    @Transient
     private TypeOfPercent typeOfPercent;
+    @Transient
     private GetCurrencyRatesCB CurrencyRatesCB;
+
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
+
+    Deposit(){}
+
     Deposit (HashMap<String,String> fieldsMap) throws MyException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         try {
@@ -27,35 +52,88 @@ public class Deposit {
             this.startDate = formatter.parse(fieldsMap.get("startDate"));
             this.endDate = formatter.parse(fieldsMap.get("endDate"));
             this.comment = fieldsMap.get("comment");
-            switch (Integer.parseInt(fieldsMap.get("percentType"))) {
+            this.percentType = Integer.parseInt(fieldsMap.get("percentType"));
+            switch (this.percentType) {
                 case 1-> {setTypeOfPercent(new PercentDaily());}
                 case 30-> {setTypeOfPercent(new PercentMonthly());}
                 default -> {setTypeOfPercent(new PercentAtTheEnd());}
             }
         }
         catch (ParseException e) {
-            throw new MyException( "Ошибка формата данных для депозита сообщения", e);
+            throw new MyException( "Ошибка формата данных для депозита ", e);
         }
     }
 
-    public Date getEndDate() {
-        return endDate;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public User getUser() {
+        return this.user;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getBankName() {
+        return bankName;
     }
 
-    public String getCurrencyCode() {
-        return currencyCode;
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 
     public double getRateOfInterest() {
         return rateOfInterest;
     }
 
-    public double getSum() {
-        return sum;
+    public void setRateOfInterest(double rateOfInterest) {
+        this.rateOfInterest = rateOfInterest;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getPercentType() {
+        return percentType;
+    }
+
+    public void setPercentType(int percentType) {
+        this.percentType = percentType;
     }
 
     public void setTypeOfPercent(TypeOfPercent typeOfPercent) {

@@ -26,6 +26,7 @@
     <loaded-nodes>
       <connection connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d">
         <schema name="home_savings" object-types="procedure, view, constraint, index, function, table, dataset trigger, column" />
+        <schema name="testdb" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -36,6 +37,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files>
+      <object connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" object-ref="schemas/home_savings/tables/deposits" />
       <object connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" object-ref="schemas/home_savings/tables/users" />
     </open-files>
   </component>
@@ -43,6 +45,12 @@
     <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.deposits" active-filter-id="080d52e5-c71f-47d3-9f49-38cef8b7584e">
+      <filter id="080d52e5-c71f-47d3-9f49-38cef8b7584e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="testdb.children" active-filter-id="6d865179-57e1-4eac-8407-990dc556e790">
+      <filter id="6d865179-57e1-4eac-8407-990dc556e790" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
     <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.users" active-filter-id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65">
       <filter id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
