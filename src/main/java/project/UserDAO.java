@@ -17,6 +17,8 @@ interface UserDAO {
 
     void merge(User user);
 
+    void evict(User user);
+
     List<User> findAll();
 
 }

@@ -30,6 +30,7 @@ public class NotificationService implements NeedToNotify{
     }
 
     public void setDayForNotification(int dayForNotification){
+
         this.dayForNotification = dayForNotification;
     }
     public void setDaysToEndOfDeposit(int daysToEndOfDeposit){

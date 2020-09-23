@@ -15,25 +15,26 @@ public class Deposit implements Serializable {
     private int id;
     @Column
     private String bankName;
-    @Column
+    @Column (nullable = false)
     private double sum;
-    @Column
+    @Column (nullable = false)
     private double rateOfInterest;
-    @Column
+    @Column (nullable = false)
     private String currencyCode;   //810,840,978...
-    @Column
+    @Column (nullable = false)
     @Temporal(TemporalType.DATE)
     private Date startDate;
+    @Column (nullable = false)
     @Temporal(TemporalType.DATE)
     private Date endDate;
     @Column
     private String comment;
-    @Column
+    @Column (nullable = false)
     private int percentType;
     @Transient
     private TypeOfPercent typeOfPercent;
     @Transient
-    private GetCurrencyRatesCB CurrencyRatesCB;
+    private GetCurrencyRatesCB currencyRatesCB;
 
     @ManyToOne
     @JoinColumn (name = "user_id")
@@ -53,11 +54,7 @@ public class Deposit implements Serializable {
             this.endDate = formatter.parse(fieldsMap.get("endDate"));
             this.comment = fieldsMap.get("comment");
             this.percentType = Integer.parseInt(fieldsMap.get("percentType"));
-            switch (this.percentType) {
-                case 1-> {setTypeOfPercent(new PercentDaily());}
-                case 30-> {setTypeOfPercent(new PercentMonthly());}
-                default -> {setTypeOfPercent(new PercentAtTheEnd());}
-            }
+            this.addTypeOfPercent();
         }
         catch (ParseException e) {
             throw new MyException( "Ошибка формата данных для депозита ", e);
@@ -145,12 +142,20 @@ public class Deposit implements Serializable {
     }
 
     public GetCurrencyRatesCB getCurrencyRatesCB() {
-        return CurrencyRatesCB;
+        return currencyRatesCB;
     }
 
     public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
-        CurrencyRatesCB = currencyRatesCB;
+        this.currencyRatesCB = currencyRatesCB;
     }
+
+    public void addTypeOfPercent() {
+    switch (this.percentType) {
+        case 1 -> { setTypeOfPercent(new PercentDaily());     }
+        case 30 -> { setTypeOfPercent(new PercentMonthly());  }
+        default -> { setTypeOfPercent(new PercentAtTheEnd()); }
+        }
+        }
 
     public String header(){
         return String.format("%5s |","id") +
@@ -167,12 +172,19 @@ public class Deposit implements Serializable {
     @Override
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+        String currencyString;
+        if (currencyCode.equals("810"))
+            currencyString = "RUB";
+        else
+        if (this.currencyRatesCB == null )
+            currencyString = currencyCode;
+        else
+            currencyString = this.currencyRatesCB.getCurrency(currencyCode).getCharCode();
         return String.format("%5d |",id) +
                 String.format("%25s |",bankName) +
                 String.format("%15.2f |",sum)  +
                 String.format("%5.2f |",rateOfInterest)  +
-                // Здесь надо заменить на буквенный код валюты из Currency
-                String.format("%6s |   ",currencyCode)  +
+                String.format("%6s |   ",currencyString)  +
                 formatter.format(startDate) +
                 "  | " + formatter.format(endDate) +
                 String.format("    |%30s |",comment) +

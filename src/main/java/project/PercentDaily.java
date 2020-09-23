@@ -18,7 +18,7 @@ public class PercentDaily implements TypeOfPercent {
 
     @Override
     public String toString(){
-        return "daily";
+        return "Ежедневно";
     }
 
 }

@@ -2,9 +2,7 @@ package project;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -26,8 +24,8 @@ public class User implements Serializable {
     @Column
     private String role;
 
-    @OneToMany (mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Deposit> deposits = new HashSet<>();
+    @OneToMany (mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Deposit> deposits = new ArrayList<>();
 
     public User(){}
 
@@ -83,15 +81,21 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public Set<Deposit> getDeposits() {
+    public List<Deposit> getDeposits() {
         return deposits;
     }
 
-    public void setDeposits(Set<Deposit> deposits) {
+    public void setDeposits(List<Deposit> deposits) {
         this.deposits = deposits;
     }
     public void addDeposit(Deposit deposit){
         deposit.setUser(this);
+        deposits.add(deposit);
+    }
+
+    public void addDeposit(Deposit deposit, GetCurrencyRatesCB currencyRatesCB){
+        deposit.setUser(this);
+        deposit.setCurrencyRatesCB(currencyRatesCB);
         deposits.add(deposit);
     }
 

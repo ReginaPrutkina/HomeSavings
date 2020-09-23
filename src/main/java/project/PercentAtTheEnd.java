@@ -16,6 +16,6 @@ public class PercentAtTheEnd implements TypeOfPercent{
 
     @Override
     public String toString(){
-        return "at the end of period";
+        return "В конце срока";
     }
 }

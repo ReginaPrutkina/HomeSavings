@@ -25,7 +25,7 @@ public class PercentMonthly implements TypeOfPercent {
 
     @Override
     public String toString(){
-        return "monthly";
+        return "Ежемесячно";
     }
 
 };
