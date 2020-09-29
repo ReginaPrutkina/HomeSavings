@@ -11,9 +11,9 @@ public class PercentDaily implements TypeOfPercent {
     @Override
     public double sumOnEndOfPeriod(Date startDate, Date endDate, double sumOfDeposit,double rateOfInterest) {
         int daysInPeriod=(int)((endDate.getTime()-startDate.getTime())/(24*60*60*1000));
-        for(int day=1; day<daysInPeriod; day++)
+        for(int day=1; day<=daysInPeriod; day++)
             sumOfDeposit+=sumOfDeposit*rateOfInterest/100/365;  //считаем год  - 365 дней
-        return sumOfDeposit;
+        return (double)Math.round(sumOfDeposit*100)/100;
     }
 
     @Override

@@ -54,7 +54,6 @@ public class Deposit implements Serializable {
             this.endDate = formatter.parse(fieldsMap.get("endDate"));
             this.comment = fieldsMap.get("comment");
             this.percentType = Integer.parseInt(fieldsMap.get("percentType"));
-            this.addTypeOfPercent();
         }
         catch (ParseException e) {
             throw new MyException( "Ошибка формата данных для депозита ", e);
@@ -148,14 +147,6 @@ public class Deposit implements Serializable {
     public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
         this.currencyRatesCB = currencyRatesCB;
     }
-
-    public void addTypeOfPercent() {
-    switch (this.percentType) {
-        case 1 -> { setTypeOfPercent(new PercentDaily());     }
-        case 30 -> { setTypeOfPercent(new PercentMonthly());  }
-        default -> { setTypeOfPercent(new PercentAtTheEnd()); }
-        }
-        }
 
     public String header(){
         return String.format("%5s |","id") +

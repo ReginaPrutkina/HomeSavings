@@ -11,7 +11,7 @@ public class PercentAtTheEnd implements TypeOfPercent{
     public double sumOnEndOfPeriod(Date startDate, Date endDate, double sumOfDeposit, double rateOfInterest) {
         int daysInPeriod=(int)((endDate.getTime()-startDate.getTime())/(24*60*60*1000));
         sumOfDeposit+=sumOfDeposit*rateOfInterest/100/365*daysInPeriod;  //считаем год  - 365 дней
-        return sumOfDeposit;
+        return (double)Math.round(sumOfDeposit*100)/100;
     }
 
     @Override

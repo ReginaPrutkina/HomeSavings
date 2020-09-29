@@ -14,13 +14,14 @@ public class PercentMonthly implements TypeOfPercent {
         // ежемесячная капитализация
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
-        int daysInMonth;
-        while (calendar.getTime().before(endDate)){
+        int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        while (calendar.getTime().before(endDate) ){
             daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-            sumOfDeposit+=sumOfDeposit*rateOfInterest/100/365*daysInMonth;  //считаем год  - 365 дней
             calendar.add(Calendar.MONTH,1);
-        }
-        return sumOfDeposit;
+            if (calendar.getTime().before(endDate) )
+                sumOfDeposit+=sumOfDeposit*rateOfInterest/100/365*daysInMonth;  //считаем год  - 365 дней
+           }
+        return (double)Math.round(sumOfDeposit*100)/100;
     };
 
     @Override

@@ -48,6 +48,7 @@ public class SendMail {
            // message.setContent("<h1>"+text+"</h1>", "text/html");
 
             //отправляем сообщение
+            System.out.println("Подождите, отправляем сообщение...");
             Transport.send(message);
             System.out.println("сообщение отправлено на адрес "+ toEmail);
         } catch (MessagingException e) {
@@ -85,11 +86,12 @@ public class SendMail {
             messageBodyPart = new MimeBodyPart();
             DataSource source = new FileDataSource(fileName);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(fileName);
+            messageBodyPart.setFileName(fileName.substring(fileName.lastIndexOf("\\")+1));
             multipart.addBodyPart(messageBodyPart);
 
             //  складываем все части в контент письма
             message.setContent(multipart );
+            System.out.println("Подождите, отправляем сообщение...");
             //отправляем сообщение
             Transport.send(message);
             System.out.println("сообщение с вложенным файлом " + fileName +" отправлено на адрес "+ toEmail);

@@ -38,7 +38,8 @@ try {
   //  userService.registerUser();
 
     // Аутентификация ползователя ================================================================
-    User user1 = userService.userAuth();
+   //User user1 = userService.userAuth();
+    User user1 = userDAO.findUserByLogin("petrov");
     if ( user1 != null)
         System.out.println("Приятной работы, "+ user1.getName() + " " + user1.getFamily());
         String userLogin = user1.getLogin();
@@ -53,28 +54,28 @@ try {
     //userDAO.update(user2); //- не работает
 
    // Обогощаем список считанных из базы депозитов клиента полями - сервиса валюты и классами по расчету %% ========================
+    DepositService depositService = new DepositService();
     for (Deposit deposit : user1.getDeposits()) {
         deposit.setCurrencyRatesCB(cbrCurrencies);
-        deposit.addTypeOfPercent();  /// этот метод надо убрать из депозитов в сервисный класс (userService  или  depositService)
-      //  System.out.println(deposit);
+        depositService.addTypeOfPercent(deposit);
 
     }
         NotificationService notificationService = new NotificationService( user1.getDeposits());
+        notificationService.setDaysToEndOfDeposit(60);
         System.out.println(notificationService.getRegularText());
         System.out.println(notificationService.getWarningText());
-   /*
+       // String fileName = notificationService.toFile(notificationService.getRegularHTML());
+        String fileName = notificationService.toFile(notificationService.getWarningHTML());
+
         //Отправка нотификаций  ===============================================================================
         if (sender != null){
-              sender.send("Информирование по депозитам",notificationService.getRegularText(),"rprutkina@mail.ru");
-              sender.send("Истекает срок депозитов",notificationService.getWarningText(),"rprutkina@mail.ru");
-              String fileName = notificationService.toFile(notificationService.getRegularText());
+           //   sender.send("Информирование по депозитам",notificationService.getRegularText(),"rprutkina@mail.ru");
+           //   sender.send("Истекает срок депозитов",notificationService.getWarningText(),"rprutkina@mail.ru");
+          //    String fileName = notificationService.toFile(notificationService.getRegularHTML());
               if (fileName.length() > 0){
-                sender.sendFile("Информирование по депозитам",fileName,"rprutkina@mail.ru");
+              //  sender.sendFile("Информирование по депозитам",fileName,"rprutkina@mail.ru");
                 }
         }
-*/
-
-
 
         }catch (MyException myException) {
             myException.printStackTrace();

@@ -10,14 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogToFile implements Logging {
-    private String userName="USER";
+    private String userName="Unknown";
     private String computerName;
     private String logFolder = ".";
     private String logFileName = "log.txt";
     private Path logFile;
 
-    LogToFile(String userName){
-        this.userName=userName;
+    LogToFile(){
         computerName=System.getenv("COMPUTERNAME");
         try { logFile = getLogFile();
         }catch (MyException ex) {
@@ -25,6 +24,16 @@ public class LogToFile implements Logging {
         }
 
     }
+
+    LogToFile(String logFolder){
+        computerName=System.getenv("COMPUTERNAME");
+        this.logFolder = logFolder;
+        try { logFile = getLogFile();
+        }catch (MyException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     LogToFile(String userName, String logFolder){
         this.userName=userName;
         computerName=System.getenv("COMPUTERNAME");
