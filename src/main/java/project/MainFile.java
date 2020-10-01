@@ -1,7 +1,6 @@
 package project;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class MainFile {
     public static void main(String[] args) {
@@ -30,10 +29,7 @@ try {
 
         //Считываем список валют с сайта ЦБР
         GetCurrencyRatesCB cbrCurrencies = new CBRCurrencies();
-        for (Deposit deposit:depositList){
-            deposit.setCurrencyRatesCB(cbrCurrencies);
 
-        }
 
         //попробоать распечатать список валют через getCurrency
         System.out.println("Дата курсов валют: " + cbrCurrencies.getRatesDate());

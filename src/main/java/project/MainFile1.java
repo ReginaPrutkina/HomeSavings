@@ -34,15 +34,7 @@ public class MainFile1 {
         //userDAO.update(user2);
 
      //      System.out.println(user2);
-            boolean isHeaderPrint = false;
-           for (Deposit deposit: userDAO.findUserByLogin("shvartz1").getDeposits() ) {
-               if (!isHeaderPrint)
-               {System.out.println(deposit.header());
-               isHeaderPrint = true;}
 
-               System.out.println(deposit);
-
-           }
     }
         }catch (MyException myException) {
             myException.printStackTrace();

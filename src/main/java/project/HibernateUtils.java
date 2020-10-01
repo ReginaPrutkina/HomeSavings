@@ -3,8 +3,6 @@ package project;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.io.File;
-
 public class HibernateUtils {
         private static SessionFactory sessionFactory;
         static {

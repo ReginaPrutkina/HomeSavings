@@ -1,5 +1,8 @@
 package project;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,17 +11,42 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class NotificationService implements Notification {
+public class NotificationService implements NotificationText, NotificationHTML {
+
     private String notificationText;
     private boolean notifyFlag;
     private List<Deposit> depositList;
-    //@Value("30")  // по умолчанию отправляем предупреждение об окончании срока депозита в течениен 30 дней
+
+    @Value("30")  // по умолчанию отправляем предупреждение об окончании срока депозита в течениен 30 дней
     private int daysToEndOfDeposit ;
 
-    NotificationService() {};
+    @Autowired
+    GetCurrencyRatesCB currencyRatesCB;
+
+    @Autowired
+    DepositService depositService;
+
+    NotificationService() {}
 
     NotificationService(List<Deposit> depositList){
+
         this.depositList = depositList;
+    }
+
+    public GetCurrencyRatesCB getCurrencyRatesCB() {
+        return currencyRatesCB;
+    }
+
+    public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
+        this.currencyRatesCB = currencyRatesCB;
+    }
+
+    public DepositService getDepositService() {
+        return depositService;
+    }
+
+    public void setDepositService(DepositService depositService) {
+        this.depositService = depositService;
     }
 
     public String getNotificationText() {
@@ -55,22 +83,27 @@ public class NotificationService implements Notification {
     }
     @Override
     public String getRegularText(){
+        StringBuilder tempStr = new StringBuilder();
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
+        int rowNum = 1;
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        notificationText = "Состояние вкладов на " + formatter.format(date) + "\n";
-        notificationText += depositList.get(0).header();
+        tempStr.append("Состояние вкладов на " + formatter.format(date) + "\n");
+        tempStr.append(depositTextHeader());
         Set<String> currencySet = new HashSet<>();
         for (Deposit deposit: depositList) {
-            notificationText += deposit.toString() +'\n';
+            tempStr.append(this.depositTextRow(rowNum++, deposit) +'\n');
             currencySet.add(deposit.getCurrencyCode());
         }
-        notificationText += footerText(currencySet);
+        tempStr.append(footerText(currencySet,"\n"));
+        notificationText = tempStr.toString();
         return notificationText;
     }
-    private String footerText(Set<String> currencySet){
-        String footer = "Всего: \n";
+
+    private String footerText(Set<String> currencySet, String endStr){
+        StringBuilder tempStr = new StringBuilder();
+        tempStr.append("Всего: "+ endStr);
         for (String curCode: currencySet) {
             double sumInCurrency = 0;
 
@@ -79,22 +112,18 @@ public class NotificationService implements Notification {
                     sumInCurrency += deposit.getSum();
             }
             if (curCode.equals("810"))
-                footer += "Вкладов в рублях: " + sumInCurrency +
-                        "\n";
+                tempStr.append("Вкладов в рублях: " + sumInCurrency + endStr);
             else {
-                Currency currency = depositList.get(0).getCurrencyRatesCB().getCurrency(curCode);
-                footer += "Вкладов в " + currency.getCharCode() +
-                " (" + currency.getName() + "): " +
-                        sumInCurrency +
-                ", рублевый экв.: " +
-                        sumInCurrency * currency.getValue() / currency.getNominal() +
-                        "  (по курсу ЦБ - " + currency.getValue()  + " руб. за " +
-                        currency.getNominal() + " " + currency.getCharCode() +
-                ")\n";
+                Currency currency = this.currencyRatesCB.getCurrency(curCode);
+                tempStr.append("Вкладов в " + currency.getCharCode() + " (" + currency.getName() + "): " );
+                tempStr.append( sumInCurrency + ", рублевый экв.: " );
+                tempStr.append(sumInCurrency * currency.getValue() / currency.getNominal());
+                tempStr.append("  (по курсу ЦБ - " + currency.getValue()  + " руб. за " );
+                tempStr.append(currency.getNominal() + " " + currency.getCharCode() + ")" +endStr);
             }
         }
 
-        return footer;
+        return tempStr.toString();
     }
     @Override
     public String getWarningText(){
@@ -103,24 +132,25 @@ public class NotificationService implements Notification {
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
-
+        int rowNumNearEnd = 1;
+        int rowNumOverEnd = 1;
         for (Deposit deposit: depositList) {
             if (deposit.getEndDate().getTime() < date.getTime())
-                overEndDeposits += deposit.toString() + '\n';
+                overEndDeposits += depositTextRow(rowNumOverEnd++,deposit) + '\n';
             else if (deposit.getEndDate().getTime() < (date.getTime() + (long)this.daysToEndOfDeposit * 24 * 60 * 60 * 1000))
-                nearEndDeposit += deposit.toString() + "\n";
+                nearEndDeposit += depositTextRow(rowNumNearEnd++, deposit) + "\n";
         }
 
             if (overEndDeposits.length() > 0) {
                 notificationText = "Вклады, срок которых закончился: \n" +
-                        depositList.get(0).header() +
+                        depositTextHeader() +
                         overEndDeposits +
                         "\n";
             }
             if (nearEndDeposit.length() > 0) {
                 notificationText += "Вклады, срок которых закончится в ближайшие " +
                         this.daysToEndOfDeposit + " дней: \n" +
-                        depositList.get(0).header() +
+                        depositTextHeader() +
                         nearEndDeposit +
                         "\n";
             }
@@ -168,49 +198,16 @@ public class NotificationService implements Notification {
         htmlStringBuilder.append("<h3>"+ "Уважаемый " + depositList.get(0).getUser().getName() +"! </h3>");
         htmlStringBuilder.append("<h3>"+ "Состояние Ваших вкладов на " + formatter.format(date) +":</h3>");
         //append table
-        //htmlStringBuilder.append("<table border=\"1\" bordercolor=\"#000000\">");
-         htmlStringBuilder.append("<table id = \"info\">");
+        htmlStringBuilder.append("<table id = \"info\">");
         //thead row
-        htmlStringBuilder.append("<thead><th><b>#</b></th>" +
-                        "<th><b>Название банка</b></th>" +
-                        "<th><b>Сумма</b></th>"+
-                        "<th><b>Ставка</b></th>" +
-                        "<th><b>Валюта</b></th>"+
-                        "<th><b>Дата начала</b></th>"+
-                        "<th><b>Дата окончания</b></th>" +
-                        "<th><b>Комменатрий</b></th>"  +
-                        "<th><b>Капитализация</b></th>" +
-                        "<th><b>Эфф.ставка</b></th>" +
-                        "<th><b>*Сумма на конец срока</b></th>" +
-                        "</tr></thead>"
-                        );
+        htmlStringBuilder.append(depositHTMLHeader());
         //append rows
         int rowNum = 1;
         for (Deposit deposit: depositList) {
-            if (deposit.getCurrencyCode().equals("810"))
-                currencyString = "RUB";
-            else
-            if (deposit.getCurrencyRatesCB() == null )
-                currencyString = deposit.getCurrencyCode();
-            else
-                currencyString = deposit.getCurrencyRatesCB().getCurrency(deposit.getCurrencyCode()).getCharCode();
-
-            htmlStringBuilder.append("<tr><td>"+ rowNum++ +"</td>" +
-                    "<td>" +deposit.getBankName()+ "</td>" +
-                    "<td>"+deposit.getSum()+"</td>"+
-                    "<td>" +deposit.getRateOfInterest() +" %</td>" +
-                    "<td>" + currencyString +"</td>"+
-                    "<td>" + deposit.getStartDate() +"</td>"+
-                    "<td>"+deposit.getEndDate()+"</th>" +
-                    "<td>"+deposit.getComment()+"</td>"  +
-                    "<td>"+deposit.getTypeOfPercent() + "</td>"+
-                    "<td>"+deposit.getTypeOfPercent().effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
-                    "<td>"+deposit.getTypeOfPercent().sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest()) + "</td>"
-            );
+            htmlStringBuilder.append(depositHTMLRow(rowNum,deposit));
             currencySet.add(deposit.getCurrencyCode());
         }
-        String htmlFooter =  footerText(currencySet).replace("\n","<br>");
-        htmlStringBuilder.append("</table><p>"+htmlFooter+"</p>");
+        htmlStringBuilder.append("</table><p>"+footerText(currencySet, "<br>")+"</p>");
         htmlStringBuilder.append("<p class = \"footnote\">"+ "* Суммы на конец срока рассчитаны без учета снятий и пополнений" +"</p></body></html>");
         notificationText = htmlStringBuilder.toString();
         return notificationText;
@@ -238,57 +235,24 @@ public class NotificationService implements Notification {
         htmlStringBuilder.append("<h3>"+ "Уважаемый " + depositList.get(0).getUser().getName() +"! </h3>");
         htmlStringBuilder.append("<h3>"+ "Вклады, требующие Вашего внимания: " + formatter.format(date) +":</h3>");
         //append  2 tables
-        //thead row
-        tempStr = "<thead><th><b>#</b></th>" +
-                "<th><b>Название банка</b></th>" +
-                "<th><b>Сумма</b></th>"+
-                "<th><b>Ставка</b></th>" +
-                "<th><b>Валюта</b></th>"+
-                "<th><b>Дата начала</b></th>"+
-                "<th><b>Дата окончания</b></th>" +
-                "<th><b>Комменатрий</b></th>"  +
-                "<th><b>Капитализация</b></th>" +
-                "<th><b>Эфф.ставка</b></th>" +
-                "<th><b>*Сумма на конец срока</b></th>" +
-                "</tr></thead>";
+        //thead rows
         overEndDeposits.append("<table id = \"info\">");
-        overEndDeposits.append(tempStr);
+        overEndDeposits.append(depositHTMLHeader());
         nearEndDeposit.append("<table id = \"info\">");
-        nearEndDeposit.append(tempStr);
+        nearEndDeposit.append(depositHTMLHeader());
 
-        //append rows
+        //append rows to tables
         int rowNumNearEnd = 1;
         int rowNumOverEnd = 1;
         for (Deposit deposit: depositList) {
-            if (deposit.getCurrencyCode().equals("810"))
-                currencyString = "RUB";
-            else
-            if (deposit.getCurrencyRatesCB() == null )
-                currencyString = deposit.getCurrencyCode();
-            else
-                currencyString = deposit.getCurrencyRatesCB().getCurrency(deposit.getCurrencyCode()).getCharCode();
-            tempStr =
-                    "<td>" +deposit.getBankName()+ "</td>" +
-                    "<td>"+deposit.getSum()+"</td>"+
-                    "<td>" +deposit.getRateOfInterest() +" %</td>" +
-                    "<td>" + currencyString +"</td>"+
-                    "<td>" + deposit.getStartDate() +"</td>"+
-                    "<td>"+deposit.getEndDate()+"</th>" +
-                    "<td>"+deposit.getComment()+"</td>"  +
-                    "<td>"+deposit.getTypeOfPercent() + "</td>"+
-                    "<td>"+deposit.getTypeOfPercent().effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
-                    "<td>"+deposit.getTypeOfPercent().sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest()) +
-                    "</td>";
-
             if (deposit.getEndDate().getTime() < date.getTime()){
-                overEndDeposits.append("<tr><td>"+ rowNumOverEnd++ +"</td>" + tempStr);
+                overEndDeposits.append(depositHTMLRow(rowNumOverEnd++, deposit));
             }
             else if (deposit.getEndDate().getTime() < (date.getTime() + (long)this.daysToEndOfDeposit * 24 * 60 * 60 * 1000)){
-                nearEndDeposit.append("<tr><td>"+ rowNumNearEnd++ +"</td>" + tempStr);
+                nearEndDeposit.append(depositHTMLRow(rowNumNearEnd++,deposit));
             }
 
         }
-
         if (rowNumOverEnd > 1) {
             overEndDeposits.append("</table>");
             htmlStringBuilder.append("<p>Вклады, срок которых закончился: </p>");
@@ -298,9 +262,9 @@ public class NotificationService implements Notification {
         if (rowNumNearEnd > 1) {
             nearEndDeposit.append("</table>");
             htmlStringBuilder.append("<p>Вклады, срок которых закончится в ближайшие " + this.daysToEndOfDeposit +" дней:  </p>");
-            htmlStringBuilder.append(overEndDeposits);
+            htmlStringBuilder.append(nearEndDeposit);
         }
-        htmlStringBuilder.append("</body><html>");
+        htmlStringBuilder.append("</body></html>");
         if (rowNumNearEnd >1 || rowNumOverEnd > 1)
             this.notificationText = htmlStringBuilder.toString();
         else this.notificationText = "";
@@ -321,5 +285,78 @@ public class NotificationService implements Notification {
         return fileName;
      }
 
+     private String depositTextRow(int rowNum, Deposit deposit){
+         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+         String currencyString;
+         if (deposit.getCurrencyCode().equals("810"))
+             currencyString = "RUB";
+         else
+         if (this.currencyRatesCB == null )
+             currencyString = deposit.getCurrencyCode();
+         else
+             currencyString = this.currencyRatesCB.getCurrency(deposit.getCurrencyCode()).getCharCode();
+         return String.format("%5d |",rowNum) +
+                 String.format("%25s |", deposit.getBankName()) +
+                 String.format("%15.2f |",deposit.getSum())  +
+                 String.format("%5.2f |",deposit.getRateOfInterest())  +
+                 String.format("%6s |   ",currencyString)  +
+                 formatter.format(deposit.getStartDate()) +
+                 "  | " + formatter.format(deposit.getEndDate()) +
+                 String.format("    |%15s |",depositService.getTypeOfPercentObject(deposit)) +
+                 String.format("%30s ",deposit.getComment()) ;
+
+     }
+    private String depositTextHeader(){
+        return String.format("%5s |","id") +
+                String.format("%25s |","Название банка") +
+                String.format("%15s |","Сумма")  +
+                String.format("%5s|","Ставка")  +
+                String.format("%6s |","Валюта")  +
+                String.format("%14s |","Дата начала") +
+                String.format("%14s |","Дата окончания") +
+                String.format("%15s |","Капитализация") +
+                String.format("%30s ","Комменатрий") +
+                "\n";
+    }
+
+    private String depositHTMLHeader(){
+        return "<thead><tr>" +
+                "<th><b>#</b></th>" +
+                "<th><b>Название банка</b></th>" +
+                "<th><b>Сумма</b></th>"+
+                "<th><b>Ставка</b></th>" +
+                "<th><b>Валюта</b></th>"+
+                "<th><b>Дата начала</b></th>"+
+                "<th><b>Дата окончания</b></th>" +
+                "<th><b>Комменатрий</b></th>"  +
+                "<th><b>Капитализация</b></th>" +
+                "<th><b>Эфф.ставка</b></th>" +
+                "<th><b>*Сумма на конец срока</b></th>" +
+                "</tr></thead>";
+    }
+
+    private String depositHTMLRow(int rowNum, Deposit deposit){
+        String currencyString;
+        if (deposit.getCurrencyCode().equals("810"))
+            currencyString = "RUB";
+        else
+        if (this.currencyRatesCB == null )
+            currencyString = deposit.getCurrencyCode();
+        else
+            currencyString = currencyRatesCB.getCurrency(deposit.getCurrencyCode()).getCharCode();
+
+        return "<tr><td>"+ rowNum +"</td>" +
+                "<td>" +deposit.getBankName()+ "</td>" +
+                "<td>"+deposit.getSum()+"</td>"+
+                "<td>" +deposit.getRateOfInterest() +" %</td>" +
+                "<td>" + currencyString +"</td>"+
+                "<td>" + deposit.getStartDate() +"</td>"+
+                "<td>"+deposit.getEndDate()+"</td>" +
+                "<td>"+deposit.getComment()+"</td>"  +
+                "<td>"+depositService.getTypeOfPercentObject(deposit) + "</td>"+
+                "<td>"+depositService.getTypeOfPercentObject(deposit).effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
+                "<td>"+depositService.getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest())
+                + "</td></tr>";
+    }
 
 }

@@ -93,12 +93,6 @@ public class User implements Serializable {
         deposits.add(deposit);
     }
 
-    public void addDeposit(Deposit deposit, GetCurrencyRatesCB currencyRatesCB){
-        deposit.setUser(this);
-        deposit.setCurrencyRatesCB(currencyRatesCB);
-        deposits.add(deposit);
-    }
-
     @Override
     public String toString() {
         return "User{" +

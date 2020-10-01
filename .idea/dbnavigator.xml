@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d">
-        <schema name="home_savings" object-types="procedure, view, constraint, index, function, table, dataset trigger, column" />
+        <schema name="home_savings" object-types="view, table" />
         <schema name="testdb" object-types="view, table" />
       </connection>
     </loaded-nodes>

@@ -1,6 +1,8 @@
 package project;
 
-import java.time.format.SignStyle;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.List;
 
 public class MainFile2 {
@@ -11,6 +13,7 @@ try {
         UserDAO userDAO = new UserDAOImpl();
         SendMail sender = null;
         UserService userService = new UserServiceImpl(userDAO);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 
         //Счтиваем почту и пароль отправителя из базы по логину adminSender =======================
@@ -29,7 +32,11 @@ try {
             userDAO.save(admin);
             userSender = userDAO.findUserByLogin("adminSender");
         }
-        sender = new SendMail(userSender.getEmail(),((AdminSender)userSender).getPassword());
+      //  sender = new SendMail(userSender.getEmail(),((AdminSender)userSender).getPassword());
+        //Создаем почтовый сервис через бин
+        sender = (SendMail)context.getBean("MailService");
+        sender.setUsername(userSender.getEmail());
+        sender.setPassword(((AdminSender)userSender).getPassword());
 
        //Считываем список валют с сайта ЦБР
         GetCurrencyRatesCB cbrCurrencies = new CBRCurrencies();
@@ -54,13 +61,18 @@ try {
     //userDAO.update(user2); //- не работает
 
    // Обогощаем список считанных из базы депозитов клиента полями - сервиса валюты и классами по расчету %% ========================
-    DepositService depositService = new DepositService();
-    for (Deposit deposit : user1.getDeposits()) {
-        deposit.setCurrencyRatesCB(cbrCurrencies);
-        depositService.addTypeOfPercent(deposit);
-
-    }
-        NotificationService notificationService = new NotificationService( user1.getDeposits());
+    //Создание через бины
+    //DepositService depositService = new DepositService();
+    DepositService depositService = (DepositService)context.getBean("DepositFactory");
+//    for (Deposit deposit : user1.getDeposits()) {
+//        deposit.setCurrencyRatesCB(cbrCurrencies);
+//        depositService.addTypeOfPercent(deposit);
+//
+//    }
+    // Создаем сервис нотификации бином
+        NotificationService notificationService = (NotificationService) context.getBean("NotificationService");
+        notificationService.setDepositList( user1.getDeposits());
+        //NotificationService notificationService = new NotificationService( user1.getDeposits());
         notificationService.setDaysToEndOfDeposit(60);
         System.out.println(notificationService.getRegularText());
         System.out.println(notificationService.getWarningText());

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id = "DepositFactory" class = "project.DepositService" autowire="byType"/>
+
+    <bean id = "DailyPercent" class="project.PercentDaily"/>
+    <bean id = "MonthlyPercent" class = "project.PercentMonthly"/>
+    <bean id="AtTheEndPercent" class="project.PercentAtTheEnd"/>
+
+    <bean id = "MailService" class="project.SendMail">
+        <constructor-arg name="propHost" value="smtp.gmail.com"/>
+        <constructor-arg name="propSocketFactory" value="465"/>
+        <constructor-arg name="propSocketFactoryClass" value="javax.net.ssl.SSLSocketFactory"/>
+        <constructor-arg name="propAuth" value="true"/>
+        <constructor-arg name="propPort" value="465"/>
+    </bean>
+
+    <bean id = "NotificationService" class="project.NotificationService" autowire="byType"/>
+
+    <bean id = "CurrencyRateCBService" class="project.CBRCurrencies"/>
+
+</beans>

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CBRCurrencies implements GetCurrencyRatesCB{
-    private String url = "http://cbr.ru/scripts/XML_daily.asp";
+    private final String url = "http://cbr.ru/scripts/XML_daily.asp";
     //private List<Currency> currenciesList;
     private NodeList nodeCurrenciesList;
     private Date ratesDate;

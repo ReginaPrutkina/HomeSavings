@@ -31,10 +31,10 @@ public class Deposit implements Serializable {
     private String comment;
     @Column (nullable = false)
     private int percentType;
-    @Transient
-    private TypeOfPercent typeOfPercent;
-    @Transient
-    private GetCurrencyRatesCB currencyRatesCB;
+// @Transient
+//    private TypeOfPercent typeOfPercent;
+//    @Transient
+//    private GetCurrencyRatesCB currencyRatesCB;
 
     @ManyToOne
     @JoinColumn (name = "user_id")
@@ -132,53 +132,53 @@ public class Deposit implements Serializable {
         this.percentType = percentType;
     }
 
-    public void setTypeOfPercent(TypeOfPercent typeOfPercent) {
-        this.typeOfPercent = typeOfPercent;
-    }
+//    public void setTypeOfPercent(TypeOfPercent typeOfPercent) {
+//        this.typeOfPercent = typeOfPercent;
+//    }
+//
+//    public TypeOfPercent getTypeOfPercent() {
+//        return typeOfPercent;
+//    }
+//
+//    public GetCurrencyRatesCB getCurrencyRatesCB() {
+//        return currencyRatesCB;
+//    }
+//
+//    public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
+//        this.currencyRatesCB = currencyRatesCB;
+//    }
 
-    public TypeOfPercent getTypeOfPercent() {
-        return typeOfPercent;
-    }
-
-    public GetCurrencyRatesCB getCurrencyRatesCB() {
-        return currencyRatesCB;
-    }
-
-    public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
-        this.currencyRatesCB = currencyRatesCB;
-    }
-
-    public String header(){
-        return String.format("%5s |","id") +
-                String.format("%25s |","Название банка") +
-                String.format("%15s |","Сумма")  +
-                String.format("%5s|","Ставка")  +
-                String.format("%6s |","Валюта")  +
-                String.format("%14s |","Дата начала") +
-                String.format("%14s |","Дата окончания") +
-                String.format("%30s |","Комменатрий") +
-                String.format("%10s ","Капитализация") +
-                "\n";
-        }
-    @Override
-    public String toString() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        String currencyString;
-        if (currencyCode.equals("810"))
-            currencyString = "RUB";
-        else
-        if (this.currencyRatesCB == null )
-            currencyString = currencyCode;
-        else
-            currencyString = this.currencyRatesCB.getCurrency(currencyCode).getCharCode();
-        return String.format("%5d |",id) +
-                String.format("%25s |",bankName) +
-                String.format("%15.2f |",sum)  +
-                String.format("%5.2f |",rateOfInterest)  +
-                String.format("%6s |   ",currencyString)  +
-                formatter.format(startDate) +
-                "  | " + formatter.format(endDate) +
-                String.format("    |%30s |",comment) +
-                typeOfPercent ;
-    }
+//    public String header(){
+//        return String.format("%5s |","id") +
+//                String.format("%25s |","Название банка") +
+//                String.format("%15s |","Сумма")  +
+//                String.format("%5s|","Ставка")  +
+//                String.format("%6s |","Валюта")  +
+//                String.format("%14s |","Дата начала") +
+//                String.format("%14s |","Дата окончания") +
+//                String.format("%15s |","Капитализация") +
+//                String.format("%30s ","Комменатрий") +
+//                "\n";
+//        }
+//    @Override
+//    public String toString() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+//        String currencyString;
+//        if (currencyCode.equals("810"))
+//            currencyString = "RUB";
+//        else
+//        if (this.currencyRatesCB == null )
+//            currencyString = currencyCode;
+//        else
+//            currencyString = this.currencyRatesCB.getCurrency(currencyCode).getCharCode();
+//        return String.format("%5d |",id) +
+//                String.format("%25s |",bankName) +
+//                String.format("%15.2f |",sum)  +
+//                String.format("%5.2f |",rateOfInterest)  +
+//                String.format("%6s |   ",currencyString)  +
+//                formatter.format(startDate) +
+//                "  | " + formatter.format(endDate) +
+//                String.format("    |%15s |",typeOfPercent) +
+//                String.format("%30s ",comment) ;
+//    }
 }
