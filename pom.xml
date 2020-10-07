@@ -60,6 +60,13 @@
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ru.java.project</groupId>
+            <artifactId>modul1.MailService</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
 
     </dependencies>
 

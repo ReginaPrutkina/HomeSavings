@@ -1,43 +1,28 @@
 package project;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.List;
 
 public class MainFile1 {
     public static void main(String[] args) {
-          try {
-        UserDAO userDAO = new UserDAOImpl();
-        UserService userService = new UserServiceImpl(userDAO);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserDAO userDAO = (UserDAOImpl) context.getBean("UserDAO");
+        //UserService userService = new UserServiceImpl(userDAO);
         // User user2 = userService.registerUser();
         //  User user2 = userService.userAuth();
         User user2 = userDAO.findUserByLogin("shvartz1");
-         /*   User user2 = new User();
-            user2.setFamily("Шварц6");
-            user2.setName("Евгений");
-            user2.setLogin("shvartz6");
-            user2.setEmail("shvartz6@shvartz.com");
-            user2.setPasswordHash("shvartz6");
-            user2.setRole("user");
-          */
+
 
         //  userDAO.save(user2);
         if (user2 != null) {
-            System.out.println("Приятной работы, " + user2.getName() + " " + user2.getFamily());
+            System.out.println("Удаляем " + user2.getName() + " " + user2.getFamily());
 
-          // userDAO.delete(user2);
-            //Используем mock - данные для создания списка депозитов
-                  List<Deposit> depositList = (new MockData()).depositList;
-   //        for (Deposit deposit: depositList ) {
-    //           user2.addDeposit(deposit);
-   //        }
+           userDAO.delete(user2);
 
-    //    userDAO.merge(user2);
-        //userDAO.update(user2);
-
-     //      System.out.println(user2);
 
     }
-        }catch (MyException myException) {
-            myException.printStackTrace();
-        }
+
     }
 }

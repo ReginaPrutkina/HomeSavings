@@ -14,7 +14,7 @@ import java.util.*;
 public class NotificationService implements NotificationText, NotificationHTML {
 
     private String notificationText;
-    private boolean notifyFlag;
+
     private List<Deposit> depositList;
 
     @Value("30")  // по умолчанию отправляем предупреждение об окончании срока депозита в течениен 30 дней
@@ -32,6 +32,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
         this.depositList = depositList;
     }
+
 
     public GetCurrencyRatesCB getCurrencyRatesCB() {
         return currencyRatesCB;
@@ -55,14 +56,6 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
     public void setNotificationText(String notificationText) {
         this.notificationText = notificationText;
-    }
-
-    public boolean isNotifyFlag() {
-        return notifyFlag;
-    }
-
-    public void setNotifyFlag(boolean notifyFlag) {
-        this.notifyFlag = notifyFlag;
     }
 
     public List<Deposit> getDepositList() {
@@ -157,9 +150,6 @@ public class NotificationService implements NotificationText, NotificationHTML {
         return notificationText;
         }
 
-    public boolean getNotifyFlag(){
-        return notifyFlag;
-    }
 
     private String htmlStyle(){
         return "<style>" +
@@ -195,7 +185,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         htmlStringBuilder.append(htmlStyle());
         //append body
         htmlStringBuilder.append("<body>");
-        htmlStringBuilder.append("<h3>"+ "Уважаемый " + depositList.get(0).getUser().getName() +"! </h3>");
+        htmlStringBuilder.append("<h3>"+ "Добрый день, " + depositList.get(0).getUser().getName() +"! </h3>");
         htmlStringBuilder.append("<h3>"+ "Состояние Ваших вкладов на " + formatter.format(date) +":</h3>");
         //append table
         htmlStringBuilder.append("<table id = \"info\">");
@@ -204,7 +194,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         //append rows
         int rowNum = 1;
         for (Deposit deposit: depositList) {
-            htmlStringBuilder.append(depositHTMLRow(rowNum,deposit));
+            htmlStringBuilder.append(depositHTMLRow(rowNum++,deposit));
             currencySet.add(deposit.getCurrencyCode());
         }
         htmlStringBuilder.append("</table><p>"+footerText(currencySet, "<br>")+"</p>");
@@ -232,7 +222,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         htmlStringBuilder.append(htmlStyle());
         //append body
         htmlStringBuilder.append("<body>");
-        htmlStringBuilder.append("<h3>"+ "Уважаемый " + depositList.get(0).getUser().getName() +"! </h3>");
+        htmlStringBuilder.append("<h3>"+ "Добрый день, " + depositList.get(0).getUser().getName() +"! </h3>");
         htmlStringBuilder.append("<h3>"+ "Вклады, требующие Вашего внимания: " + formatter.format(date) +":</h3>");
         //append  2 tables
         //thead rows
@@ -271,8 +261,10 @@ public class NotificationService implements NotificationText, NotificationHTML {
         return notificationText;
     }
 
+
     public String toFile(String notificationText) throws MyException{
-        String fileName = ".\\" + "info.html";
+        String fileName;
+        fileName = ".\\" + "info.html";
         Path infoFile = Paths.get(fileName);
         try {
             Files.write(infoFile, Collections.singleton(notificationText),StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
@@ -284,6 +276,21 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
         return fileName;
      }
+
+    public String toFile(String notificationText, String fileName) throws MyException{
+
+        Path infoFile = Paths.get(fileName);
+        try {
+            Files.write(infoFile, Collections.singleton(notificationText),StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+
+        } catch ( IOException exception) {
+            fileName = "";
+            throw (new MyException(" Не удалось создать файл" + fileName + " с информированием по депозитам ", exception));
+        }
+
+        return fileName;
+    }
+
 
      private String depositTextRow(int rowNum, Deposit deposit){
          SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
@@ -351,11 +358,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "<td>" +deposit.getRateOfInterest() +" %</td>" +
                 "<td>" + currencyString +"</td>"+
                 "<td>" + deposit.getStartDate() +"</td>"+
-                "<td>"+deposit.getEndDate()+"</td>" +
-                "<td>"+deposit.getComment()+"</td>"  +
-                "<td>"+depositService.getTypeOfPercentObject(deposit) + "</td>"+
-                "<td>"+depositService.getTypeOfPercentObject(deposit).effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
-                "<td>"+depositService.getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest())
+                "<td>" + deposit.getEndDate()+"</td>" +
+                "<td>" + deposit.getComment()+"</td>"  +
+                "<td>" + depositService.getTypeOfPercentObject(deposit) + "</td>"+
+//                "<td>"+depositService.getTypeOfPercentObject(deposit).effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
+//                "<td>"+depositService.getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest())
+                "<td>" + depositService.getEffectiveRate(deposit) + "%</td>" +
+                "<td>"+ depositService.getSumOnEndOfPeriod(deposit)
                 + "</td></tr>";
     }
 

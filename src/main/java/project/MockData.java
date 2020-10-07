@@ -19,7 +19,6 @@ public class MockData {
         hashMapDeposit.put("comment", "еждневная капитализация");
         hashMapDeposit.put("percentType", "1");
         depositList.add(new Deposit(hashMapDeposit));
-      //  depositList.get(depositList.size() - 1).setTypeOfPercent(new PercentDaily());
 
         hashMapDeposit.clear();
         hashMapDeposit.put("id", "2");
@@ -32,7 +31,6 @@ public class MockData {
         hashMapDeposit.put("comment", "не капитализируется, доверенность на Павла");
         hashMapDeposit.put("percentType", "0");
         depositList.add(new Deposit(hashMapDeposit));
-      //  depositList.get(depositList.size() - 1).setTypeOfPercent(new PercentAtTheEnd());
 
         hashMapDeposit.clear();
         hashMapDeposit.put("id", "3");
@@ -46,7 +44,6 @@ public class MockData {
         hashMapDeposit.put("comment", "ежемесячная капитализация");
         hashMapDeposit.put("percentType", "30");
         depositList.add(new Deposit(hashMapDeposit));
-      //  depositList.get(depositList.size() - 1).setTypeOfPercent(new PercentMonthly());
 
         hashMapDeposit.clear();
         hashMapDeposit.put("id", "3");
@@ -60,7 +57,6 @@ public class MockData {
         hashMapDeposit.put("comment", "ежемесячная капитализация");
         hashMapDeposit.put("percentType", "30");
         depositList.add(new Deposit(hashMapDeposit));
-     //   depositList.get(depositList.size() - 1).setTypeOfPercent(new PercentMonthly());
 
     }
 }

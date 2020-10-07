@@ -35,11 +35,11 @@ try {
       //  sender = new SendMail(userSender.getEmail(),((AdminSender)userSender).getPassword());
         //Создаем почтовый сервис через бин
         sender = (SendMail)context.getBean("MailService");
-        sender.setUsername(userSender.getEmail());
-        sender.setPassword(((AdminSender)userSender).getPassword());
+      //  sender.setUsername(userSender.getEmail());
+      //  sender.setPassword(((AdminSender)userSender).getPassword());
 
        //Считываем список валют с сайта ЦБР
-        GetCurrencyRatesCB cbrCurrencies = new CBRCurrencies();
+      //  GetCurrencyRatesCB cbrCurrencies = new CBRCurrencies();
 
     //Регистрация пользователя ==================================================================
   //  userService.registerUser();
@@ -52,7 +52,7 @@ try {
         String userLogin = user1.getLogin();
 
    //Используем mock - данные для создания списка депозитов ==================================
-    List<Deposit> depositList = (new MockData()).depositList;
+   // List<Deposit> depositList = (new MockData()).depositList;
     //        for (Deposit deposit: depositList ) {
     //           user2.addDeposit(deposit);
     //        }
@@ -60,24 +60,16 @@ try {
     //    userDAO.merge(user2);
     //userDAO.update(user2); //- не работает
 
-   // Обогощаем список считанных из базы депозитов клиента полями - сервиса валюты и классами по расчету %% ========================
-    //Создание через бины
-    //DepositService depositService = new DepositService();
-    DepositService depositService = (DepositService)context.getBean("DepositFactory");
-//    for (Deposit deposit : user1.getDeposits()) {
-//        deposit.setCurrencyRatesCB(cbrCurrencies);
-//        depositService.addTypeOfPercent(deposit);
-//
-//    }
+    //DepositService depositService = (DepositService)context.getBean("DepositFactory");
+
     // Создаем сервис нотификации бином
         NotificationService notificationService = (NotificationService) context.getBean("NotificationService");
         notificationService.setDepositList( user1.getDeposits());
-        //NotificationService notificationService = new NotificationService( user1.getDeposits());
         notificationService.setDaysToEndOfDeposit(60);
         System.out.println(notificationService.getRegularText());
         System.out.println(notificationService.getWarningText());
-       // String fileName = notificationService.toFile(notificationService.getRegularHTML());
-        String fileName = notificationService.toFile(notificationService.getWarningHTML());
+        String fileName = notificationService.toFile(notificationService.getRegularHTML());
+      //  String fileName = notificationService.toFile(notificationService.getWarningHTML());
 
         //Отправка нотификаций  ===============================================================================
         if (sender != null){

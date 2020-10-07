@@ -10,12 +10,6 @@ public class DepositService {
     @Autowired
     private PercentMonthly percentMonthly;
 
-////    public DepositService() {
-//     //   percentAtTheEnd = new PercentAtTheEnd();
-//     //   percentDaily = new PercentDaily();
-//     //   percentMonthly = new PercentMonthly();
-//    }
-
     public PercentDaily getPercentDaily() {
         return percentDaily;
     }
@@ -40,19 +34,19 @@ public class DepositService {
         this.percentMonthly = percentMonthly;
     }
 
-//    public void addTypeOfPercent(Deposit deposit) {
-//       switch (deposit.getPercentType()) {
-//            case 1 -> { deposit.setTypeOfPercent(percentDaily);     }
-//            case 30 -> { deposit.setTypeOfPercent(percentMonthly);  }
-//            default -> { deposit.setTypeOfPercent(percentAtTheEnd); }
-//        }
-//    }
-
     public TypeOfPercent getTypeOfPercentObject(Deposit deposit) {
         switch (deposit.getPercentType()) {
             case 1 -> {return percentDaily;   }
             case 30 -> {return percentMonthly;}
             default -> { return percentAtTheEnd; }
         }
+    }
+
+    public double getEffectiveRate (Deposit deposit) {
+        return getTypeOfPercentObject(deposit).effectiveRate(deposit.getRateOfInterest());
+    }
+
+    public double getSumOnEndOfPeriod (Deposit deposit){
+        return getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest());
     }
 }
