@@ -60,10 +60,14 @@ public class Deposit implements Serializable {
         }
     }
 
+    public int getId() {
+        return id;
+    }
 
     public void setUser(User user) {
         this.user = user;
     }
+
     public User getUser() {
         return this.user;
     }

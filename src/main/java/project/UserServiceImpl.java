@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
@@ -44,30 +44,28 @@ public class UserServiceImpl implements UserService{
     @Override
     public User checkUserPassword(String login, String password) {
         User userCmp = userDAO.findUserByLogin(login);
-        if ((userCmp != null ) && userCmp.getRole().equals("admin")
-                && isAdminPasswordValid(login, password, (AdminSender)userCmp)){
+        if ((userCmp != null) && userCmp.getRole().equals("admin")
+                && isAdminPasswordValid(login, password, (AdminSender) userCmp)) {
             System.out.println("Пользователь авторизован как администратор");
             return (AdminSender) userCmp;
-        }else {
+        } else {
             if ((userCmp == null) || (!userCmp.getPasswordHash().equals(Integer.toString(password.hashCode())))) {
                 System.out.println("Неверный логин  или пароль");
                 return null;
             }
-                System.out.println("Пользователь авторизован");
-                return userCmp;
-
+            System.out.println("Пользователь авторизован");
+            return userCmp;
         }
     }
 
     private boolean isAdminPasswordValid(String login, String password, AdminSender adminSender) {
-          if  (!adminSender.getPassword().equals(password)){
-              return false;
-          }
-          return true;
+        if (!adminSender.getPassword().equals(password)) {
+            return false;
+        }
+        return true;
     }
 
-    @Override
-    public User userAuth() {
+    public User consoleUserAuth(){
         String login;
         String password;
         Scanner scanner = new Scanner(System.in);
@@ -75,11 +73,15 @@ public class UserServiceImpl implements UserService{
         login = scanner.nextLine();
         System.out.println("Введите пароль");
         password = scanner.nextLine();
-        return checkUserPassword(login,password);
+        return userAuth(login, password);
     }
 
     @Override
-    public User registerUser() {
+    public User userAuth(String login, String password) {
+        return checkUserPassword(login, password);
+    }
+
+    public User consoleRegisterUser() {
         String temp;
         String login;
         User user = new User();
@@ -113,15 +115,20 @@ public class UserServiceImpl implements UserService{
             temp = scanner.nextLine();
             user.setEmail(temp);
             warning = "Неверный формат почты";
-        }while (!checkMailFormat(temp));
+        } while (!checkMailFormat(temp));
+        return registerUser(user);
+    }
 
+
+
+    @Override
+    public User registerUser(User user) {
         if (!isUserValid(user))
             return null;
-
         //  записываем в базу
         userDAO.save(user);
         System.out.println("Пользователь успешно прошел регистрацию");
-        return userDAO.findUserByLogin(login);
+        return userDAO.findUserByLogin(user.getLogin());
     }
 
     public boolean checkMailFormat (String email){
@@ -130,5 +137,4 @@ public class UserServiceImpl implements UserService{
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return email.matches(emailPattern);
     }
-
 }

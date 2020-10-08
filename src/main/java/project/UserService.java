@@ -6,7 +6,7 @@ public interface UserService {
 
     User checkUserPassword(String login, String password);
 
-    User userAuth();
+    User userAuth(String login, String password);
 
-    User registerUser();
+    User registerUser(User user);
 }

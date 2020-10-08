@@ -1,4 +1,4 @@
-package modul1;
+package module1;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -30,18 +30,6 @@ public class SendMailService {
         props.put("mail.smtp.auth", propAuth);
         props.put("mail.smtp.port", propPort);
     }
-
-//    public SendMail(String username, String password) {
-//        this.username = username;
-//        this.password = password;
-//
-//        props = new Properties();
-//        props.put("mail.smtp.host", "smtp.gmail.com");
-//        props.put("mail.smtp.socketFactory.port", "465");
-//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.port", "465");
-//    }
 
     public String getUsername() {
         return username;

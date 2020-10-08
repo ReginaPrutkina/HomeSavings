@@ -10,6 +10,7 @@
     <version>1.0</version>
     <modules>
         <module>MailService</module>
+        <module>LogService</module>
     </modules>
 
     <dependencies>
@@ -62,10 +63,17 @@
         </dependency>
         <dependency>
             <groupId>ru.java.project</groupId>
-            <artifactId>modul1.MailService</artifactId>
+            <artifactId>module1.MailService</artifactId>
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>ru.java.project</groupId>-->
+<!--            <artifactId>module.LogService</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
 
     </dependencies>

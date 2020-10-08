@@ -1,7 +1,7 @@
 package project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import modul1.SendMailService;
+import module1.SendMailService;
 
 import javax.mail.MessagingException;
 

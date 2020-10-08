@@ -26,9 +26,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
     @Autowired
     DepositService depositService;
 
-    NotificationService() {}
+    public NotificationService() {}
 
-    NotificationService(List<Deposit> depositList){
+    public NotificationService(List<Deposit> depositList){
 
         this.depositList = depositList;
     }
@@ -264,6 +264,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
     public String toFile(String notificationText) throws MyException{
         String fileName;
+        if (notificationText.length() == 0 ) return "";
         fileName = ".\\" + "info.html";
         Path infoFile = Paths.get(fileName);
         try {
@@ -278,6 +279,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
      }
 
     public String toFile(String notificationText, String fileName) throws MyException{
+
+        if (notificationText.length() ==0 )
+            return "";
 
         Path infoFile = Paths.get(fileName);
         try {
