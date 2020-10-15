@@ -7,17 +7,17 @@
             http://www.springframework.org/schema/context
             http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="project"/>
+    <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService"/>
 
 <!--    <import resource=".\MailService\src\main\resources\module\logContext.xml"/>-->
 
-    <bean id = "DepositFactory" class = "project.DepositService" autowire="byType"/>
+<!--    <bean id = "DepositService" class = "services.DepositService" autowire="byType"/>-->
 
-    <bean id = "DailyPercent" class="project.PercentDaily"/>
-    <bean id = "MonthlyPercent" class = "project.PercentMonthly"/>
-    <bean id="AtTheEndPercent" class="project.PercentAtTheEnd"/>
+<!--    <bean id = "DailyPercent" class="businessLogicClasses.PercentDaily"/>-->
+<!--    <bean id = "MonthlyPercent" class = "businessLogicClasses.PercentMonthly"/>-->
+<!--    <bean id="AtTheEndPercent" class="businessLogicClasses.PercentAtTheEnd"/>-->
 
-    <bean id = "MailService" class="project.SendMail">
+    <bean id = "MailService" class="mailService.SendMail">
         <constructor-arg name="propHost" value="smtp.gmail.com"/>
         <constructor-arg name="propSocketFactory" value="465"/>
         <constructor-arg name="propSocketFactoryClass" value="javax.net.ssl.SSLSocketFactory"/>
@@ -38,21 +38,21 @@
         <property name="logFileName" value="HomeSavingsLog.txt"/>
     </bean>
 
-    <bean id = "NotificationService" class="project.NotificationService" autowire="byType"/>
+<!--    <bean id = "NotificationService" class="notification.NotificationService" autowire="byType"/>-->
 
-    <bean id = "CurrencyRateCBService" class="project.CBRCurrencies"/>
+<!--    <bean id = "CurrencyRateCBService" class="currencyService.CBRCurrencies"/>-->
 
-    <bean id = "AllUserNotificationService" class="project.AllUsersNotificationImpl" autowire="byType">
+<!--    <bean id = "AllUserNotificationService" class="notification.AllUsersNotificationImplOld" autowire="byType">-->
+<!--        <constructor-arg name = "adminLogin" value="adminSender"/>-->
+<!--    </bean>-->
+
+    <bean id = "AllUserNotificationService" class="notification.AllUsersNotificationImpl" autowire="byType">
         <constructor-arg name = "adminLogin" value="adminSender"/>
     </bean>
 
-    <bean id = "AllUserNotificationServiceMod" class="project.AllUsersNotificationImplMod" autowire="byType">
-        <constructor-arg name = "adminLogin" value="adminSender"/>
-    </bean>
-
-    <bean id = "UserService" class="project.UserServiceImpl" autowire="byType">
-        <constructor-arg name = "userDAO" ref="UserDAO"/>
-    </bean>
-
-    <bean id = "UserDAO" class="project.UserDAOImpl"/>
+<!--    <bean id = "UserService" class="services.UserServiceImpl" autowire="byType">-->
+<!--        <constructor-arg name = "userDAO" ref="UserDAO"/>-->
+<!--    </bean>-->
+    <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>
+<!--    <bean id = "UserDAO" class="services.UserDAOImpl"/>-->
 </beans>

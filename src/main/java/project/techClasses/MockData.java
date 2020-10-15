@@ -1,7 +1,7 @@
 package project.techClasses;
 
-import project.Deposit;
-import project.MyException;
+import dataClasses.Deposit;
+import myException.MyException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

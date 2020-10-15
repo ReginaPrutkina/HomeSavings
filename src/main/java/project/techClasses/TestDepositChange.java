@@ -1,8 +1,8 @@
 package project.techClasses;
 
-import project.Deposit;
-import project.User;
-import project.UserDAOImpl;
+import dataClasses.Deposit;
+import dataClasses.User;
+import services.UserDAOImpl;
 
 import java.util.Scanner;
 

@@ -1,8 +1,8 @@
 package project.techClasses;
 
 
-import project.PercentDaily;
-import project.PercentMonthly;
+import businessLogicClasses.PercentDaily;
+import businessLogicClasses.PercentMonthly;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

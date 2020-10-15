@@ -1,10 +1,11 @@
 package project;
 //import module.LogToFile;
+import dataClasses.User;
+import myException.MyException;
+import notification.AllUsersNotificationImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import project.techClasses.MockData;
-
-import java.util.List;
+import services.UserServiceImpl;
 
 public class MainFile {
     public static void main(String[] args) {
@@ -14,7 +15,7 @@ public class MainFile {
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
             UserServiceImpl userService = (UserServiceImpl) context.getBean("UserService");
             AllUsersNotificationImpl allUsersNotification = (AllUsersNotificationImpl) context.getBean("AllUserNotificationService");
-            AllUsersNotificationImplMod allUsersNotificationImplMod = (AllUsersNotificationImplMod) context.getBean("AllUserNotificationServiceMod");
+        //    AllUsersNotificationImpl allUsersNotificationImplMod = (AllUsersNotificationImpl) context.getBean("AllUserNotificationServiceMod");
         //    LogToFile logToFile = (LogToFile)context.getBean("LogService");
 
 
@@ -79,8 +80,8 @@ public class MainFile {
              //  }
           //  }
 
-        //    allUsersNotification.sendNotification(false);
-            allUsersNotificationImplMod.sendNotification(true);
+            allUsersNotification.sendNotification(false);
+
 
         }catch (MyException myException) {
             myException.printStackTrace();

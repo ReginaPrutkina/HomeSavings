@@ -1,7 +1,10 @@
 package project;
 
+import dataClasses.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import services.UserDAO;
+import services.UserDAOImpl;
 
 public class MainFile1 {
     public static void main(String[] args) {

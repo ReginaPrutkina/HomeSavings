@@ -2,9 +2,9 @@ package project.techClasses;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import project.NotificationService;
-import project.User;
-import project.UserDAOImpl;
+import notification.NotificationService;
+import dataClasses.User;
+import services.UserDAOImpl;
 
 public class MainTestChangeDeposit {
     public static void main(String[] args) {
