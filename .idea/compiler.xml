@@ -10,5 +10,9 @@
         <module name="LogService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CoreModule" target="14" />
+      <module name="parentSavings" target="14" />
+    </bytecodeTargetLevel>
   </component>
 </project>

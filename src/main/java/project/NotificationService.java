@@ -271,7 +271,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
             Files.write(infoFile, Collections.singleton(notificationText),StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
         } catch ( IOException exception) {
-            fileName = "";
+           
             throw (new MyException(" Не удалось создать файл с информированием по депозитам ", exception));
         }
 
@@ -288,7 +288,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
             Files.write(infoFile, Collections.singleton(notificationText),StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
         } catch ( IOException exception) {
-            fileName = "";
+
             throw (new MyException(" Не удалось создать файл" + fileName + " с информированием по депозитам ", exception));
         }
 
@@ -365,8 +365,6 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "<td>" + deposit.getEndDate()+"</td>" +
                 "<td>" + deposit.getComment()+"</td>"  +
                 "<td>" + depositService.getTypeOfPercentObject(deposit) + "</td>"+
-//                "<td>"+depositService.getTypeOfPercentObject(deposit).effectiveRate(deposit.getRateOfInterest()) + "%</td>" +
-//                "<td>"+depositService.getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest())
                 "<td>" + depositService.getEffectiveRate(deposit) + "%</td>" +
                 "<td>"+ depositService.getSumOnEndOfPeriod(deposit)
                 + "</td></tr>";

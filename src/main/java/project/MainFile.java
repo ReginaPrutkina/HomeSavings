@@ -2,6 +2,7 @@ package project;
 //import module.LogToFile;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import project.techClasses.MockData;
 
 import java.util.List;
 
@@ -36,10 +37,10 @@ public class MainFile {
 //            }
 
 //            //Регистрация пользователя ==================================================================
-//              userService.consoleRegisterUser();
+ //             userService.consoleRegisterUser();
 //
 //            // Аутентификация ползователя ================================================================
-//                User user1 = userService.consoleUserAuth();
+                User user1 = userService.consoleUserAuth();
 //           // User user1 = userDAO.findUserByLogin("petrov");
  //           if ( user1 != null)
  //               System.out.println("Приятной работы, "+ user1.getName() + " " + user1.getFamily());
@@ -48,12 +49,12 @@ public class MainFile {
 //
 //
 //            //Используем mock - данные для создания списка депозитов ==================================
-         //             List<Deposit> depositList = (new MockData()).depositList;
+//                      List<Deposit> depositList = (new MockData()).depositList;
 //                    for (Deposit deposit: depositList ) {
 //                       user1.addDeposit(deposit);
 //                    }
 //
-//            ((UserServiceImpl)userService).getUserDAO().merge(user1);
+ //           userService.getUserDAO().merge(user1);
             //userDAO.update(user2); //- не работает
 
             //DepositService depositService = (DepositService)context.getBean("DepositFactory");

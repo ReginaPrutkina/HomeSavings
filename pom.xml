@@ -8,10 +8,17 @@
     <artifactId>HomeSavings</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
     <modules>
         <module>MailService</module>
         <module>LogService</module>
     </modules>
+<!--    <modules>-->
+<!--        <module>MailService</module>-->
+<!--        <module>LogService</module>-->
+<!--        <module>parentSavings</module>-->
+
+<!--    </modules>-->
 
     <dependencies>
 

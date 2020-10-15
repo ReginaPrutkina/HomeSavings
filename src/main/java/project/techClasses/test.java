@@ -1,5 +1,8 @@
-package project;
+package project.techClasses;
 
+
+import project.PercentDaily;
+import project.PercentMonthly;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,10 +13,10 @@ public class test {
         try {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = (Date) sdf.parse("2020-12-30");
-        Date date2 = null;
+        Date date2;
 
             date2 = (Date) sdf.parse("2021-12-30");
-            System.out.println("");
+            System.out.println();
 
         PercentMonthly percentMonthly = new PercentMonthly();
             System.out.println(percentMonthly);

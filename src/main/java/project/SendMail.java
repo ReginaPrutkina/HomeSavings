@@ -109,7 +109,7 @@ public class SendMail {
 
     public void send(String subject, String text, String toEmail) throws MyException {
         Session session = Session.getDefaultInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
         });

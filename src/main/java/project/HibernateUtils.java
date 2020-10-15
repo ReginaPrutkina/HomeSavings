@@ -7,7 +7,6 @@ public class HibernateUtils {
         private static SessionFactory sessionFactory;
         static {
             try{
-               // Configuration configuration = new Configuration().configure("D:\\Users\\Lenovo\\IdeaProjects\\java-maven\\src\\main\\resources\\hibernate.cfg.xml");
                 Configuration configuration = new Configuration().configure();
                 sessionFactory = configuration.buildSessionFactory();
 

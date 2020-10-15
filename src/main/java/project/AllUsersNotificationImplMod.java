@@ -1,9 +1,11 @@
 package project;
+import log.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import module1.SendMailService;
 
 import javax.mail.MessagingException;
+import java.util.Objects;
 
 public class AllUsersNotificationImplMod implements AllUserNotification {
 
@@ -22,6 +24,9 @@ public class AllUsersNotificationImplMod implements AllUserNotification {
 
     @Autowired
     private NotificationService notificationService;
+
+    @Autowired
+    private Logging logging;
 
     AllUsersNotificationImplMod(String adminLogin) {
         this.adminLogin = adminLogin;
@@ -62,18 +67,21 @@ public class AllUsersNotificationImplMod implements AllUserNotification {
     /**
      * @param isRegular true - информирование о текущем статусе,
      *                  false - информирование об истекших и итекающих по сроку депозитах
-     * @throws MyException
+     * @throws MyException пробрасывает исключение MessagingException
      */
     @Override
     public void sendNotification(boolean isRegular) throws MyException{
-        User userSender = userDAO.findUserByLogin("adminSender");
+        User userSender = userDAO.findUserByLogin(this.adminLogin);
         String fileName;
         if (userSender == null) {
             System.out.println("Логин администратора почтовых уведомлений в базе не найден");
-            return;
+            throw new MyException("Логин администратора почтовых уведомлений в базе не найден: " + adminLogin);
         }
+        logging.setUserName(adminLogin);
+        logging.log("Начинаем рассылку уведомлений клиентам. Администратор: " + adminLogin);
         sender.setUsername(userSender.getEmail());
         sender.setPassword(((AdminSender) userSender).getPassword());
+
         for (User user : userDAO.findAll()) {
             if (user.getRole().equals("admin")) continue;
             notificationService.setDepositList(user.getDeposits());
@@ -85,17 +93,20 @@ public class AllUsersNotificationImplMod implements AllUserNotification {
                 if (fileName.length() > 0) {
                     try {
                         sender.sendFile("Информирование по депозитам", fileName, user.getEmail());
+                        logging.log("Отправлено информирование по депозитам клиенту "
+                                + user.getFamily() + " " + user.getName()
+                                + " по адресу: " + user.getEmail()
+                                );
+
                     }catch (MessagingException e)
                     { throw new MyException( "Ошибка отправки сообщения", e);
                     }
                 }
-
         }
+        logging.setUserName("");
     }
 
     private String createUserFileName (String userLogin){
-        if (notificationDir != null)
-            return notificationDir + userLogin+"_info.html";
-        return ".\\" + userLogin+"_info.html";
+        return Objects.requireNonNullElse(notificationDir, ".\\") + userLogin + "_info.html";
     }
 }

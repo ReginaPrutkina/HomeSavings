@@ -1,5 +1,6 @@
 package project;
 
+import log.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -9,6 +10,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private Logging logging;
 
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -59,10 +63,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private boolean isAdminPasswordValid(String login, String password, AdminSender adminSender) {
-        if (!adminSender.getPassword().equals(password)) {
-            return false;
-        }
-        return true;
+        return adminSender.getPassword().equals(password);
     }
 
     public User consoleUserAuth(){
@@ -78,6 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User userAuth(String login, String password) {
+        logging.log("Авторизован пользователь с логином " + login);
         return checkUserPassword(login, password);
     }
 
@@ -128,12 +130,13 @@ public class UserServiceImpl implements UserService {
         //  записываем в базу
         userDAO.save(user);
         System.out.println("Пользователь успешно прошел регистрацию");
+        logging.log("Зарегистриован пользователь " + user.toString());
         return userDAO.findUserByLogin(user.getLogin());
     }
 
     public boolean checkMailFormat (String email){
         String  emailPattern =
-                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return email.matches(emailPattern);
     }

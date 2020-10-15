@@ -8,6 +8,7 @@
             http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="project"/>
+
 <!--    <import resource=".\MailService\src\main\resources\module\logContext.xml"/>-->
 
     <bean id = "DepositFactory" class = "project.DepositService" autowire="byType"/>
@@ -32,10 +33,10 @@
         <constructor-arg name="propPort" value="465"/>
     </bean>
 
-<!--    <bean id = "LogService" class="module.LogToFile" >-->
-<!--        <property name="logFolder" value=".\\log"/>-->
-<!--        <property name="logFileName" value="HomeSavingsLog.txt"/>-->
-<!--    </bean>-->
+    <bean id = "LogService" class="log.LogToFile" >
+        <property name="logFolder" value=".\\log"/>
+        <property name="logFileName" value="HomeSavingsLog.txt"/>
+    </bean>
 
     <bean id = "NotificationService" class="project.NotificationService" autowire="byType"/>
 
