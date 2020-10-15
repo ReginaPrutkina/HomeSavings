@@ -271,7 +271,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
             Files.write(infoFile, Collections.singleton(notificationText),StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 
         } catch ( IOException exception) {
-           
+
             throw (new MyException(" Не удалось создать файл с информированием по депозитам ", exception));
         }
 
