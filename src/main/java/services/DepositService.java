@@ -1,58 +1,32 @@
 package services;
 
-import businessLogicClasses.PercentAtTheEnd;
-import businessLogicClasses.PercentDaily;
-import businessLogicClasses.PercentMonthly;
+import businessLogicClasses.PercentTypeFactory;
 import businessLogicClasses.TypeOfPercent;
 import dataClasses.Deposit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 @Service
 public class DepositService {
+
     @Autowired
-    private PercentDaily percentDaily;
-    @Autowired
-    private PercentAtTheEnd percentAtTheEnd;
-    @Autowired
-    private PercentMonthly percentMonthly;
-//    @Autowired
-//    List<TypeOfPercent> typeOfPercentList;
-//
-//    private Map<Integer,TypeOfPercent> typeOfPercentMap;
+    PercentTypeFactory percentTypeFactory;
 
-    public PercentDaily getPercentDaily() {
-        return percentDaily;
+    public PercentTypeFactory getPercentTypeFactory() {
+        return percentTypeFactory;
     }
 
-    public void setPercentDaily(PercentDaily percentDaily) {
-        this.percentDaily = percentDaily;
-    }
-
-    public PercentAtTheEnd getPercentAtTheEnd() {
-        return percentAtTheEnd;
-    }
-
-    public void setPercentAtTheEnd(PercentAtTheEnd percentAtTheEnd) {
-        this.percentAtTheEnd = percentAtTheEnd;
-    }
-
-    public PercentMonthly getPercentMonthly() {
-        return percentMonthly;
-    }
-
-    public void setPercentMonthly(PercentMonthly percentMonthly) {
-        this.percentMonthly = percentMonthly;
+    public void setPercentTypeFactory(PercentTypeFactory percentTypeFactory) {
+        this.percentTypeFactory = percentTypeFactory;
     }
 
     public TypeOfPercent getTypeOfPercentObject(Deposit deposit) {
-        switch (deposit.getPercentType()) {
-            case 1 -> {return percentDaily;   }
-            case 30 -> {return percentMonthly;}
-            default -> { return percentAtTheEnd; }
-        }
+//        switch (deposit.getPercentType()) {
+//            case 1 -> {return percentDaily;   }
+//            case 30 -> {return percentMonthly;}
+//            default -> { return percentAtTheEnd; }
+//        }
+        return percentTypeFactory.getTypeOfPercentMap().get(deposit.getPercentType());
     }
 
     public double getEffectiveRate (Deposit deposit) {
