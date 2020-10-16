@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByLogin(String login) {
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Query query =  session.createQuery("From User where login = :param");
+        Query query =  session.createQuery("From User where login = :param",User.class);
         query.setParameter("param",login.trim().toLowerCase());
         List<User> users = query.getResultList();
         session.close();
@@ -34,7 +34,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User findUserByEmail(String email) {
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Query query =  session.createQuery("From User where email = :param");
+        Query query =  session.createQuery("From User where email = :param",User.class);
         query.setParameter("param",email.trim().toLowerCase());
         List<User> users = query.getResultList();
         session.close();
@@ -89,7 +89,7 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public List<User> findAll() {
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<User> users = session.createQuery("From User").list();
+        List<User> users = session.createQuery("From User",User.class).list();
         session.close();
         return  users;
     }

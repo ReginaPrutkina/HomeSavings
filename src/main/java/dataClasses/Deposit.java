@@ -1,5 +1,6 @@
 package dataClasses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import myException.MyException;
 
 import javax.persistence.*;
@@ -42,6 +43,7 @@ public class Deposit implements Serializable {
     @Column (nullable = false)
     private int percentType;
 
+    @JsonIgnore   // решает проблему зацикливания реста
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;

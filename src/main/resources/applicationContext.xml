@@ -17,14 +17,6 @@
         <constructor-arg name="propPort" value="465"/>
     </bean>
 
-    <bean id = "MailServiceMod" class="module1.SendMailService">
-        <constructor-arg name="propHost" value="smtp.gmail.com"/>
-        <constructor-arg name="propSocketFactory" value="465"/>
-        <constructor-arg name="propSocketFactoryClass" value="javax.net.ssl.SSLSocketFactory"/>
-        <constructor-arg name="propAuth" value="true"/>
-        <constructor-arg name="propPort" value="465"/>
-    </bean>
-
     <bean id = "LogService" class="log.LogToFile" >
         <property name="logFolder" value=".\\log"/>
         <property name="logFileName" value="HomeSavingsLog.txt"/>
@@ -35,5 +27,5 @@
     </bean>
 
     <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>
-
+    <bean id = "RESTAPI" class="project.restAPI" autowire="byType"/>
 </beans>

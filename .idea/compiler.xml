@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MailService" />
-        <module name="LogService" />
+        <module name="HomeSavings" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CoreModule" target="14" />
+      <module name="LogService" target="14" />
+      <module name="MailService" target="14" />
       <module name="parentSavings" target="14" />
     </bytecodeTargetLevel>
   </component>
