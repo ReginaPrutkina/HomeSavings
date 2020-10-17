@@ -27,5 +27,5 @@
     </bean>
 
     <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>
-    <bean id = "RESTAPI" class="project.restAPI" autowire="byType"/>
+<!--    <bean id = "RESTAPI" class="project.restAPI" autowire="byType"/>-->
 </beans>

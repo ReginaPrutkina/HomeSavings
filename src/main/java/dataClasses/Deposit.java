@@ -143,4 +143,19 @@ public class Deposit implements Serializable {
     public void setPercentType(int percentType) {
         this.percentType = percentType;
     }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "id=" + id +
+                ", bankName='" + bankName + '\'' +
+                ", sum=" + sum +
+                ", rateOfInterest=" + rateOfInterest +
+                ", currencyCode='" + currencyCode + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", comment='" + comment + '\'' +
+                ", percentType=" + percentType +
+                '}';
+    }
 }
