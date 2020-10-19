@@ -11,7 +11,6 @@ import java.util.Scanner;
 @Service
 public class UserServiceImpl implements UserService {
 
-
     private UserDAO userDAO;
 
     @Autowired

@@ -206,3 +206,39 @@
     notification.AllUsersNotificationImpl / sendNotification
     Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
     computerName: LENOVO-RENA user: adminSender
+2020-10-19T11:24:56.917727300
+    project.restAPI / getUserDeposits
+    REST-запрос @QueryParam(value = petrov
+    computerName: LENOVO-RENA user: null
+2020-10-19T11:25:00.437013600
+    project.restAPI / getUserDeposits
+    Успешный ответ для User{id=9, family='Петров', name='Петр', login='petrov', email='petrov@petrov.hh'}
+    computerName: LENOVO-RENA user: null
+2020-10-19T11:55:40.153165500
+    project.restAPI / getUserDeposits
+    REST-запрос @QueryParam(value = 60)
+    computerName: LENOVO-RENA user: null
+2020-10-19T11:55:40.188167300
+    project.restAPI / getUserDeposits
+    Успешный ответ для User{id=60, family='Косарев', name='Александр', login='kosarev', email='kosarev@kosarev.kos'}
+    computerName: LENOVO-RENA user: null
+2020-10-19T12:51:25.295150100
+    project.restAPI / getUserDeposits
+    REST-запрос @QueryParam(value = petrov)
+    computerName: LENOVO-RENA user: null
+2020-10-19T12:51:28.982523400
+    project.restAPI / getUserDeposits
+    Успешный ответ для User{id=9, family='Петров', name='Петр', login='petrov', email='petrov@petrov.hh'}
+    computerName: LENOVO-RENA user: null
+2020-10-19T13:43:24.730090900
+    project.restAPI / getUserDeposits
+    REST-запрос @QueryParam(value = petrov)
+    computerName: LENOVO-RENA user: null
+2020-10-19T13:44:16.099781500
+    project.restAPI / getUserDeposits
+    Успешный ответ для User{id=9, family='Петров', name='Петр', login='petrov', email='petrov@petrov.hh'}
+    computerName: LENOVO-RENA user: null
+2020-10-19T13:49:11.780209300
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=63, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: null

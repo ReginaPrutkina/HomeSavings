@@ -1,5 +1,7 @@
 package dataClasses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -13,6 +15,7 @@ public class User implements Serializable {
     private Long id;
     @Column (unique = true, nullable = false)
     private String login;
+    @JsonIgnore
     @Column (name = "password")
     protected String passwordHash;
     @Column (unique = true, nullable = false)
