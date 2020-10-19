@@ -1,6 +1,7 @@
 package dataClasses;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import myException.MyException;
 
 import javax.persistence.*;
@@ -71,11 +72,11 @@ public class Deposit implements Serializable {
     public int getId() {
         return id;
     }
-
+    @JsonProperty
     public void setUser(User user) {
         this.user = user;
     }
-
+    @JsonIgnore
     public User getUser() {
         return this.user;
     }

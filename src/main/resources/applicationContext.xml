@@ -26,6 +26,6 @@
         <constructor-arg name = "adminLogin" value="adminSender"/>
     </bean>
 
-<!--    <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>-->
+    <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>
 <!--    <bean id = "RESTAPI" class="project.restAPI" autowire="byType"/>-->
 </beans>

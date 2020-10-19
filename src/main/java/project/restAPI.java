@@ -2,8 +2,10 @@ package project;
 
 import businessLogicClasses.PercentTypeFactory;
 import businessLogicClasses.TypeOfPercent;
+import dataClasses.Deposit;
 import dataClasses.User;
 import log.Logging;
+import org.springframework.beans.factory.annotation.Qualifier;
 import services.UserDAOImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,7 @@ public class restAPI {
     PercentTypeFactory percentTypeFactory;
 
     @Autowired
+    @Qualifier ("UserService")
     UserService userService;
 
     @GET
@@ -101,7 +104,7 @@ public class restAPI {
         return new ResponseEntity<>(typeOfPercent.toString(), header, HttpStatus.OK);
     }
 
-    @POST
+    @PUT
     @Path("/newUser")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -120,6 +123,24 @@ public class restAPI {
         if (user == null)
             return false;
         userDAO.delete(user);
+        return true;
+    }
+
+    @POST
+    @Path("/updateUserDeposits")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean updateUserDeposits(@QueryParam(value = "id") int id,
+                                      List<Deposit> deposits){
+        Boolean result;
+        User user = userDAO.findUserById(id);
+        if (user == null)
+            return false;
+        for (Deposit deposit: deposits ) {
+            deposit.setUser(user);
+        }
+        user.setDeposits(deposits);
+        userDAO.merge(user);
         return true;
     }
 

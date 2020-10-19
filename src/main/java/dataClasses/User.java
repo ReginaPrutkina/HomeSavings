@@ -1,6 +1,7 @@
 package dataClasses;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -47,11 +48,11 @@ public class User implements Serializable {
     public String getLogin() {
         return login;
     }
-
+    @JsonProperty
     public void setPasswordHash(String password) {
         this.passwordHash = Integer.toString(password.trim().hashCode());
     }
-
+    @JsonIgnore
     public String getPasswordHash() {
         return passwordHash;
     }
