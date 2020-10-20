@@ -83,10 +83,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User userAuth(String login, String password) {
         User user = checkUserPassword(login, password);
-        if (user == null)
+        if (user == null) {
+            logging.setUserName(null);
             logging.log("Пользователь с логином " + login + " не авторизован");
-        else
+        }
+        else {
+            logging.setUserName(login);
             logging.log("Авторизован пользователь с логином " + login);
+        }
         return user;
     }
 
@@ -131,12 +135,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User registerUser(User user) {
         if (!isUserValid(user)) {
+            logging.setUserName(user.getLogin());
             logging.log("Пользователь не может быть зарегистрирован " + user.toString());
             return null;
         }
         //  записываем в базу
         userDAO.save(user);
         System.out.println("Пользователь успешно прошел регистрацию");
+        logging.setUserName(user.getLogin());
         logging.log("Зарегистриован пользователь " + user.toString());
         return userDAO.findUserByLogin(user.getLogin());
     }

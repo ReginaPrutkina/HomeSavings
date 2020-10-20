@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Service
-@Path("/api")
+@Path("/apiOld")
 public class RestAPI {
 
     @Autowired
