@@ -21,7 +21,7 @@ import java.util.List;
 
 @Service
 @Path("/api")
-public class restAPI {
+public class RestAPI {
 
     @Autowired
     private UserDAOImpl userDAO;
@@ -87,6 +87,7 @@ public class restAPI {
         header.add("Content-Type", "application/json");
         List<User> users = userDAO.findAll();
         if (users.size() == 0)
+            // class error private texterror
             return new ResponseEntity<>(null, header, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(users, header, HttpStatus.OK);
     }

@@ -80,7 +80,7 @@ public class MainFile {
              //  }
           //  }
 
-            allUsersNotification.sendNotification(false);
+            allUsersNotification.sendNotification(true);
 
 
         }catch (MyException myException) {
