@@ -1,5 +1,6 @@
 package dataClasses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import myException.MyException;
@@ -30,10 +31,12 @@ public class Deposit implements Serializable {
     @Column (nullable = false)
     private String currencyCode;   //810,840,978...
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+5")
     @Column (nullable = false)
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+5")
     @Column (nullable = false)
     @Temporal(TemporalType.DATE)
     private Date endDate;

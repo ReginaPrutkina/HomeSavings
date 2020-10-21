@@ -23,7 +23,7 @@
     </bean>
 
     <bean id = "AllUserNotificationService" class="notification.AllUsersNotificationImpl" autowire="byType">
-        <constructor-arg name = "adminLogin" value="adminSender"/>
+        <constructor-arg name = "adminLogin" value="adminSender1"/>
     </bean>
 
     <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>

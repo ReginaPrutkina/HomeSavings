@@ -7,7 +7,6 @@ import dataClasses.User;
 import log.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -69,6 +68,7 @@ public class RestAPIAuth {
     public ResponseEntity<CommonAnswer> getUserDeposits(CommonRequest request){
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
+        //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
@@ -101,13 +101,14 @@ public class RestAPIAuth {
     public ResponseEntity<List<?>> showUsers(CommonRequest request){
         List<CommonAnswer> commonAnswers = new ArrayList<>();
         int sessionUID = request.getSessionUID();
+        //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             commonAnswers.add(commonAnswer);
             return new ResponseEntity<>(commonAnswers,  HttpStatus.NOT_FOUND);
         }
         logging.setUserName(security.getUIDMap().get(sessionUID).getLogin());
-        logging.log("REST-запрос Поиск данных клиента по ID: "+ request.getUser().getId());
+        logging.log("REST-запрос Вывод данных по всем клиентам из БД. ");
         // проверка на админа
         if (!security.getUIDMap().get(sessionUID).getRole().equals("admin"))
             {
@@ -140,6 +141,7 @@ public class RestAPIAuth {
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity<CommonAnswer> registerUser(User user){
         User newUser = userService.registerUser(user);
+        commonAnswer.clear();
         if (newUser == null){
             commonAnswer.setErrorText("Клиент не прошел валидацию. Регистрация не успешна. ");
             return new ResponseEntity<>(commonAnswer,  HttpStatus.FORBIDDEN);
@@ -159,6 +161,7 @@ public class RestAPIAuth {
     public ResponseEntity<CommonAnswer> deleteUser(CommonRequest request){
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
+        //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
@@ -195,14 +198,13 @@ public class RestAPIAuth {
     public ResponseEntity<CommonAnswer> updateUserDeposits(CommonRequest request){
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
-
+        //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
         //сохраняем в ответе сессию
         commonAnswer.setSessionUID(sessionUID);
-
         //Берем клиента из map-ы
         User user = security.getUIDMap().get(sessionUID);
         logging.setUserName(user.getLogin());
@@ -220,10 +222,12 @@ public class RestAPIAuth {
         }
        // Привязываем клиенту новый список депозитов из request - a
         user.setDeposits(request.getUser().getDeposits());
+        //сохраняем в БД
         userDAO.merge(user);
         user = userDAO.findUserById(user.getId());
         // обновляем данные клиента в  мапе сессий
         security.getUIDMap().get(sessionUID).setDeposits(user.getDeposits());
+
         logging.log("Депозиты клиента обновлены");
         commonAnswer.setUser(user);
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
@@ -237,24 +241,6 @@ public class RestAPIAuth {
         }
         return false;
     }
-
-//    @POST
-//    @Path("/updateUserDeposits")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public boolean updateUserDeposits(@QueryParam(value = "id") int id,
-//                                      List<Deposit> deposits){
-//        Boolean result;
-//        User user = userDAO.findUserById(id);
-//        if (user == null)
-//            return false;
-//        for (Deposit deposit: deposits ) {
-//            deposit.setUser(user);
-//        }
-//        user.setDeposits(deposits);
-//        userDAO.merge(user);
-//        return true;
-//    }
 
     public Logging getLogging() {
         return logging;
@@ -285,6 +271,4 @@ public class RestAPIAuth {
         logging.setUserName(null);
         logging.log(commonAnswer.getErrorText());
     }
-
-
 }

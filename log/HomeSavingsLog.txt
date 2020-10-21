@@ -722,3 +722,199 @@
     project.RestAPIAuth / updateUserDeposits
     Депозиты клиента обновлены
     computerName: LENOVO-RENA user: petrov
+2020-10-21T09:38:12.114598800
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином romanov
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:41:06.204868600
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : romanov
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:41:06.271872300
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:54:59.062788400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином romanov
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:56:17.922295200
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : romanov
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:56:17.976299500
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:57:06.778462200
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : romanov
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T09:57:06.815463100
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: romanov
+2020-10-21T10:11:59.335493100
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=84, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavlov.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-10-21T10:12:59.380884
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavlov.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-10-21T10:14:18.402431900
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=85, family='Павлов', name='Павел', login='pavl', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:15:02.249483400
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='pavl', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:17:17.248207900
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavl
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:18:02.831455100
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavl
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:18:02.846455300
+    project.RestAPIAuth / updateUserDeposits
+    Депозит с ID 74 не принадлежит клиенту User{id=85, family='Павлов', name='Павел', login='pavl', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:18:50.451390700
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavl
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:18:50.486393600
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:21:38.473638900
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:27:51.935969500
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 85
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:27:51.964972300
+    project.RestAPIAuth / deleteUser
+    Пользователь не является администратором. Нет прав для удаления данных клиента по ID.
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:28:35.450991200
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 85
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:28:35.489993
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=85, family='Павлов', name='Павел', login='pavl', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:29:10.719327
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 85
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:29:10.758328700
+    project.RestAPIAuth / deleteUser
+    Данные не найдены
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:29:44.516000900
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 82
+    computerName: LENOVO-RENA user: null
+2020-10-21T10:30:55.906103
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:08.625636900
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 9
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:08.652636700
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=9, family='Петров', name='Петр', login='petrov', email='petrov@petrov.hh'}
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:32.642519900
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 9
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:34:32.659521800
+    project.RestAPIAuth / getUserDeposits
+    Пользователь не является администратором. Нет прав для получения данных клиента по ID.
+    computerName: LENOVO-RENA user: pavl
+2020-10-21T10:34:44.194017800
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 85
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:44.211020700
+    project.RestAPIAuth / getUserDeposits
+    Данные не найдены
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:52.821784200
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:34:52.840801300
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:37:52.285778
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:38:13.758096300
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 33
+    computerName: LENOVO-RENA user: null
+2020-10-21T10:38:21.539830800
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T10:38:21.596832900
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 7 клиентов.
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T11:03:18.804778700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T11:03:52.083998600
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T11:03:52.143037600
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 7 клиентов.
+    computerName: LENOVO-RENA user: adminsender
+2020-10-21T12:10:54.317520800
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender1
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-21T12:11:14.391093400
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-21T12:11:14.444101100
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-21T12:13:54.615135600
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-21T12:14:01.524893700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-21T12:14:03.478335700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-21T12:14:05.341298300
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-21T12:14:07.179985300
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
