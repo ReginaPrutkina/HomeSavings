@@ -22,7 +22,7 @@ import java.util.List;
 public class RestAPIAuth {
 
     @Autowired
-    private UserDAOImpl userDAO;
+    private UserDAO userDAO;
 
     @Autowired
     private Logging logging;
@@ -39,6 +39,22 @@ public class RestAPIAuth {
 
     @Autowired
     Security security;
+
+    public Logging getLogging() {
+        return logging;
+    }
+
+    public void setLogging(Logging logging) {
+        this.logging = logging;
+    }
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @GET
     @Path("/authUser")
@@ -60,8 +76,8 @@ public class RestAPIAuth {
     }
 
 // Запрос данных клиента по ID доступен только админу
-
-    @POST//обязательные поля: UID сессии, ID клиента
+//обязательные поля: UID сессии, User:ID клиента
+    @POST
     @Path("/userDepositsById")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -124,6 +140,7 @@ public class RestAPIAuth {
         return new ResponseEntity<>(users,  HttpStatus.OK);
     }
 
+    // авторизация не требуется. Справочная информация
     @GET
     @Path("/typeOfPercent")
     @Produces(MediaType.APPLICATION_JSON)
@@ -147,13 +164,13 @@ public class RestAPIAuth {
             return new ResponseEntity<>(commonAnswer,  HttpStatus.FORBIDDEN);
         }
             //Генерим и записываем в секьюрити мапу уникальный ид сессии, передаем его в ответе
-            commonAnswer.setSessionUID(security.generateAndAddUID(user));
-            commonAnswer.setUser(user);
+            commonAnswer.setSessionUID(security.generateAndAddUID(newUser));
+            commonAnswer.setUser(newUser);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
 //  удаление пользователей разрешено только для админа
-//обязательные поля: UID сессии, ID клиента
+//обязательные поля: UID сессии, User:ID клиента
     @DELETE
     @Path("/deleteUser")
     @Produces(MediaType.APPLICATION_JSON)
@@ -190,7 +207,7 @@ public class RestAPIAuth {
 
     //обновляет депозиты по указанным ID, добавляет депозиты, если ID  не указан
     //проверяем, что обновляемые депозиты  (с  ID) - принадлежат клиенту
-    //обязательные поля - UID сессии, список депозитов
+    //обязательные поля - UID сессии, User: список депозитов
     @POST
     @Path("/updateUserDeposits")
     @Produces(MediaType.APPLICATION_JSON)
@@ -242,23 +259,7 @@ public class RestAPIAuth {
         return false;
     }
 
-    public Logging getLogging() {
-        return logging;
-    }
-
-    public void setLogging(Logging logging) {
-        this.logging = logging;
-    }
-
-    public UserDAOImpl getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAOImpl userDAO) {
-        this.userDAO = userDAO;
-    }
-
-    private boolean isSessionUIDValid(Integer sessionUID){
+   private boolean isSessionUIDValid(Integer sessionUID){
         if (sessionUID==null || sessionUID==0)
             return false;
         return security.containsUID(sessionUID);

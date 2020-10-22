@@ -1,7 +1,4 @@
 package project;
-//import module.LogToFile;
-import dataClasses.AdminSender;
-import dataClasses.User;
 import myException.MyException;
 import notification.AllUsersNotificationImpl;
 import org.springframework.context.ApplicationContext;

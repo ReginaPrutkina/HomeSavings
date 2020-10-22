@@ -21,11 +21,6 @@ public class DepositService {
     }
 
     public TypeOfPercent getTypeOfPercentObject(Deposit deposit) {
-//        switch (deposit.getPercentType()) {
-//            case 1 -> {return percentDaily;   }
-//            case 30 -> {return percentMonthly;}
-//            default -> { return percentAtTheEnd; }
-//        }
         return percentTypeFactory.getTypeOfPercentMap().get(deposit.getPercentType());
     }
 

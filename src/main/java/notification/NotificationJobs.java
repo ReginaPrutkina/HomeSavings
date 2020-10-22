@@ -12,14 +12,14 @@ public class NotificationJobs {
 
    // @Scheduled(cron="0 */1 * * * ?") // запуск каждую минуту
   //  @Scheduled(cron="0 0 0 1 * *")      //каждое 1-ое число в полночь
-    @Scheduled(cron="0 20 16 21 * *")      //каждое 1-ое число в полночь
+    @Scheduled(cron="0 20 16 21 * *")      //каждое 21-ое число в 16:20
     public void informJob() throws MyException {
         allUserNotification.sendNotification(true);
     }
 
     // @Scheduled(cron="0 */1 * * * ?") // запуск каждые 3 минуты
    // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
-    @Scheduled(cron="0 15 16 * * WED")    //запуск каждую среду в полночь
+    @Scheduled(cron="0 15 16 * * WED")    //запуск каждую среду в 16:15
     public void warningJob() throws MyException {
         allUserNotification.sendNotification(false);
     }

@@ -17,7 +17,6 @@ import java.util.Date;
 @Component
 public class CBRCurrencies implements GetCurrencyRatesCB{
     private final String url = "http://cbr.ru/scripts/XML_daily.asp";
-    //private List<Currency> currenciesList;
     private NodeList nodeCurrenciesList;
     private Date ratesDate;
 

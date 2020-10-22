@@ -94,43 +94,6 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    public User consoleRegisterUser() {
-        String temp;
-        String login;
-        User user = new User();
-        user.setRole("user");
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Введите Фамилию");
-        user.setFamily(scanner.nextLine());
-
-        System.out.println("Введите имя");
-        user.setName(scanner.nextLine());
-
-        System.out.println("Введите логин");
-        login = scanner.nextLine();
-        user.setLogin(login);
-
-        String warning = "";
-        do {
-            System.out.println(warning);
-            System.out.println("Введите пароль");
-            user.setPasswordHash(scanner.nextLine());
-            System.out.println("Повторите ввод пароля ");
-            temp = scanner.nextLine();
-            warning = "Введенные пароли не совпали.";
-        } while (!user.getPasswordHash().equals(Integer.toString(temp.hashCode())));
-
-        warning = "";
-        do {
-            System.out.println(warning);
-            System.out.println("Введите Ваш email");
-            temp = scanner.nextLine();
-            user.setEmail(temp);
-            warning = "Неверный формат почты";
-        } while (!checkMailFormat(temp));
-        return registerUser(user);
-    }
 
     @Override
     public User registerUser(User user) {
