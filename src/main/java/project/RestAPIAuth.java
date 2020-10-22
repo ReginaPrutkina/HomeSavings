@@ -31,7 +31,7 @@ public class RestAPIAuth {
     PercentTypeFactory percentTypeFactory;
 
     @Autowired
-    @Qualifier ("UserService")
+//    @Qualifier ("UserService")
     UserService userService;
 
     @Autowired

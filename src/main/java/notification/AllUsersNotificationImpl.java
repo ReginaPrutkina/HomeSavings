@@ -6,8 +6,7 @@ import dataClasses.AdminSender;
 import myException.MyException;
 import mailService.SendMail;
 import dataClasses.User;
-import org.springframework.stereotype.Service;
-import services.UserDAOImpl;
+import services.UserDAO;
 import java.util.Objects;
 
 public class AllUsersNotificationImpl implements AllUserNotification {
@@ -23,7 +22,7 @@ public class AllUsersNotificationImpl implements AllUserNotification {
     private SendMail sender;
 
     @Autowired
-    private UserDAOImpl userDAO;
+    private UserDAO userDAO;
 
     @Autowired
     private NotificationService notificationService;
@@ -51,11 +50,11 @@ public class AllUsersNotificationImpl implements AllUserNotification {
         this.sender = sender;
     }
 
-    public UserDAOImpl getUserDAO() {
+    public UserDAO getUserDAO() {
         return userDAO;
     }
 
-    public void setUserDAO(UserDAOImpl userDAO) {
+    public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 

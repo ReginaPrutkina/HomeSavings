@@ -1,9 +1,11 @@
 package project;
+import currencyService.CurrencyFactory;
+import currencyService.GettingCurrency;
 import myException.MyException;
 import notification.AllUsersNotificationImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import services.UserServiceImpl;
+
 
 public class MainFile {
     public static void main(String[] args) {
@@ -11,9 +13,8 @@ public class MainFile {
         //Для отпарвки с аккаута gmail потрбовалось дать разрешение на использование чужими сервисами
         try {
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-            UserServiceImpl userService = (UserServiceImpl) context.getBean("UserService");
             AllUsersNotificationImpl allUsersNotification = (AllUsersNotificationImpl) context.getBean("AllUserNotificationService");
-
+ //           GettingCurrency gettingCurrency = (CurrencyFactory) context.getBean("CurrencyFactory");
 //            //Регистрация пользователя ==================================================================
  //             userService.consoleRegisterUser();
 //
@@ -25,8 +26,11 @@ public class MainFile {
 //            String userLogin = user1.getLogin();
 //            UserDAOImpl userDAO = (UserDAOImpl) context.getBean("UserDAO") ;
 //
+//            System.out.println(gettingCurrency.getCurrency("840"));
+//            System.out.println(gettingCurrency.getCurrency("392"));
+//            System.out.println(gettingCurrency.getCurrency("840"));
 
-            allUsersNotification.sendNotification(true);
+            allUsersNotification.sendNotification(false);
 
 
         }catch (MyException myException) {

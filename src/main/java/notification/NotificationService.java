@@ -1,6 +1,6 @@
 package notification;
 
-import currencyService.GetCurrencyRatesCB;
+import currencyService.GettingCurrency;
 import dataClasses.Deposit;
 import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
     private int daysToEndOfDeposit ;
 
     @Autowired
-    GetCurrencyRatesCB currencyRatesCB;
+    GettingCurrency currencyRatesCB;
 
     @Autowired
     DepositService depositService;
@@ -41,11 +41,11 @@ public class NotificationService implements NotificationText, NotificationHTML {
     }
 
 
-    public GetCurrencyRatesCB getCurrencyRatesCB() {
+    public GettingCurrency getCurrencyRatesCB() {
         return currencyRatesCB;
     }
 
-    public void setCurrencyRatesCB(GetCurrencyRatesCB currencyRatesCB) {
+    public void setCurrencyRatesCB(GettingCurrency currencyRatesCB) {
         this.currencyRatesCB = currencyRatesCB;
     }
 
@@ -82,12 +82,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
         this.daysToEndOfDeposit = daysToEndOfDeposit;
     }
     @Override
-    public String getRegularText(){
+    public String getRegularText() throws MyException {
         StringBuilder tempStr = new StringBuilder();
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
         int rowNum = 1;
+        try{
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         tempStr.append("Состояние вкладов на " + formatter.format(date) + "\n");
         tempStr.append(depositTextHeader());
@@ -98,12 +99,17 @@ public class NotificationService implements NotificationText, NotificationHTML {
         }
         tempStr.append(footerText(currencySet,"\n"));
           notificationText = tempStr.toString();
+    } catch ( MyException exception) {
+        throw (new MyException(exception.getMessage(), exception));
+    }
         return notificationText;
+
     }
 
-    private String footerText(Set<String> currencySet, String endStr){
+    private String footerText(Set<String> currencySet, String endStr) throws MyException {
         StringBuilder tempStr = new StringBuilder();
         String strRound2;
+        try{
         tempStr.append("Всего: "+ endStr);
         for (String curCode: currencySet) {
             double sumInCurrency = 0;
@@ -124,11 +130,16 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 tempStr.append(currency.getNominal() + " " + currency.getCharCode() + ")" +endStr);
             }
         }
+        }
+        catch ( MyException exception) {
+            throw (new MyException(exception.getMessage(), exception));
+        }
 
         return tempStr.toString();
     }
     @Override
-    public String getWarningText(){
+    public String getWarningText() throws MyException {
+        try{
         String overEndDeposits="";
         String nearEndDeposit="";
         if (depositList.isEmpty())
@@ -159,6 +170,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
         notificationText +="* Суммы на конец срока рассчитаны без учета снятий и пополнений";
 
         return notificationText;
+    } catch ( MyException exception) {
+        throw (new MyException(exception.getMessage(), exception));
+    }
         }
 
     private String htmlStyle(){
@@ -179,7 +193,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
     }
 
     @Override
-    public String getRegularHTML() {
+    public String getRegularHTML() throws MyException {
+        try{
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
@@ -211,11 +226,15 @@ public class NotificationService implements NotificationText, NotificationHTML {
         htmlStringBuilder.append("<p class = \"footnote\">"+ "* Суммы на конец срока рассчитаны без учета снятий и пополнений" +"</p></body></html>");
         notificationText = htmlStringBuilder.toString();
         return notificationText;
+    } catch ( MyException exception) {
+        throw (new MyException(exception.getMessage(), exception));
+    }
         }
 
     @Override
-    public String getWarningHTML() {
+    public String getWarningHTML() throws MyException {
         String tempStr;
+        try{
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
@@ -270,6 +289,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
             this.notificationText = htmlStringBuilder.toString();
         else this.notificationText = "";
         return notificationText;
+    } catch ( MyException exception) {
+        throw (new MyException(exception.getMessage(), exception));
+    }
     }
 
 
@@ -307,7 +329,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
     }
 
 
-     private String depositTextRow(int rowNum, Deposit deposit){
+     private String depositTextRow(int rowNum, Deposit deposit) throws MyException {
+        try{
          SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
          String currencyString;
          if (deposit.getCurrencyCode().equals("810"))
@@ -326,8 +349,11 @@ public class NotificationService implements NotificationText, NotificationHTML {
                  "  | " + formatter.format(deposit.getEndDate()) +
                  String.format("    |%15s |",depositService.getTypeOfPercentObject(deposit)) +
                  String.format("%30s ",deposit.getComment()) ;
-
+        } catch ( MyException exception) {
+            throw (new MyException(exception.getMessage(), exception));
+        }
      }
+
     private String depositTextHeader(){
         return String.format("%5s |","id") +
                 String.format("%25s |","Название банка") +
@@ -357,8 +383,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "</tr></thead>";
     }
 
-    private String depositHTMLRow(int rowNum, Deposit deposit){
+    private String depositHTMLRow(int rowNum, Deposit deposit) throws MyException {
         String currencyString;
+        try{
         if (deposit.getCurrencyCode().equals("810"))
             currencyString = "RUB";
         else
@@ -379,6 +406,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "<td>" + depositService.getEffectiveRate(deposit) + "%</td>" +
                 "<td>"+ depositService.getSumOnEndOfPeriod(deposit)
                 + "</td></tr>";
+        } catch ( MyException exception) {
+            throw (new MyException(exception.getMessage(), exception));
+        }
     }
 
 }

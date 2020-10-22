@@ -1,9 +1,8 @@
 package currencyService;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import myException.MyException;
 
@@ -14,17 +13,33 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Component
+//@Component
 public class CBRCurrencies implements GetCurrencyRatesCB{
-    private final String url = "http://cbr.ru/scripts/XML_daily.asp";
+
+   private String url;      // = "http://cbr.ru/scripts/XML_daily.asp";
+
     private NodeList nodeCurrenciesList;
+
     private Date ratesDate;
 
-    CBRCurrencies() throws MyException {
+        CBRCurrencies(String url) throws MyException {
         //считываем файл из url
+            System.out.println("новый экземпляр CBRCurrencies");
+            this.url = url;
         this.nodeCurrenciesList =  getXML();
-       }
+    }
 
+    @Override
+    public NodeList getNodeCurrenciesList() {
+        return nodeCurrenciesList;
+    }
+
+    @Override
+    public void setNodeCurrenciesList(NodeList nodeCurrenciesList) {
+        this.nodeCurrenciesList = nodeCurrenciesList;
+    }
+
+    @Override
     public NodeList getXML() throws MyException {
         //считываем файл из url
         NodeList nList = null;
@@ -45,27 +60,6 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
         return nList;
     }
 
-    @Override
-    public Currency getCurrency(String currencyNumCode){
-        //получение валюты по коду
-        for (int temp = 0; temp < this.nodeCurrenciesList.getLength(); temp++) {
-            Node nNode = this.nodeCurrenciesList.item(temp);
-            Element eElement = (Element) nNode;
-            try{
-                if ((eElement.getElementsByTagName("NumCode").item(0).getTextContent()).equals(currencyNumCode))
-                return new Currency(
-                        eElement.getAttribute("ID"),
-                        eElement.getElementsByTagName("NumCode").item(0).getTextContent(),
-                        eElement.getElementsByTagName("CharCode").item(0).getTextContent(),
-                        Integer.parseInt(eElement.getElementsByTagName("Nominal").item(0).getTextContent()),
-                        eElement.getElementsByTagName("Name").item(0).getTextContent(),
-                        Double.valueOf(eElement.getElementsByTagName("Value").item(0).getTextContent().replace(",",".")));
-        } catch (NumberFormatException ex){
-                ex.printStackTrace();
-            }
-        }
-        return null;
-    }
     @Override
     public Date getRatesDate(){
         return ratesDate;

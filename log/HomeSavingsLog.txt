@@ -1162,3 +1162,99 @@
     notification.AllUsersNotificationImpl / sendNotification
     Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
     computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:20:07.374282600
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:20:10.863143700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:20:12.281098
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:20:13.674800500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:20:15.142501500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:24:13.261792300
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:24:15.308578400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:24:16.771867900
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:24:18.227429400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:24:19.736803600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:40:02.616347100
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:40:04.871560800
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:40:06.272473
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:40:07.693694200
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T15:40:09.069821700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:11:02.634237800
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:11:04.961773700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:11:06.393739400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:11:07.831236800
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:11:09.272729100
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T16:59:08.927913400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender1
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-22T16:59:44.132759600
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 28
+    computerName: LENOVO-RENA user: null
+2020-10-22T16:59:51.021813600
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-22T16:59:51.081819300
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 8 клиентов.
+    computerName: LENOVO-RENA user: adminsender1
