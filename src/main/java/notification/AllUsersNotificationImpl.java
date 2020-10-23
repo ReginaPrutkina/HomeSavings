@@ -6,7 +6,7 @@ import dataClasses.AdminSender;
 import myException.MyException;
 import mailService.SendMail;
 import dataClasses.User;
-import services.UserDAO;
+import services.BDServices.UserDAO;
 import java.util.Objects;
 
 public class AllUsersNotificationImpl implements AllUserNotification {

@@ -6,11 +6,11 @@ import dataClasses.Deposit;
 import dataClasses.User;
 import log.Logging;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import services.*;
+import services.BDServices.UserDAO;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

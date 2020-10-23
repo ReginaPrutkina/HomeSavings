@@ -1258,3 +1258,63 @@
     project.RestAPIAuth / showUsers
     Успешный ответ. Найдено 8 клиентов.
     computerName: LENOVO-RENA user: adminsender1
+2020-10-22T17:05:02.735246900
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T17:05:06.064736600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T17:05:08.558875800
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T17:05:10.410306100
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T17:05:12.661824600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-10-22T17:05:25.481909600
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 78
+    computerName: LENOVO-RENA user: null
+2020-10-22T17:06:14.905999300
+    services.UserServiceImpl / userAuth
+    Пользователь с логином pavl не авторизован
+    computerName: LENOVO-RENA user: null
+2020-10-22T17:06:21.564318500
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-10-23T10:20:51.163671300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-10-23T10:21:11.410172200
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 70
+    computerName: LENOVO-RENA user: null
+2020-10-23T10:21:23.349213700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender1
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-23T10:21:39.617883600
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-23T10:21:39.663883800
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender1
+2020-10-23T11:28:15.419814900
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 25
+    computerName: LENOVO-RENA user: null
+2020-10-23T11:28:27.727141500
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov

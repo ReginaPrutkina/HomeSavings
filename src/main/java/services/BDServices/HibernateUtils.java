@@ -1,4 +1,4 @@
-package services;
+package services.BDServices;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

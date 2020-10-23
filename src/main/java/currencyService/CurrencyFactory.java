@@ -19,7 +19,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
 
     private List<String> currencyNumList;
 
-    CurrencyFactory(List<String> currencyNumList) throws MyException{
+    CurrencyFactory(List<String> currencyNumList) {
         this.currencyNumList = currencyNumList;
         this.currencyMap = new HashMap<>();
     }
@@ -30,8 +30,10 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
         //  если валюты нет в еще мапе, пробуем добавить ее в мап
         if (!currencyMap.containsKey(currencyNumCode)) {
             currency = addCurrency(currencyNumCode);
-            if (currency != null)
-                currencyMap.put(currencyNumCode,currency);
+            if (currency != null) {
+                currency.setData(currencyRatesCB.getRatesDate());
+                currencyMap.put(currencyNumCode, currency);
+            }
         }
             return currencyMap.get(currencyNumCode);
     }

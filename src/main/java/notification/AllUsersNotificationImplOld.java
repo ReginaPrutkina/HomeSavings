@@ -5,7 +5,7 @@ import mailService.SendMail;
 import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import services.UserDAOImpl;
+import services.BDServices.UserDAOImpl;
 
 public class AllUsersNotificationImplOld implements AllUserNotification {
 

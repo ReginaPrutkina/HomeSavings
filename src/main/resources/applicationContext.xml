@@ -12,7 +12,7 @@
 
     <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService,jobs"/>
 
-    <!--конфигурация без Job-->
+    <!--конфигурация без Job -->
 <!--    <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService"/>-->
 
     <task:annotation-driven />
@@ -34,15 +34,15 @@
         <constructor-arg name = "adminLogin" value="adminSender1"/>
     </bean>
 
-<!--    <bean id = "UserService" class="services.UserServiceImpl" autowire="byType"/>-->
+<!--    <bean id = "CurrencyDAO" class="services.BDServices.CurrencyDAOImpl" autowire="byType"/>-->
 
     <bean id = "CurrencyFactory" class="currencyService.CurrencyFactory" autowire="byType">
         <constructor-arg name="currencyNumList" >
             <list>
-               <value>"840"</value>
-                <value>"978"</value>
-                <value>"156"</value>
-                <value>"124"</value>
+               <value>840</value>
+                <value>978</value>
+                <value>156</value>
+                <value>124</value>
             </list>
         </constructor-arg>
     </bean>

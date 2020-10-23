@@ -10,10 +10,12 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.connection.CharSet">utf8</property>
         <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+
         <mapping class="dataClasses.User"/>
         <mapping class="dataClasses.AdminSender"/>
         <mapping class="dataClasses.Deposit"/>
-
+        <mapping class="currencyService.Currency"/>
 
     </session-factory>
 </hibernate-configuration>

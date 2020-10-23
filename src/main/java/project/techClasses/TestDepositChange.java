@@ -2,7 +2,7 @@ package project.techClasses;
 
 import dataClasses.Deposit;
 import dataClasses.User;
-import services.UserDAOImpl;
+import services.BDServices.UserDAOImpl;
 
 import java.util.Scanner;
 

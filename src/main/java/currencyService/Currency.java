@@ -96,12 +96,14 @@ public class Currency {
     @Override
     public String toString() {
         return "Currency{" +
-                "id='" + id + '\'' +
+                "row_id=" + row_id +
+                ", id='" + id + '\'' +
                 ", numCode='" + numCode + '\'' +
                 ", name='" + name + '\'' +
                 ", charCode='" + charCode + '\'' +
                 ", nominal=" + nominal +
                 ", value=" + value +
+                ", data=" + data +
                 '}';
     }
 }

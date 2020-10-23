@@ -24,7 +24,7 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
 
         CBRCurrencies(String url) throws MyException {
         //считываем файл из url
-            System.out.println("новый экземпляр CBRCurrencies");
+         //   System.out.println("новый экземпляр CBRCurrencies");
             this.url = url;
         this.nodeCurrenciesList =  getXML();
     }

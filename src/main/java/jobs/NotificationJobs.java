@@ -20,7 +20,7 @@ public class NotificationJobs {
 
     // @Scheduled(cron="0 */1 * * * ?") // запуск каждые 3 минуты
    // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
-    @Scheduled(cron="0 11 16 * * THU")    //запуск каждую среду в 16:15
+    @Scheduled(cron="0 05 17 * * THU")    //запуск каждую среду в 16:15
     public void warningJob() throws MyException {
         allUserNotification.sendNotification(false);
     }

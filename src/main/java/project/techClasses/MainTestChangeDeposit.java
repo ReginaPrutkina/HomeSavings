@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import notification.NotificationService;
 import dataClasses.User;
-import services.UserDAOImpl;
+import services.BDServices.UserDAOImpl;
 
 public class MainTestChangeDeposit {
     public static void main(String[] args) {
