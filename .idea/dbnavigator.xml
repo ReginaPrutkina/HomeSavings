@@ -35,9 +35,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" object-ref="schemas/home_savings/tables/currency" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" />
@@ -45,6 +43,12 @@
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.currency" active-filter-id="29ae841e-a047-4799-b756-17ff75741a8e">
       <filter id="29ae841e-a047-4799-b756-17ff75741a8e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+    <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.deposits" active-filter-id="4738775c-be79-490a-9ad1-d1b122d25b01">
+      <filter id="4738775c-be79-490a-9ad1-d1b122d25b01" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+    <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.users" active-filter-id="acda1d1e-d2cb-419c-b70d-10f1b8c91c0f">
+      <filter id="acda1d1e-d2cb-419c-b70d-10f1b8c91c0f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

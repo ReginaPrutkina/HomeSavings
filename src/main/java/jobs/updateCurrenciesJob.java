@@ -1,6 +1,7 @@
 package jobs;
 
 import currencyService.*;
+import log.Logging;
 import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,15 +21,21 @@ public class updateCurrenciesJob {
     @Autowired
     CurrencyDAO currencyDAO;
 
-  //  @Scheduled(cron="0 0 0 * * MON-FRI")      //каждый будний день в полночь
-    @Scheduled(cron="0 32 14 23 * *")
+    @Autowired
+    Logging logging;
+    // Варианты cron:
+    //  @Scheduled(cron="0 0 0 * * MON-FRI")      //каждый будний день в полночь
+    //  @Scheduled(cron="0 45 17 23 * *")        // 23 числа каждого месяца в 17:45:00
+    @Scheduled(cron = "${cronUpdateCurrencyRates}")
     public void newCurrencyRates() throws MyException {
+        logging.log(" Запуск задачи по расписанию.");
         //Считываем новые курсы валют
         currencyRatesCB.setNodeCurrenciesList(currencyRatesCB.getXML());
         //обнуляем старые курсы валют в мапе currencyFactory
         currencyFactory.clearCurrencyMap();
         //Сохраняем курсы в БД
         saveCurrencyRates();
+        logging.log(" Задача завершена.");
     }
 
     private void saveCurrencyRates() throws MyException {

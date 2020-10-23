@@ -1,5 +1,6 @@
 package jobs;
 
+import log.Logging;
 import myException.MyException;
 import notification.AllUserNotification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,25 @@ public class NotificationJobs {
     @Autowired
     private AllUserNotification allUserNotification;
 
+    @Autowired
+    private Logging logging;
+
    // @Scheduled(cron="0 */1 * * * ?") // запуск каждую минуту
-  //  @Scheduled(cron="0 0 0 1 * *")      //каждое 1-ое число в полночь
-    @Scheduled(cron="0 40 15 22 * *")      //каждое 22-ое число в 15:40
+    //  @Scheduled(cron="0 0 0 1 * *")      //каждое 1-ое число в полночь
+
+    @Scheduled(cron = "${cronRegularNotification}")
     public void informJob() throws MyException {
+        logging.log(" Запуск задачи по расписанию.");
         allUserNotification.sendNotification(true);
+        logging.log(" Задача завершена.");
     }
 
     // @Scheduled(cron="0 */1 * * * ?") // запуск каждые 3 минуты
    // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
-    @Scheduled(cron="0 05 17 * * THU")    //запуск каждую среду в 16:15
+    @Scheduled(cron = "${cronWarningNotification}")
     public void warningJob() throws MyException {
+        logging.log(" Запуск задачи по расписанию.");
         allUserNotification.sendNotification(false);
+        logging.log(" Задача завершена.");
     }
 }

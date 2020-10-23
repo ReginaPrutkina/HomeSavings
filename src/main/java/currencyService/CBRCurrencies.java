@@ -1,7 +1,5 @@
 package currencyService;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import myException.MyException;
@@ -15,8 +13,8 @@ import java.util.Date;
 
 //@Component
 public class CBRCurrencies implements GetCurrencyRatesCB{
-
-   private String url;      // = "http://cbr.ru/scripts/XML_daily.asp";
+    // url = "http://cbr.ru/scripts/XML_daily.asp"  в xml - конфигурации
+   private String url;
 
     private NodeList nodeCurrenciesList;
 
@@ -24,8 +22,7 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
 
         CBRCurrencies(String url) throws MyException {
         //считываем файл из url
-         //   System.out.println("новый экземпляр CBRCurrencies");
-            this.url = url;
+        this.url = url;
         this.nodeCurrenciesList =  getXML();
     }
 
