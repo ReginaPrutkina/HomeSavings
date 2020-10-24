@@ -7,11 +7,10 @@ import dataClasses.User;
 import org.springframework.stereotype.Service;
 import services.BDServices.UserDAO;
 
-import java.util.Scanner;
-
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserDAO userDAO;
 
     @Autowired
@@ -35,15 +34,18 @@ public class UserServiceImpl implements UserService {
         if (user.getEmail().isEmpty() || user.getFamily().isEmpty() ||
                 user.getName().isEmpty() || user.getLogin().isEmpty()) {
             System.out.println("Не заполнены обязательные поля");
+            logging.log("Не заполнены обязательные поля");
             return false;
         }
         if (userDAO.findUserByLogin(user.getLogin()) != null) {
             System.out.println("В базе есть зарегистированный пользователеь с таким логином");
+            logging.log("В базе есть зарегистированный пользователеь с таким логином");
             return false;
         }
 
         if (userDAO.findUserByLogin(user.getEmail()) != null) {
             System.out.println("В базе есть зарегистированный пользователеь с таким email");
+            logging.log("В базе есть зарегистированный пользователеь с таким email");
             return false;
         }
         return true;
@@ -55,10 +57,12 @@ public class UserServiceImpl implements UserService {
         if ((userCmp != null) && userCmp.getRole().equals("admin")
                 && isAdminPasswordValid(login, password, (AdminSender) userCmp)) {
             System.out.println("Пользователь авторизован как администратор");
+            logging.log("Пользователь авторизован как администратор");
             return (AdminSender) userCmp;
         } else {
             if ((userCmp == null) || (!userCmp.getPasswordHash().equals(Integer.toString(password.hashCode())))) {
                 System.out.println("Неверный логин  или пароль");
+                logging.log("Неверный логин  или пароль");
                 return null;
             }
             System.out.println("Пользователь авторизован");
@@ -68,17 +72,6 @@ public class UserServiceImpl implements UserService {
 
     private boolean isAdminPasswordValid(String login, String password, AdminSender adminSender) {
         return adminSender.getPassword().equals(password);
-    }
-
-    public User consoleUserAuth(){
-        String login;
-        String password;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите логин");
-        login = scanner.nextLine();
-        System.out.println("Введите пароль");
-        password = scanner.nextLine();
-        return userAuth(login, password);
     }
 
     @Override
@@ -94,7 +87,6 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-
 
     @Override
     public User registerUser(User user) {

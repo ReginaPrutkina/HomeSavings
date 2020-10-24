@@ -2,7 +2,6 @@ package currencyService;
 
 import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -29,7 +28,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
         Currency currency;
         //  если валюты нет в еще мапе, пробуем добавить ее в мап
         if (!currencyMap.containsKey(currencyNumCode)) {
-            currency = addCurrency(currencyNumCode);
+            currency = parseCurrency(currencyNumCode);
             if (currency != null) {
                 currency.setData(currencyRatesCB.getRatesDate());
                 currencyMap.put(currencyNumCode, currency);
@@ -38,8 +37,8 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
             return currencyMap.get(currencyNumCode);
     }
 
-    private Currency addCurrency(String currencyNumCode) throws MyException{
-        //получение валюты по коду
+    //получение валюты по коду  из NodeCurrenciesList
+    private Currency parseCurrency(String currencyNumCode) throws MyException{
         for (int temp = 0; temp < currencyRatesCB.getNodeCurrenciesList().getLength(); temp++) {
             Node nNode = currencyRatesCB.getNodeCurrenciesList().item(temp);
             Element eElement = (Element) nNode;
@@ -51,7 +50,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
                             eElement.getElementsByTagName("CharCode").item(0).getTextContent(),
                             Integer.parseInt(eElement.getElementsByTagName("Nominal").item(0).getTextContent()),
                             eElement.getElementsByTagName("Name").item(0).getTextContent(),
-                            Double.valueOf(eElement.getElementsByTagName("Value").item(0).getTextContent().replace(",",".")));
+                            Double.parseDouble(eElement.getElementsByTagName("Value").item(0).getTextContent().replace(",",".")));
             } catch (NumberFormatException ex){
                throw new MyException("Ошибка получения валюты из XML парсинга", ex);
             }

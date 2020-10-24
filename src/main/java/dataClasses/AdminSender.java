@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Base64;
 @Entity
-@Table(name = "users")
+//@Table(name = "users")
 public class AdminSender extends User{
     @JsonIgnore
     public String getPassword() {

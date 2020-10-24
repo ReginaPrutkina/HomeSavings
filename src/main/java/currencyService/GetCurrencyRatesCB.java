@@ -6,8 +6,8 @@ import org.w3c.dom.NodeList;
 import java.util.Date;
 
 public interface GetCurrencyRatesCB {
-    public Date getRatesDate();
-    public NodeList getNodeCurrenciesList();
-    public void setNodeCurrenciesList(NodeList nodeCurrenciesList);
-    public NodeList getXML() throws MyException;
+    Date getRatesDate();
+    NodeList getNodeCurrenciesList();
+    void setNodeCurrenciesList(NodeList nodeCurrenciesList);
+    NodeList getXML() throws MyException;
 }

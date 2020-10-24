@@ -14,9 +14,7 @@
 
     <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService,jobs"/>
 
-    <!--конфигурация без Job -->
-<!--    <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService"/>-->
-
+    <!--Для запуска без Job-ов закомментировать -->
     <task:annotation-driven />
 
     <bean id = "MailService" class="mailService.SendMail">
@@ -35,8 +33,6 @@
     <bean id = "AllUserNotificationService" class="notification.AllUsersNotificationImpl" autowire="byType">
         <constructor-arg name = "adminLogin" value="adminSender1"/>
     </bean>
-
-<!--    <bean id = "CurrencyDAO" class="services.BDServices.CurrencyDAOImpl" autowire="byType"/>-->
 
     <bean id = "CurrencyFactory" class="currencyService.CurrencyFactory" autowire="byType">
         <constructor-arg name="currencyNumList" >

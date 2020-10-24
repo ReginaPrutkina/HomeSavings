@@ -47,4 +47,15 @@ public class ConsoleRegisterUser {
         } while (!userService.checkMailFormat(temp));
         return userService.registerUser(user);
     }
+
+    public User consoleUserAuth(UserServiceImpl userService){
+        String login;
+        String password;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите логин");
+        login = scanner.nextLine();
+        System.out.println("Введите пароль");
+        password = scanner.nextLine();
+        return userService.userAuth(login, password);
+    }
 }
