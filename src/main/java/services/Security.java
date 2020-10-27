@@ -4,14 +4,18 @@ import dataClasses.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class Security {
-    private Map<Integer, User> UIDMap;
+    private Map<Integer, CommonRequest> UIDMap;
     @Value("10000")
     private int maxRandom;
+
+    @Value("30")
+    private int maxMinutesUnActive;
 
     public boolean containsUID(Integer sessionUID){
         return UIDMap.containsKey(sessionUID);
@@ -21,13 +25,18 @@ public class Security {
         UIDMap = new HashMap<>();
     }
 
-    public Integer generateAndAddUID(User user){
+    public Integer generateAndAddUID(CommonRequest commonRequest){
         Integer sessionUID;
         //генерим UID  и проверяем, что его еще нет в мапе
         do {
             sessionUID = randomInt();
-        }while (UIDMap.containsKey(sessionUID));
-        UIDMap.put(sessionUID, user);
+        }while (UIDMap.containsKey(sessionUID) && !isSessionOld(sessionUID));
+        commonRequest.setLastUpdate(new Date());
+        if (UIDMap.containsKey(sessionUID))
+            UIDMap.replace(sessionUID, commonRequest);
+        else
+            UIDMap.put(sessionUID, commonRequest);
+
         return sessionUID;
     }
 
@@ -36,15 +45,31 @@ public class Security {
         return (int) Math.round(Math.random() * maxRandom  + 1);
     }
 
-    public Map<Integer, User> getUIDMap() {
+    public boolean isSessionOld(int sessionUID){
+        if ((UIDMap.get(sessionUID) == null) ||
+                (UIDMap.get(sessionUID).getLastUpdate() == null))
+            return false;
+        // true, если прошло более 30 мин с lastUpdate
+        return ((new Date().getTime() - UIDMap.get(sessionUID).getLastUpdate().getTime()) > (maxMinutesUnActive*60*1000));
+    }
+
+    public Map<Integer, CommonRequest> getUIDMap() {
         return UIDMap;
     }
 
-    public void setUIDMap(Map<Integer, User> UIDMap) {
+    public void setUIDMap(Map<Integer, CommonRequest> UIDMap) {
         this.UIDMap = UIDMap;
     }
 
     public int getMaxRandom() {
         return maxRandom;
+    }
+
+    public int getMaxMinutesUnActive() {
+        return maxMinutesUnActive;
+    }
+
+    public void setMaxMinutesUnActive(int maxMinutesUnActive) {
+        this.maxMinutesUnActive = maxMinutesUnActive;
     }
 }

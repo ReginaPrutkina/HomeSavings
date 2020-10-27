@@ -170,3 +170,135 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     jobs.updateCurrenciesJob / newCurrencyRates
      Задача завершена.
     computerName: LENOVO-RENA user: null
+2020-10-27T10:04:48.778888100
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: null
+2020-10-27T10:04:48.795887100
+    services.UserServiceImpl / userAuth
+    Пользователь с логином pavlov не авторизован
+    computerName: LENOVO-RENA user: null
+2020-10-27T10:05:01.968836200
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-10-27T10:05:01.985836500
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:05:27.849362100
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:05:27.892370500
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:05:53.493638500
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:05:53.553641700
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 8 клиентов.
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:06:26.108007100
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=129, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-10-27T10:07:30.263826
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-10-27T10:07:30.323829300
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-10-27T10:07:57.179545400
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 67
+    computerName: LENOVO-RENA user: null
+2020-10-27T10:08:14.304597100
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 129
+    computerName: LENOVO-RENA user: pavlov
+2020-10-27T10:08:14.316597400
+    project.RestAPIAuth / deleteUser
+    Пользователь не является администратором. Нет прав для удаления данных клиента по ID.
+    computerName: LENOVO-RENA user: pavlov
+2020-10-27T10:08:21.400828700
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 129
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T10:08:21.447829
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=129, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:17:35.601110500
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-10-27T11:17:35.618095400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:17:53.649827900
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:17:53.703830800
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:26:24.231646200
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 6006
+    computerName: LENOVO-RENA user: null
+2020-10-27T11:26:37.806513300
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-10-27T11:26:37.823513100
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:26:48.912133100
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:26:48.934134
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:27:07.783423900
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:27:07.849523
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 8 клиентов.
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:29:39.533091700
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:29:39.588094900
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 8 клиентов.
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:29:47.063531100
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:29:47.103531900
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-10-27T11:40:24.936408700
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 322
+    computerName: LENOVO-RENA user: null
+2020-10-27T11:40:34.917954100
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 322
+    computerName: LENOVO-RENA user: null
