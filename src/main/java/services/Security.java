@@ -33,7 +33,7 @@ public class Security {
 
     private Integer randomInt(){
         //случайное целое число от 1 до 10001
-        return (int) Math.round(Math.random() * maxRandom / 100 + 1);
+        return (int) Math.round(Math.random() * maxRandom  + 1);
     }
 
     public Map<Integer, User> getUIDMap() {
@@ -44,4 +44,7 @@ public class Security {
         this.UIDMap = UIDMap;
     }
 
+    public int getMaxRandom() {
+        return maxRandom;
+    }
 }
