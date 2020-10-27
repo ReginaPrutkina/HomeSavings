@@ -1,5 +1,6 @@
 package services.BDServices;
 
+import myException.MyException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -11,7 +12,11 @@ public class HibernateUtils {
                 sessionFactory = configuration.buildSessionFactory();
 
             } catch (Exception e) {
-                System.out.println("Исключение!" + e);
+                try {
+                    throw new MyException("ошибка связи с БД", e);
+                } catch (MyException myException) {
+                    myException.printStackTrace();
+                }
             }
         }
 

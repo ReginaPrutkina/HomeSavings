@@ -15,6 +15,7 @@ import services.BDServices.UserDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +32,6 @@ public class RestAPIAuth {
     PercentTypeFactory percentTypeFactory;
 
     @Autowired
-//    @Qualifier ("UserService")
     UserService userService;
 
     @Autowired
@@ -70,7 +70,9 @@ public class RestAPIAuth {
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
         //Генерим и записываем в секьюрити мапу уникальный ид сессии, передаем его в ответе
-        commonAnswer.setSessionUID(security.generateAndAddUID(user));
+        CommonRequest commonRequest = new CommonRequest();
+        commonRequest.setUser(user);
+        commonAnswer.setSessionUID(security.generateAndAddUID(commonRequest));
         commonAnswer.setUser(user);
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
@@ -89,10 +91,10 @@ public class RestAPIAuth {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
-        logging.setUserName(security.getUIDMap().get(sessionUID).getLogin());
+        logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
         logging.log("REST-запрос Поиск данных клиента по ID: "+ request.getUser().getId());
         // проверка на админа
-        if (!security.getUIDMap().get(sessionUID).getRole().equals("admin"))
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin"))
         {
             commonAnswer.setErrorText("Пользователь не является администратором. " +
                     "Нет прав для получения данных клиента по ID.");
@@ -105,6 +107,8 @@ public class RestAPIAuth {
         else
             logging.log("Данные не найдены");
         commonAnswer.setUser(user);
+        //обновляем lastUpdate  сессии в мапе
+        security.getUIDMap().get(sessionUID).setLastUpdate(new Date());
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
@@ -123,10 +127,10 @@ public class RestAPIAuth {
             commonAnswers.add(commonAnswer);
             return new ResponseEntity<>(commonAnswers,  HttpStatus.NOT_FOUND);
         }
-        logging.setUserName(security.getUIDMap().get(sessionUID).getLogin());
+        logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
         logging.log("REST-запрос Вывод данных по всем клиентам из БД. ");
         // проверка на админа
-        if (!security.getUIDMap().get(sessionUID).getRole().equals("admin"))
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin"))
             {
                 commonAnswer.clear();
                 commonAnswer.setErrorText("Пользователь не является администратором. " +
@@ -136,6 +140,8 @@ public class RestAPIAuth {
                 return new ResponseEntity<>(commonAnswers,  HttpStatus.FORBIDDEN);
             }
         List<User> users = userDAO.findAll();
+        //обновляем lastUpdate  сессии в мапе
+        security.getUIDMap().get(sessionUID).setLastUpdate(new Date());
         logging.log("Успешный ответ. Найдено " + users.size() + " клиентов.");
         return new ResponseEntity<>(users,  HttpStatus.OK);
     }
@@ -164,9 +170,11 @@ public class RestAPIAuth {
             return new ResponseEntity<>(commonAnswer,  HttpStatus.FORBIDDEN);
         }
             //Генерим и записываем в секьюрити мапу уникальный ид сессии, передаем его в ответе
-            commonAnswer.setSessionUID(security.generateAndAddUID(newUser));
-            commonAnswer.setUser(newUser);
-            return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
+        CommonRequest commonRequest = new CommonRequest();
+        commonRequest.setUser(user);
+        commonAnswer.setSessionUID(security.generateAndAddUID(commonRequest));
+        commonAnswer.setUser(newUser);
+        return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
 //  удаление пользователей разрешено только для админа
@@ -183,10 +191,10 @@ public class RestAPIAuth {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
-        logging.setUserName(security.getUIDMap().get(sessionUID).getLogin());
+        logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
         logging.log("REST-запрос Удаление данных клиента по ID: "+ request.getUser().getId());
         // проверка на админа
-        if (!security.getUIDMap().get(sessionUID).getRole().equals("admin"))
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin"))
         {
             commonAnswer.setErrorText("Пользователь не является администратором. " +
                     "Нет прав для удаления данных клиента по ID.");
@@ -223,7 +231,7 @@ public class RestAPIAuth {
         //сохраняем в ответе сессию
         commonAnswer.setSessionUID(sessionUID);
         //Берем клиента из map-ы
-        User user = security.getUIDMap().get(sessionUID);
+        User user = security.getUIDMap().get(sessionUID).getUser();
         logging.setUserName(user.getLogin());
         logging.log("REST-запрос Обновление депозитов клиента : "+ user.getLogin());
 
@@ -243,7 +251,9 @@ public class RestAPIAuth {
         userDAO.merge(user);
         user = userDAO.findUserById(user.getId());
         // обновляем данные клиента в  мапе сессий
-        security.getUIDMap().get(sessionUID).setDeposits(user.getDeposits());
+        security.getUIDMap().get(sessionUID).getUser().setDeposits(user.getDeposits());
+        //обновляем lastUpdate  сессии в мапе
+        security.getUIDMap().get(sessionUID).setLastUpdate(new Date());
 
         logging.log("Депозиты клиента обновлены");
         commonAnswer.setUser(user);
@@ -262,7 +272,7 @@ public class RestAPIAuth {
    private boolean isSessionUIDValid(Integer sessionUID){
         if (sessionUID==null || sessionUID==0)
             return false;
-        return security.containsUID(sessionUID);
+        return security.containsUID(sessionUID) && !security.isSessionOld(sessionUID);
     }
 
     private void badSessionAnswer(int badUID){
