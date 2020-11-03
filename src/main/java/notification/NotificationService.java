@@ -90,11 +90,11 @@ public class NotificationService implements NotificationText, NotificationHTML {
         int rowNum = 1;
         try{
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-        tempStr.append("Состояние вкладов на " + formatter.format(date) + "\n");
+        tempStr.append("Состояние вкладов на ").append(formatter.format(date)).append("\n");
         tempStr.append(depositTextHeader());
         Set<String> currencySet = new HashSet<>();
         for (Deposit deposit: depositList) {
-            tempStr.append(this.depositTextRow(rowNum++, deposit) +'\n');
+            tempStr.append(this.depositTextRow(rowNum++, deposit)).append('\n');
             currencySet.add(deposit.getCurrencyCode());
         }
         tempStr.append(footerText(currencySet,"\n"));
@@ -110,7 +110,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         StringBuilder tempStr = new StringBuilder();
         String strRound2;
         try{
-        tempStr.append("Всего: "+ endStr);
+        tempStr.append("Всего: ").append(endStr);
         for (String curCode: currencySet) {
             double sumInCurrency = 0;
 
@@ -119,15 +119,15 @@ public class NotificationService implements NotificationText, NotificationHTML {
                     sumInCurrency += deposit.getSum();
             }
             if (curCode.equals("810"))
-                tempStr.append("Вкладов в рублях: " + String.format("%.2f",sumInCurrency) + endStr);
+                tempStr.append("Вкладов в рублях: ").append(String.format("%.2f", sumInCurrency)).append(endStr);
             else {
                 Currency currency = this.currencyRatesCB.getCurrency(curCode);
-                tempStr.append("Вкладов в " + currency.getCharCode() + " (" + currency.getName() + "): " );
-                tempStr.append( sumInCurrency + ", рублевый экв.: " );
+                tempStr.append("Вкладов в ").append(currency.getCharCode()).append(" (").append(currency.getName()).append("): ");
+                tempStr.append(sumInCurrency).append(", рублевый экв.: ");
                 strRound2 = String.format("%.2f",sumInCurrency * currency.getValue() / currency.getNominal());
                 tempStr.append(strRound2);
-                tempStr.append("  (по курсу ЦБ - " + currency.getValue()  + " руб. за " );
-                tempStr.append(currency.getNominal() + " " + currency.getCharCode() + ")" +endStr);
+                tempStr.append("  (по курсу ЦБ - ").append(currency.getValue()).append(" руб. за ");
+                tempStr.append(currency.getNominal()).append(" ").append(currency.getCharCode()).append(")").append(endStr);
             }
         }
         }
@@ -140,8 +140,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
     @Override
     public String getWarningText() throws MyException {
         try{
-        String overEndDeposits="";
-        String nearEndDeposit="";
+        StringBuilder overEndDeposits= new StringBuilder();
+        StringBuilder nearEndDeposit= new StringBuilder();
         if (depositList.isEmpty())
             return "";
         Date date = new Date();
@@ -149,9 +149,9 @@ public class NotificationService implements NotificationText, NotificationHTML {
         int rowNumOverEnd = 1;
         for (Deposit deposit: depositList) {
             if (deposit.getEndDate().getTime() < date.getTime())
-                overEndDeposits += depositTextRow(rowNumOverEnd++,deposit) + '\n';
+                overEndDeposits.append(depositTextRow(rowNumOverEnd++, deposit)).append('\n');
             else if (deposit.getEndDate().getTime() < (date.getTime() + (long)this.daysToEndOfDeposit * 24 * 60 * 60 * 1000))
-                nearEndDeposit += depositTextRow(rowNumNearEnd++, deposit) + "\n";
+                nearEndDeposit.append(depositTextRow(rowNumNearEnd++, deposit)).append("\n");
         }
 
             if (overEndDeposits.length() > 0) {
@@ -205,13 +205,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
         StringBuilder htmlStringBuilder=new StringBuilder();
         //append html header and title
         String title = "Состояние вкладов на " + formatter.format(date);
-        htmlStringBuilder.append("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>"+ title +"</title></head>");
+        htmlStringBuilder.append("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>").append(title).append("</title></head>");
         //append style
         htmlStringBuilder.append(htmlStyle());
         //append body
         htmlStringBuilder.append("<body>");
-        htmlStringBuilder.append("<h3>"+ "Добрый день, " + depositList.get(0).getUser().getName() +"! </h3>");
-        htmlStringBuilder.append("<h3>"+ "Состояние Ваших вкладов на " + formatter.format(date) +":</h3>");
+        htmlStringBuilder.append("<h3>" + "Добрый день, ").append(depositList.get(0).getUser().getName()).append("! </h3>");
+        htmlStringBuilder.append("<h3>" + "Состояние Ваших вкладов на ").append(formatter.format(date)).append(":</h3>");
         //append table
         htmlStringBuilder.append("<table id = \"info\">");
         //thead row
@@ -222,7 +222,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
             htmlStringBuilder.append(depositHTMLRow(rowNum++,deposit));
             currencySet.add(deposit.getCurrencyCode());
         }
-        htmlStringBuilder.append("</table><p>"+footerText(currencySet, "<br>")+"</p>");
+        htmlStringBuilder.append("</table><p>").append(footerText(currencySet, "<br>")).append("</p>");
         htmlStringBuilder.append("<p class = \"footnote\">"+ "* Суммы на конец срока рассчитаны без учета снятий и пополнений" +"</p></body></html>");
         notificationText = htmlStringBuilder.toString();
         return notificationText;
@@ -246,13 +246,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
         StringBuilder nearEndDeposit=new StringBuilder();
         //append html header and title
         String title = "Состояние вкладов на " + formatter.format(date);
-        htmlStringBuilder.append("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>"+ title +"</title></head>");
+        htmlStringBuilder.append("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>").append(title).append("</title></head>");
         //append style
         htmlStringBuilder.append(htmlStyle());
         //append body
         htmlStringBuilder.append("<body>");
-        htmlStringBuilder.append("<h3>"+ "Добрый день, " + depositList.get(0).getUser().getName() +"! </h3>");
-        htmlStringBuilder.append("<h3>"+ "Вклады, требующие Вашего внимания: " + formatter.format(date) +":</h3>");
+        htmlStringBuilder.append("<h3>" + "Добрый день, ").append(depositList.get(0).getUser().getName()).append("! </h3>");
+        htmlStringBuilder.append("<h3>" + "Вклады, требующие Вашего внимания на ").append(formatter.format(date)).append(":</h3>");
         //append  2 tables
         //thead rows
         overEndDeposits.append("<table id = \"info\">");
@@ -280,7 +280,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         }
         if (rowNumNearEnd > 1) {
             nearEndDeposit.append("</table>");
-            htmlStringBuilder.append("<p>Вклады, срок которых закончится в ближайшие " + this.daysToEndOfDeposit +" дней:  </p>");
+            htmlStringBuilder.append("<p>Вклады, срок которых закончится в ближайшие ").append(this.daysToEndOfDeposit).append(" дней:  </p>");
             htmlStringBuilder.append(nearEndDeposit);
         }
         htmlStringBuilder.append("<p class = \"footnote\">"+ "* Суммы на конец срока рассчитаны без учета снятий и пополнений" +"</p>");

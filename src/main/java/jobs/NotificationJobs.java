@@ -15,8 +15,10 @@ public class NotificationJobs {
     @Autowired
     private Logging logging;
 
-   // @Scheduled(cron="0 */1 * * * ?") // запуск каждую минуту
+    // Примеры расписаний
+    // @Scheduled(cron="0 */1 * * * ?") // запуск каждую минуту
     //  @Scheduled(cron="0 0 0 1 * *")      //каждое 1-ое число в полночь
+    // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
 
     @Scheduled(cron = "${cronRegularNotification}")
     public void informJob() throws MyException {
@@ -25,8 +27,6 @@ public class NotificationJobs {
         logging.log(" Задача завершена.");
     }
 
-    // @Scheduled(cron="0 */1 * * * ?") // запуск каждые 3 минуты
-   // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
     @Scheduled(cron = "${cronWarningNotification}")
     public void warningJob() throws MyException {
         logging.log(" Запуск задачи по расписанию.");

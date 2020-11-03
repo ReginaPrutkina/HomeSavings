@@ -9,13 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Service
 public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService {
     @Autowired
     GetCurrencyRatesCB currencyRatesCB;
 
     private Map<String, Currency> currencyMap;
 
+    //Список часто исползуемых валют. Их же и сохраняем м БД
+    // Задается через Spring в applicationContext.xml как аргумент конструктора
     private List<String> currencyNumList;
 
     CurrencyFactory(List<String> currencyNumList) {
@@ -57,9 +58,15 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
         }
         return null;
     }
+
     @Override
     public List<String> getCurrencyNumList() {
         return currencyNumList;
+    }
+
+    @Override
+    public void clearCurrencyMap() {
+        this.currencyMap.clear();
     }
 
     public GetCurrencyRatesCB getCurrencyRatesCB() {
@@ -70,8 +77,5 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
         this.currencyRatesCB = currencyRatesCB;
     }
 
-    @Override
-    public void clearCurrencyMap() {
-        this.currencyMap.clear();
-    }
+
 }
