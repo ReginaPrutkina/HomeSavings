@@ -13,8 +13,6 @@ public class AllUsersNotificationImpl implements AllUserNotification {
 
     private String adminLogin;
 
-    private String fileName;
-
     @Value(".\\userFiles\\")
     private String notificationDir;
 

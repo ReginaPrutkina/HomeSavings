@@ -1,7 +1,6 @@
 package mailService;
 
 import myException.MyException;
-import org.springframework.stereotype.Component;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

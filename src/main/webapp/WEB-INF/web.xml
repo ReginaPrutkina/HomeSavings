@@ -21,8 +21,6 @@
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
       <param-value>project</param-value>
-<!--        <param-name>jersey.config.server.provider.packages</param-name>-->
-<!--        <param-value>com.jersey.series.spring.integration.service</param-value>-->
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
