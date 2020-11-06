@@ -16,11 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private Logging logging;
 
-    @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
     public UserDAO getUserDAO() {
         return userDAO;
     }
@@ -55,7 +50,7 @@ public class UserServiceImpl implements UserService {
     public User checkUserPassword(String login, String password) {
         User userCmp = userDAO.findUserByLogin(login);
         if ((userCmp != null) && userCmp.getRole().equals("admin")
-                && isAdminPasswordValid(login, password, (AdminSender) userCmp)) {
+                && isAdminPasswordValid(password, (AdminSender) userCmp)) {
             System.out.println("Пользователь авторизован как администратор");
             logging.log("Пользователь авторизован как администратор");
             return (AdminSender) userCmp;
@@ -70,7 +65,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private boolean isAdminPasswordValid(String login, String password, AdminSender adminSender) {
+    private boolean isAdminPasswordValid(String password, AdminSender adminSender) {
         return adminSender.getPassword().equals(password);
     }
 

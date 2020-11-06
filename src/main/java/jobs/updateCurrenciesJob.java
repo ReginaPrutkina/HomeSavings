@@ -23,6 +23,7 @@ public class updateCurrenciesJob {
 
     @Autowired
     Logging logging;
+
     // Варианты cron:
     //  @Scheduled(cron="0 0 0 * * MON-FRI")      //каждый будний день в полночь
     //  @Scheduled(cron="0 45 17 23 * *")        // 23 числа каждого месяца в 17:45:00

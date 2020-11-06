@@ -56,6 +56,12 @@ public class RestAPIAuth {
         this.userDAO = userDAO;
     }
 
+    /**
+     * Авторизация клиента.
+     * @param login - логин
+     * @param password - пароль
+     * @return - При успешной авторизации возвращаем клиента из БД со списком его депозитов
+     */
     @GET
     @Path("/authUser")
     @Produces(MediaType.APPLICATION_JSON)
@@ -77,8 +83,11 @@ public class RestAPIAuth {
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
-// Запрос данных клиента по ID доступен только админу
-//обязательные поля: UID сессии, User:ID клиента
+    /**
+     * Запрос данных клиента по ID доступен только админу
+     * @param request: обязательные поля: UID сессии, User:ID клиента
+     * @return commonAnswer с User-ом из мапы секрьрити
+     */
     @POST
     @Path("/userDepositsById")
     @Produces(MediaType.APPLICATION_JSON)
@@ -112,8 +121,11 @@ public class RestAPIAuth {
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
-    // Просмотр всех пользователей доступен только администратору
-    //обязательные поля: UID сессии
+    /**
+     * Просмотр всех пользователей доступен только администратору
+     * @param request: обязательные поля: UID сессии
+     * @return список всех клиентов и их депоитов из БД
+     */
     @POST
     @Path("/showUsers")
     @Produces(MediaType.APPLICATION_JSON)
@@ -146,7 +158,12 @@ public class RestAPIAuth {
         return new ResponseEntity<>(users,  HttpStatus.OK);
     }
 
-    // авторизация не требуется. Справочная информация
+
+    /**
+     * авторизация не требуется. Справочная информация
+     * @param type - код типа начисления %% из базы
+     * @return строковое название типа начисления %%
+     */
     @GET
     @Path("/typeOfPercent")
     @Produces(MediaType.APPLICATION_JSON)
@@ -177,8 +194,11 @@ public class RestAPIAuth {
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
-//  удаление пользователей разрешено только для админа
-//обязательные поля: UID сессии, User:ID клиента
+    /**
+     * удаление пользователей разрешено только для админа
+     * @param request: обязательные поля: UID сессии, User:ID клиента
+     * @return commonAnswer с пустым user
+     */
     @DELETE
     @Path("/deleteUser")
     @Produces(MediaType.APPLICATION_JSON)
@@ -213,9 +233,13 @@ public class RestAPIAuth {
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
-    //обновляет депозиты по указанным ID, добавляет депозиты, если ID  не указан
-    //проверяем, что обновляемые депозиты  (с  ID) - принадлежат клиенту
-    //обязательные поля - UID сессии, User: список депозитов
+    /**
+     * обновляет депозиты по указанным ID, добавляет депозиты, если ID  не указан
+     * проверяем, что обновляемые депозиты  (с  ID) - принадлежат клиенту
+     * Возвращаем клиента из БД с обновленным списком депозитов
+     * @param request: обязательные поля - UID сессии, User: список депозитов
+     * @return commonAnswer c user c  обновленным списком депозитов
+     */
     @POST
     @Path("/updateUserDeposits")
     @Produces(MediaType.APPLICATION_JSON)
@@ -258,7 +282,6 @@ public class RestAPIAuth {
         logging.log("Депозиты клиента обновлены");
         commonAnswer.setUser(user);
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
-
     }
 
     private boolean containsId(int id, List<Deposit> deposits){
