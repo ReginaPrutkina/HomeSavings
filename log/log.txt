@@ -1,4 +1,0 @@
-2020-10-08T17:21:30.511794300
-    project.MainFile2 / main
-    'это текст
-    computerName: LENOVO-RENA user: null

@@ -1,6 +1,5 @@
 package services;
 
-import dataClasses.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +9,9 @@ import java.util.Map;
 
 @Component
 public class Security {
+
     private Map<Integer, CommonRequest> UIDMap;
+
     @Value("10000")
     private int maxRandom;
 
@@ -49,7 +50,7 @@ public class Security {
         if ((UIDMap.get(sessionUID) == null) ||
                 (UIDMap.get(sessionUID).getLastUpdate() == null))
             return false;
-        // true, если прошло более 30 мин с lastUpdate
+        // true, если прошло более maxMinutesUnActive мин с lastUpdate
         return ((new Date().getTime() - UIDMap.get(sessionUID).getLastUpdate().getTime()) > (maxMinutesUnActive*60*1000));
     }
 

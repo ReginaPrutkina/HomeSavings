@@ -11,7 +11,7 @@ public class MainTestChangeDeposit {
     public static void main(String[] args) {
 try{
     ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-    UserDAOImpl userDAO = (UserDAOImpl) context.getBean("UserDAO") ;
+    UserDAOImpl userDAO = (UserDAOImpl) context.getBean(UserDAOImpl.class) ;
     User user = userDAO.findUserByLogin("petrov");
     TestDepositChange testDepositChange = new TestDepositChange();
     NotificationService notificationService = (NotificationService) context.getBean("NotificationService");
