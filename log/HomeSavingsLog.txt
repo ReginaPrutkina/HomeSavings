@@ -670,3 +670,23 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     project.RestAPIAuth / getUserDeposits
     Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
     computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:35:22.138124700
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 741
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:35:34.936568900
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:35:34.949571400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:35:52.883917300
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:35:52.930920500
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
