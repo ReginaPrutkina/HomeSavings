@@ -11,8 +11,8 @@
       <quote-values-containing-separator value="true" />
       <quote-all-values value="false" />
       <value-separator value="" />
-      <file-name value="" />
-      <file-location value="" />
+      <file-name value="currency.xls" />
+      <file-location value="D:\Users\Lenovo\Documents" />
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
@@ -23,34 +23,31 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2">
-        <schema name="home_savings" object-types="index, constraint, view, column, table, dataset trigger, procedure, function" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2">
-      <console name="Connection" type="STANDARD" schema="home_savings" session="Main" />
+    <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d">
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" object-ref="schemas/home_savings/tables/users" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" />
+    <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.currency" active-filter-id="29ae841e-a047-4799-b756-17ff75741a8e">
-      <filter id="29ae841e-a047-4799-b756-17ff75741a8e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.currency" active-filter-id="EMPTY_FILTER">
+      <filter id="b6ccda3c-329f-41c9-b92e-3838921cfb79" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
-    <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.deposits" active-filter-id="4738775c-be79-490a-9ad1-d1b122d25b01">
-      <filter id="4738775c-be79-490a-9ad1-d1b122d25b01" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.deposits" active-filter-id="080d52e5-c71f-47d3-9f49-38cef8b7584e">
+      <filter id="080d52e5-c71f-47d3-9f49-38cef8b7584e" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
-    <filter-actions connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" dataset="home_savings.users" active-filter-id="acda1d1e-d2cb-419c-b70d-10f1b8c91c0f">
-      <filter id="acda1d1e-d2cb-419c-b70d-10f1b8c91c0f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="testdb.children" active-filter-id="6d865179-57e1-4eac-8407-990dc556e790">
+      <filter id="6d865179-57e1-4eac-8407-990dc556e790" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
+    </filter-actions>
+    <filter-actions connection-id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" dataset="home_savings.users" active-filter-id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65">
+      <filter id="dfeb6913-84ce-4f02-8cee-c1e5bd63da65" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
@@ -76,10 +73,10 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" active="true">
+      <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" active="true">
         <database>
           <name value="Connection" />
-          <description value="" />
+          <description value="home_savings" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
           <database-version value="5.1" />
