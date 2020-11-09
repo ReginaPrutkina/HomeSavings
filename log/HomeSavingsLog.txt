@@ -650,3 +650,23 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     project.RestAPIAuth / showUsers
     Успешный ответ. Найдено 8 клиентов.
     computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:19:39.431456200
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 4510
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:20:00.325186700
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:20:00.337190300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:20:09.701202400
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:20:09.763394500
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2

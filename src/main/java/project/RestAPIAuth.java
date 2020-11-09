@@ -180,7 +180,7 @@ public class RestAPIAuth {
      * Регистрация клиента: запись клиента в БД и геренация UID сессии
      * @param user - новый клиенент для регистрации в БД
      * @return  - commonAnswer с User-ом и сгенерированным UID сессии
-     *             или commonAnswer с текстом ошибки
+     *            или commonAnswer с текстом ошибки
      */
     @PUT
     @Path("/newUser")
