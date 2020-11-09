@@ -163,11 +163,11 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     Удален клиент User{id=126, family='Администратор3', name='Админ3', login='adminsender2', email='aadms@gmail.com'}
     computerName: LENOVO-RENA user: adminsender2
 2020-10-24T19:44:00.023813100
-    jobs.updateCurrenciesJob / newCurrencyRates
+    jobs.UpdateCurrenciesJob / newCurrencyRates
      Запуск задачи по расписанию.
     computerName: LENOVO-RENA user: null
 2020-10-24T19:44:05.930871300
-    jobs.updateCurrenciesJob / newCurrencyRates
+    jobs.UpdateCurrenciesJob / newCurrencyRates
      Задача завершена.
     computerName: LENOVO-RENA user: null
 2020-10-27T10:04:48.778888100
@@ -618,3 +618,35 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     jobs.NotificationJobs / warningJob
      Задача завершена.
     computerName: LENOVO-RENA user: 
+2020-11-09T17:03:42.230744900
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 425
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:03:56.355731
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:03:56.365722300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:04:09.334248700
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 66
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:04:09.383254400
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=66, family='Романов', name='Роман', login='romanov', email='romanov@romanov.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:04:41.685564800
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 425
+    computerName: LENOVO-RENA user: null
+2020-11-09T17:04:48.449330
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-09T17:04:48.531339800
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 8 клиентов.
+    computerName: LENOVO-RENA user: adminsender2

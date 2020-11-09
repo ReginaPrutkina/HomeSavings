@@ -61,6 +61,7 @@ public class RestAPIAuth {
      * @param login - логин
      * @param password - пароль
      * @return - При успешной авторизации возвращаем клиента из БД со списком его депозитов
+     *          или commonAnswer с текстом ошибки
      */
     @GET
     @Path("/authUser")
@@ -86,7 +87,7 @@ public class RestAPIAuth {
     /**
      * Запрос данных клиента по ID доступен только админу
      * @param request: обязательные поля: UID сессии, User:ID клиента
-     * @return commonAnswer с User-ом из мапы секрьрити
+     * @return commonAnswer с User-ом из мапы секрьрити или commonAnswer с текстом ошибки
      */
     @POST
     @Path("/userDepositsById")
@@ -124,7 +125,7 @@ public class RestAPIAuth {
     /**
      * Просмотр всех пользователей доступен только администратору
      * @param request: обязательные поля: UID сессии
-     * @return список всех клиентов и их депоитов из БД
+     * @return список всех клиентов и их депоитов из БД или commonAnswer с текстом ошибки
      */
     @POST
     @Path("/showUsers")
@@ -175,6 +176,12 @@ public class RestAPIAuth {
         return new ResponseEntity<>(typeOfPercent.toString(), HttpStatus.OK);
     }
 
+    /**
+     * Регистрация клиента: запись клиента в БД и геренация UID сессии
+     * @param user - новый клиенент для регистрации в БД
+     * @return  - commonAnswer с User-ом и сгенерированным UID сессии
+     *             или commonAnswer с текстом ошибки
+     */
     @PUT
     @Path("/newUser")
     @Produces(MediaType.APPLICATION_JSON)
@@ -239,6 +246,7 @@ public class RestAPIAuth {
      * Возвращаем клиента из БД с обновленным списком депозитов
      * @param request: обязательные поля - UID сессии, User: список депозитов
      * @return commonAnswer c user c  обновленным списком депозитов
+     *          или commonAnswer с текстом ошибки
      */
     @POST
     @Path("/updateUserDeposits")

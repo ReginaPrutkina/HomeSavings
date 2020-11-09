@@ -72,7 +72,6 @@ public class AllUsersNotificationImpl implements AllUserNotification {
     @Override
     public void sendNotification(boolean isRegular) throws MyException{
         User userSender = userDAO.findUserByLogin(this.adminLogin);
-        String fileName;
         if (userSender == null) {
             System.out.println("Логин администратора почтовых уведомлений в базе не найден");
             throw new MyException("Логин администратора почтовых уведомлений в базе не найден: " + adminLogin);
@@ -83,6 +82,7 @@ public class AllUsersNotificationImpl implements AllUserNotification {
         sender.setPassword(((AdminSender) userSender).getPassword());
 
         for (User user : userDAO.findAll()) {
+            String fileName;
             if (user.getRole().equals("admin")) continue;
             notificationService.setDepositList(user.getDeposits());
             if (isRegular)
