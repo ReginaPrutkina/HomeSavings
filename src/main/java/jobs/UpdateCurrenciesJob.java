@@ -11,7 +11,7 @@ import services.BDServices.CurrencyDAO;
 import java.util.List;
 
 @Service
-public class updateCurrenciesJob {
+public class UpdateCurrenciesJob {
     @Autowired
     private CBRCurrencies currencyRatesCB;
 

@@ -1,7 +1,5 @@
 package log;
 
-import org.springframework.stereotype.Component;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
