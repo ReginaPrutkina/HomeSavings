@@ -11,7 +11,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@Component
+
 public class CBRCurrencies implements GetCurrencyRatesCB{
     // url = "http://cbr.ru/scripts/XML_daily.asp"  в xml - конфигурации
    private String url;
@@ -20,6 +20,7 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
 
     private Date ratesDate;
 
+    //Параметр конструктора url задается в xml -конфигурации SPRING
         CBRCurrencies(String url) throws MyException {
         //считываем файл из url
         this.url = url;

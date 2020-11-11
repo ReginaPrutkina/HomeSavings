@@ -10,4 +10,6 @@ public interface DepositService {
     double getEffectiveRate (Deposit deposit);
 
     double getSumOnEndOfPeriod (Deposit deposit);
+
+    boolean isDepositValid (Deposit deposit);
 }

@@ -12,17 +12,10 @@
     <name>HomeSavings Maven Webapp</name>
 
    <dependencies>
-
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>smtp</artifactId>
-            <version>1.4.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.activation</groupId>

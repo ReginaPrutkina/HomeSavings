@@ -40,6 +40,9 @@ public class RestAPIAuth {
     @Autowired
     Security security;
 
+    @Autowired
+    DepositService depositService;
+
     public Logging getLogging() {
         return logging;
     }
@@ -162,7 +165,7 @@ public class RestAPIAuth {
 
     /**
      * авторизация не требуется. Справочная информация
-     * @param type - код типа начисления %% из базы
+     * @param type - код типа начисления %%
      * @return строковое название типа начисления %%
      */
     @GET
@@ -241,7 +244,7 @@ public class RestAPIAuth {
     }
 
     /**
-     * обновляет депозиты по указанным ID, добавляет депозиты, если ID  не указан
+     * обновляет депозиты по указанным ID. Добавляет депозиты, если ID  не указан
      * проверяем, что обновляемые депозиты  (с  ID) - принадлежат клиенту
      * Возвращаем клиента из БД с обновленным списком депозитов
      * @param request: обязательные поля - UID сессии, User: список депозитов
@@ -267,12 +270,18 @@ public class RestAPIAuth {
         logging.setUserName(user.getLogin());
         logging.log("REST-запрос Обновление депозитов клиента : "+ user.getLogin());
 
-        //Проверяем, принадлежали ли клиенту депозиты с указанными ID в request
         for (Deposit deposit: request.getUser().getDeposits()) {
             deposit.setUser(user);
+            //Проверяем, принадлежали ли клиенту депозиты с указанными ID в request
             if (deposit.getId() != 0 && !containsId(deposit.getId(),user.getDeposits())) {
                 commonAnswer.setErrorText("Депозит с ID " + deposit.getId() +
                         " не принадлежит клиенту " + user.toString());
+                logging.log(commonAnswer.getErrorText());
+                return new ResponseEntity<>(commonAnswer, HttpStatus.FORBIDDEN);
+            }
+            //Проверяем корректность депозитов в списке
+            if (!depositService.isDepositValid(deposit)) {
+                commonAnswer.setErrorText("Некорретные поля депозита " + deposit.toString());
                 logging.log(commonAnswer.getErrorText());
                 return new ResponseEntity<>(commonAnswer, HttpStatus.FORBIDDEN);
             }

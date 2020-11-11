@@ -52,7 +52,7 @@ public class Deposit implements Serializable {
     @JoinColumn (name = "user_id")
     private User user;
 
-    Deposit(){}
+    public Deposit(){}
 
     public Deposit(HashMap<String, String> fieldsMap) throws MyException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
@@ -75,10 +75,12 @@ public class Deposit implements Serializable {
     public int getId() {
         return id;
     }
+
     @JsonProperty
     public void setUser(User user) {
         this.user = user;
     }
+
     @JsonIgnore
     public User getUser() {
         return this.user;

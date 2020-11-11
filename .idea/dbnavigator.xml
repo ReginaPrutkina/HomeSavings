@@ -31,7 +31,10 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" object-ref="schemas/home_savings/tables/users" />
+      <object connection-id="244c7b9a-e67f-4d34-9eb7-7d45524afbe2" object-ref="schemas/home_savings/tables/deposits" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="b94c100e-1fbd-4965-b43f-7e6aaafda13d" />

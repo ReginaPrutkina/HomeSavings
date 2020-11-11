@@ -33,4 +33,16 @@ public class DepositServiceImpl implements  DepositService {
     public double getSumOnEndOfPeriod (Deposit deposit){
         return getTypeOfPercentObject(deposit).sumOnEndOfPeriod(deposit.getStartDate(),deposit.getEndDate(),deposit.getSum(),deposit.getRateOfInterest());
     }
+
+    // Проверяем наличие обязательныйх полей (notNull)
+    @Override
+    public boolean isDepositValid(Deposit deposit) {
+        return !(deposit.getBankName() == null ||
+                deposit.getCurrencyCode() == null ||
+                deposit.getEndDate() == null ||
+                deposit.getStartDate() == null ||
+                deposit.getEndDate().before(deposit.getStartDate()) ||
+                deposit.getSum() == 0 ||
+                deposit.getRateOfInterest() == 0);
+    }
 }
