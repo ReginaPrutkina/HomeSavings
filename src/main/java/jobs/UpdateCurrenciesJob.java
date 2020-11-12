@@ -28,14 +28,18 @@ public class UpdateCurrenciesJob {
     //  @Scheduled(cron="0 0 0 * * MON-FRI")      //каждый будний день в полночь
     //  @Scheduled(cron="0 45 17 23 * *")        // 23 числа каждого месяца в 17:45:00
     @Scheduled(cron = "${cronUpdateCurrencyRates}")
-    public void newCurrencyRates() throws MyException {
+    public void newCurrencyRates()  {
         logging.log(" Запуск задачи по расписанию.");
-        //Считываем новые курсы валют
-        currencyRatesCB.setNodeCurrenciesList(currencyRatesCB.getXML());
-        //обнуляем старые курсы валют в мапе currencyFactory
-        currencyFactory.clearCurrencyMap();
-        //Сохраняем курсы в БД
-        saveCurrencyRates();
+        try {
+            //Считываем новые курсы валют
+            currencyRatesCB.setNodeCurrenciesList(currencyRatesCB.getXML());
+            //обнуляем старые курсы валют в мапе currencyFactory
+            currencyFactory.clearCurrencyMap();
+            //Сохраняем курсы в БД
+            saveCurrencyRates();
+        } catch (MyException e) {
+            logging.log(" Задача завершена с ошибкой.", e);
+        }
         logging.log(" Задача завершена.");
     }
 
@@ -50,5 +54,37 @@ public class UpdateCurrenciesJob {
                 currencyDAO.save(currencyFactory.getCurrency(currencyCode));
             }
         }
+    }
+
+    public CBRCurrencies getCurrencyRatesCB() {
+        return currencyRatesCB;
+    }
+
+    public void setCurrencyRatesCB(CBRCurrencies currencyRatesCB) {
+        this.currencyRatesCB = currencyRatesCB;
+    }
+
+    public CurrencyFactoryService getCurrencyFactory() {
+        return currencyFactory;
+    }
+
+    public void setCurrencyFactory(CurrencyFactoryService currencyFactory) {
+        this.currencyFactory = currencyFactory;
+    }
+
+    public CurrencyDAO getCurrencyDAO() {
+        return currencyDAO;
+    }
+
+    public void setCurrencyDAO(CurrencyDAO currencyDAO) {
+        this.currencyDAO = currencyDAO;
+    }
+
+    public Logging getLogging() {
+        return logging;
+    }
+
+    public void setLogging(Logging logging) {
+        this.logging = logging;
     }
 }

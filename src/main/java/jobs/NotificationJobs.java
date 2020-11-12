@@ -21,16 +21,24 @@ public class NotificationJobs {
     // @Scheduled(cron="0 0 0 * * WED")    //запуск каждую среду в полночь
 
     @Scheduled(cron = "${cronRegularNotification}")
-    public void informJob() throws MyException {
+    public void informJob()  {
         logging.log(" Запуск задачи по расписанию.");
-        allUserNotification.sendNotification(true);
+        try {
+            allUserNotification.sendNotification(true);
+        } catch (MyException e) {
+          logging.log(" Задача завершена с ошибкой.", e);
+        }
         logging.log(" Задача завершена.");
     }
 
     @Scheduled(cron = "${cronWarningNotification}")
-    public void warningJob() throws MyException {
+    public void warningJob() {
         logging.log(" Запуск задачи по расписанию.");
-        allUserNotification.sendNotification(false);
+        try {
+            allUserNotification.sendNotification(false);
+        } catch (MyException e) {
+            logging.log(" Задача завершена с ошибкой.", e);
+        }
         logging.log(" Задача завершена.");
     }
 }

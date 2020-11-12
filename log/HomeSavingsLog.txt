@@ -1050,3 +1050,203 @@ Caused by: java.io.FileNotFoundException: Sample Exception
     project.RestAPIAuth / deleteUser
     Пользователь не является администратором. Нет прав для удаления данных клиента по ID.
     computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:53:20.656462200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:08.016792100
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:08.065797
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:18.732848600
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:18.772851500
+    project.RestAPIAuth / updateUserDeposits
+    Некорретные поля депозита Deposit{id=133, bankName='Кольцо Урала', sum=25010.0, rateOfInterest=-1.5, currencyCode='840', startDate=Wed May 06 00:00:00 YEKT 2020, endDate=Mon Nov 02 00:00:00 YEKT 2020, comment='не капитализируется', percentType=0}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:27.130948100
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:27.167951900
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:54:32.513535900
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:55:31.303566700
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:55:31.326565500
+    project.RestAPIAuth / updateUserDeposits
+    Некорретные поля депозита Deposit{id=133, bankName='Кольцо Урала', sum=25010.0, rateOfInterest=1.5, currencyCode='84', startDate=Wed May 06 00:00:00 YEKT 2020, endDate=Mon Nov 02 00:00:00 YEKT 2020, comment='не капитализируется', percentType=0}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:04.735249
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:04.763250100
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:30.140205100
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:30.173207500
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:45.160562900
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:56:45.192564700
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:57:15.293497800
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T11:57:15.322500200
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:38:35.872470500
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:38:57.361285200
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 165
+    computerName: LENOVO-RENA user: null
+2020-11-12T14:39:03.289986500
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:40:24.782895300
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:40:56.384918700
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:40:56.397929500
+    project.RestAPIAuth / updateUserDeposits
+    Некорретные поля депозита Deposit{id=133, bankName='null', sum=25010.0, rateOfInterest=11.5, currencyCode='810', startDate=Wed May 06 00:00:00 YEKT 2020, endDate=Mon Nov 02 00:00:00 YEKT 2020, comment='не капитализируется', percentType=0}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:41:11.244673300
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:51:35.463317600
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:52:10.627816500
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:52:10.658816
+    project.RestAPIAuth / updateUserDeposits
+    Некорретные поля депозита Deposit{id=133, bankName='Кольцо Урала', sum=25010.0, rateOfInterest=11.5, currencyCode='null', startDate=Wed May 06 00:00:00 YEKT 2020, endDate=Mon Nov 02 00:00:00 YEKT 2020, comment='не капитализируется', percentType=0}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:53:27.435052400
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:53:27.512056
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:53:38.542279
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T14:53:38.573281500
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-12T15:38:00.002888
+    jobs.NotificationJobs / informJob
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: null
+2020-11-12T15:38:03.031540500
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:06.789513400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:08.213063500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:09.562186500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:10.956140700
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:12.373625400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Павлов Павел по адресу: pavlov@pavl.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:38:12.384461500
+    jobs.NotificationJobs / informJob
+     Задача завершена.
+    computerName: LENOVO-RENA user: 
+2020-11-12T15:39:00.023279300
+    jobs.NotificationJobs / warningJob
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: 
+2020-11-12T15:39:00.049260500
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:01.581852200
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:03.003626300
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:04.395869200
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:05.788573500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:07.175388600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Павлов Павел по адресу: pavlov@pavl.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-12T15:39:07.189392600
+    jobs.NotificationJobs / warningJob
+     Задача завершена.
+    computerName: LENOVO-RENA user: 
+2020-11-12T15:39:30.004951500
+    jobs.UpdateCurrenciesJob / newCurrencyRates
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: 
+2020-11-12T15:39:30.318168700
+    jobs.UpdateCurrenciesJob / newCurrencyRates
+     Задача завершена.
+    computerName: LENOVO-RENA user: 

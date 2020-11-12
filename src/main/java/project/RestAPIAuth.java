@@ -5,6 +5,7 @@ import businessLogicClasses.TypeOfPercent;
 import dataClasses.Deposit;
 import dataClasses.User;
 import log.Logging;
+import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -255,7 +256,7 @@ public class RestAPIAuth {
     @Path("/updateUserDeposits")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity<CommonAnswer> updateUserDeposits(CommonRequest request){
+    public ResponseEntity<CommonAnswer> updateUserDeposits(CommonRequest request) {
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
         //Проверка наличия сессии в мапе секьюрити

@@ -40,7 +40,6 @@ public class NotificationService implements NotificationText, NotificationHTML {
         this.depositList = depositList;
     }
 
-
     public GettingCurrency getCurrencyRatesCB() {
         return currencyRatesCB;
     }

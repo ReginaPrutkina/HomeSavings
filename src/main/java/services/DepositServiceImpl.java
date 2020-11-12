@@ -2,7 +2,10 @@ package services;
 
 import businessLogicClasses.PercentTypeFactory;
 import businessLogicClasses.TypeOfPercent;
+import currencyService.CurrencyFactory;
 import dataClasses.Deposit;
+import log.Logging;
+import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,12 @@ public class DepositServiceImpl implements  DepositService {
 
     @Autowired
     PercentTypeFactory percentTypeFactory;
+
+    @Autowired
+    CurrencyFactory currencyFactory;
+
+    @Autowired
+    Logging logging;
 
     public PercentTypeFactory getPercentTypeFactory() {
         return percentTypeFactory;
@@ -38,11 +47,27 @@ public class DepositServiceImpl implements  DepositService {
     @Override
     public boolean isDepositValid(Deposit deposit) {
         return !(deposit.getBankName() == null ||
-                deposit.getCurrencyCode() == null ||
+                notCurrencyCodeValid(deposit.getCurrencyCode()) ||
                 deposit.getEndDate() == null ||
                 deposit.getStartDate() == null ||
                 deposit.getEndDate().before(deposit.getStartDate()) ||
-                deposit.getSum() == 0 ||
-                deposit.getRateOfInterest() == 0);
+                deposit.getSum() <= 0 ||
+                deposit.getRateOfInterest() < 0);
+    }
+
+    /**
+     * Проверяем, что существует валюта в списке или рубли
+     * @param currencyCode - числовой код валюты
+     * @return  false, если валюта рубли или есть в списке валют ЦБ,
+     *          true -  есле нет в списке валют или ошибка парсинга
+     */
+    private boolean notCurrencyCodeValid(String currencyCode) {
+        try {
+            return ((currencyCode == null) ||
+                    (!currencyCode.equals("810") && (currencyFactory.getCurrency(currencyCode) == null)));
+        } catch (MyException e) {
+            logging.log("Возникло ислючение при парсинге валюты с кодом "+ currencyCode, e);
+        return true;
+        }
     }
 }
