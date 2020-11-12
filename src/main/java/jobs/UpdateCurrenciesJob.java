@@ -39,6 +39,7 @@ public class UpdateCurrenciesJob {
             saveCurrencyRates();
         } catch (MyException e) {
             logging.log(" Задача завершена с ошибкой.", e);
+            return;
         }
         logging.log(" Задача завершена.");
     }

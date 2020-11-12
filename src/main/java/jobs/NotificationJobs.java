@@ -27,6 +27,7 @@ public class NotificationJobs {
             allUserNotification.sendNotification(true);
         } catch (MyException e) {
           logging.log(" Задача завершена с ошибкой.", e);
+          return;
         }
         logging.log(" Задача завершена.");
     }
@@ -38,6 +39,7 @@ public class NotificationJobs {
             allUserNotification.sendNotification(false);
         } catch (MyException e) {
             logging.log(" Задача завершена с ошибкой.", e);
+            return;
         }
         logging.log(" Задача завершена.");
     }
