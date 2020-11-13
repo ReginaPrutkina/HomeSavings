@@ -5,10 +5,10 @@ import businessLogicClasses.TypeOfPercent;
 import dataClasses.Deposit;
 import dataClasses.User;
 import log.Logging;
-import myException.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import services.*;
 import services.BDServices.UserDAO;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Controller
 @Path("/api")
 public class RestAPIAuth {
 
@@ -44,28 +44,13 @@ public class RestAPIAuth {
     @Autowired
     DepositService depositService;
 
-    public Logging getLogging() {
-        return logging;
-    }
-
-    public void setLogging(Logging logging) {
-        this.logging = logging;
-    }
-
-    public UserDAO getUserDAO() {
-        return userDAO;
-    }
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
     /**
      * Авторизация клиента.
-     * @param login - логин
+     *
+     * @param login    - логин
      * @param password - пароль
      * @return - При успешной авторизации возвращаем клиента из БД со списком его депозитов
-     *          или commonAnswer с текстом ошибки
+     * или commonAnswer с текстом ошибки
      */
     @GET
     @Path("/authUser")
@@ -73,23 +58,24 @@ public class RestAPIAuth {
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity<CommonAnswer> authUser(
             @QueryParam(value = "login") String login,
-            @QueryParam(value = "password") String password){
-            User user = userService.userAuth(login,password);
-            commonAnswer.clear();
+            @QueryParam(value = "password") String password) {
+        User user = userService.userAuth(login, password);
+        commonAnswer.clear();
         if (user == null) {
             commonAnswer.setErrorText("Клиент не прошел авторизацию");
-            return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(commonAnswer, HttpStatus.NOT_FOUND);
         }
         //Генерим и записываем в секьюрити мапу уникальный ид сессии, передаем его в ответе
         CommonRequest commonRequest = new CommonRequest();
         commonRequest.setUser(user);
         commonAnswer.setSessionUID(security.generateAndAddUID(commonRequest));
         commonAnswer.setUser(user);
-        return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
+        return new ResponseEntity<>(commonAnswer, HttpStatus.OK);
     }
 
     /**
      * Запрос данных клиента по ID доступен только админу
+     *
      * @param request: обязательные поля: UID сессии, User:ID клиента
      * @return commonAnswer с User-ом из мапы секрьрити или commonAnswer с текстом ошибки
      */
@@ -97,23 +83,22 @@ public class RestAPIAuth {
     @Path("/userDepositsById")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity<CommonAnswer> getUserDeposits(CommonRequest request){
+    public ResponseEntity<CommonAnswer> getUserDeposits(CommonRequest request) {
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
         //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
-            return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(commonAnswer, HttpStatus.NOT_FOUND);
         }
         logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
-        logging.log("REST-запрос Поиск данных клиента по ID: "+ request.getUser().getId());
+        logging.log("REST-запрос Поиск данных клиента по ID: " + request.getUser().getId());
         // проверка на админа
-        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin"))
-        {
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin")) {
             commonAnswer.setErrorText("Пользователь не является администратором. " +
                     "Нет прав для получения данных клиента по ID.");
             logging.log(commonAnswer.getErrorText());
-            return new ResponseEntity<>(commonAnswer,  HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(commonAnswer, HttpStatus.FORBIDDEN);
         }
         User user = userDAO.findUserById(request.getUser().getId());
         if (user != null)
@@ -123,11 +108,12 @@ public class RestAPIAuth {
         commonAnswer.setUser(user);
         //обновляем lastUpdate  сессии в мапе
         security.getUIDMap().get(sessionUID).setLastUpdate(new Date());
-        return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
+        return new ResponseEntity<>(commonAnswer, HttpStatus.OK);
     }
 
     /**
      * Просмотр всех пользователей доступен только администратору
+     *
      * @param request: обязательные поля: UID сессии
      * @return список всех клиентов и их депоитов из БД или commonAnswer с текстом ошибки
      */
@@ -135,37 +121,36 @@ public class RestAPIAuth {
     @Path("/showUsers")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity<List<?>> showUsers(CommonRequest request){
+    public ResponseEntity<List<?>> showUsers(CommonRequest request) {
         List<CommonAnswer> commonAnswers = new ArrayList<>();
         int sessionUID = request.getSessionUID();
         //Проверка наличия сессии в мапе секьюрити
         if (!isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             commonAnswers.add(commonAnswer);
-            return new ResponseEntity<>(commonAnswers,  HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(commonAnswers, HttpStatus.NOT_FOUND);
         }
         logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
         logging.log("REST-запрос Вывод данных по всем клиентам из БД. ");
         // проверка на админа
-        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin"))
-            {
-                commonAnswer.clear();
-                commonAnswer.setErrorText("Пользователь не является администратором. " +
-                        "Нет прав для получения данных по всем клиентам.");
-                logging.log(commonAnswer.getErrorText());
-                commonAnswers.add(commonAnswer);
-                return new ResponseEntity<>(commonAnswers,  HttpStatus.FORBIDDEN);
-            }
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin")) {
+            commonAnswer.clear();
+            commonAnswer.setErrorText("Пользователь не является администратором. " +
+                    "Нет прав для получения данных по всем клиентам.");
+            logging.log(commonAnswer.getErrorText());
+            commonAnswers.add(commonAnswer);
+            return new ResponseEntity<>(commonAnswers, HttpStatus.FORBIDDEN);
+        }
         List<User> users = userDAO.findAll();
         //обновляем lastUpdate  сессии в мапе
         security.getUIDMap().get(sessionUID).setLastUpdate(new Date());
         logging.log("Успешный ответ. Найдено " + users.size() + " клиентов.");
-        return new ResponseEntity<>(users,  HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
 
     /**
      * авторизация не требуется. Справочная информация
+     *
      * @param type - код типа начисления %%
      * @return строковое название типа начисления %%
      */
@@ -173,11 +158,30 @@ public class RestAPIAuth {
     @Path("/typeOfPercent")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public ResponseEntity<String> getTypeOfPercent(@QueryParam(value = "type") int type){
+    public ResponseEntity<String> getTypeOfPercent(@QueryParam(value = "type") int type ){
+        TypeOfPercent typeOfPercent = percentTypeFactory.getTypeOfPercentMap().get(type);
+        if (typeOfPercent == null)
+            return new ResponseEntity<>("Неверный TypeOfPercent: " + type, HttpStatus.NOT_FOUND);
+       return new ResponseEntity<>(typeOfPercent.toString(), HttpStatus.OK);
+    }
+
+    /**
+     * авторизация не требуется. Справочная информация
+     * @param type - код типа начисления %%
+     * @param rateOfInterest - заявленная %% ставка
+     * @return эффективная %% ставка
+     */
+    @GET
+    @Path("/effectiveRate")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResponseEntity<String> getEffectiveRate(
+            @QueryParam(value = "type") int type,
+            @QueryParam(value = "rateOfInterest") double rateOfInterest){
         TypeOfPercent typeOfPercent = percentTypeFactory.getTypeOfPercentMap().get(type);
         if (typeOfPercent == null)
             return new ResponseEntity<>("Неверный TypeOfPercent: "+ type,  HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(typeOfPercent.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(String.format("%.2f",typeOfPercent.effectiveRate(rateOfInterest)), HttpStatus.OK);
     }
 
     /**

@@ -10,7 +10,7 @@
             http://www.springframework.org/schema/task
             http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-    <context:property-placeholder location="classpath:env.properties, mail.properties"/>
+    <context:property-placeholder location="classpath:cron.properties, classpath:mail.properties"/>
 
     <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService,jobs"/>
 
