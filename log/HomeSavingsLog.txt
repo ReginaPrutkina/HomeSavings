@@ -1466,3 +1466,67 @@ Caused by: java.net.UnknownHostException: smtp.gmail.com
     jobs.NotificationJobs / informJob
      Задача завершена.
     computerName: LENOVO-RENA user: 
+2020-11-13T12:27:00.008907400
+    jobs.NotificationJobs / informJob
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: null
+2020-11-13T12:27:02.766379200
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:05.656200
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:07.067435
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:08.527244600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:09.975054300
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:11.392112500
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Павлов Павел по адресу: pavlov@pavl.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:11.414112200
+    jobs.NotificationJobs / informJob
+     Задача завершена.
+    computerName: LENOVO-RENA user: 
+2020-11-13T12:27:11.425113600
+    jobs.NotificationJobs / warningJob
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: 
+2020-11-13T12:27:11.440114300
+    notification.AllUsersNotificationImpl / sendNotification
+    Начинаем рассылку уведомлений клиентам. Администратор: adminSender1
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:12.843863900
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Петров Петр по адресу: petrov@petrov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:14.297467400
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Косарев Александр по адресу: kosarev@kosarev.kos
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:16.012047600
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Романов Роман по адресу: romanov@romanov.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:17.469337800
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Пруткина Регина по адресу: rprutkina@mail.ru
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:18.867092900
+    notification.AllUsersNotificationImpl / sendNotification
+    Отправлено информирование по депозитам клиенту Павлов Павел по адресу: pavlov@pavl.hh
+    computerName: LENOVO-RENA user: adminSender1
+2020-11-13T12:27:18.876106400
+    jobs.NotificationJobs / warningJob
+     Задача завершена.
+    computerName: LENOVO-RENA user: 

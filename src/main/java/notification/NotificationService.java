@@ -107,7 +107,6 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
     private String footerText(Set<String> currencySet, String endStr) throws MyException {
         StringBuilder tempStr = new StringBuilder();
-        String strRound2;
         try{
         tempStr.append("Всего: ").append(endStr);
         for (String curCode: currencySet) {
@@ -123,8 +122,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 Currency currency = this.currencyRatesCB.getCurrency(curCode);
                 tempStr.append("Вкладов в ").append(currency.getCharCode()).append(" (").append(currency.getName()).append("): ");
                 tempStr.append(sumInCurrency).append(", рублевый экв.: ");
-                strRound2 = String.format("%.2f",sumInCurrency * currency.getValue() / currency.getNominal());
-                tempStr.append(strRound2);
+                tempStr.append(String.format("%.2f",sumInCurrency * currency.getValue() / currency.getNominal()));
                 tempStr.append("  (по курсу ЦБ - ").append(currency.getValue()).append(" руб. за ");
                 tempStr.append(currency.getNominal()).append(" ").append(currency.getCharCode()).append(")").append(endStr);
             }
@@ -395,7 +393,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
         return "<tr><td>"+ rowNum +"</td>" +
                 "<td>" +deposit.getBankName()+ "</td>" +
-                "<td>"+deposit.getSum()+"</td>"+
+                "<td>"+ String.format("%.2f", deposit.getSum())+"</td>"+
                 "<td>" +deposit.getRateOfInterest() +" %</td>" +
                 "<td>" + currencyString +"</td>"+
                 "<td>" + deposit.getStartDate() +"</td>"+
@@ -403,8 +401,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "<td>" + deposit.getComment()+"</td>"  +
                 "<td>" + depositService.getTypeOfPercentObject(deposit) + "</td>"+
                 "<td>" + depositService.getEffectiveRate(deposit) + "%</td>" +
-                "<td>"+ depositService.getSumOnEndOfPeriod(deposit)
-                + "</td></tr>";
+                "<td>"+ String.format("%.2f",depositService.getSumOnEndOfPeriod(deposit)) +
+                "</td></tr>";
         } catch ( MyException exception) {
             throw (new MyException(exception.getMessage(), exception));
         }
