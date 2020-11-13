@@ -10,7 +10,7 @@
             http://www.springframework.org/schema/task
             http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-    <context:property-placeholder location="classpath:env.properties"/>
+    <context:property-placeholder location="classpath:env.properties, mail.properties"/>
 
     <context:component-scan base-package="project, businessLogicClasses,log,mailService,services,notification,currencyService,jobs"/>
 
@@ -18,11 +18,11 @@
     <task:annotation-driven />
 
     <bean id = "MailService" class="mailService.SendMail">
-        <constructor-arg name="propHost" value="smtp.gmail.com"/>
-        <constructor-arg name="propSocketFactory" value="465"/>
-        <constructor-arg name="propSocketFactoryClass" value="javax.net.ssl.SSLSocketFactory"/>
-        <constructor-arg name="propAuth" value="true"/>
-        <constructor-arg name="propPort" value="465"/>
+        <constructor-arg name="propHost" value="${propHost}"/>
+        <constructor-arg name="propSocketFactory" value="${propSocketFactory}"/>
+        <constructor-arg name="propSocketFactoryClass" value="${propSocketFactoryClass}"/>
+        <constructor-arg name="propAuth" value="${propAuth}"/>
+        <constructor-arg name="propPort" value="${propPort}"/>
     </bean>
 
     <bean id = "LogService" class="log.LogToFile" >
