@@ -1658,3 +1658,131 @@ Caused by: java.net.UnknownHostException: smtp.gmail.com
     services.UserServiceImpl / userAuth
     Авторизован пользователь с логином adminsender2
     computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:00:45.936559400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:01:22.956452100
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 2504
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:01:46.501712400
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:01:46.549714300
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:01:57.184801100
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:01:57.208801900
+    project.RestAPIAuth / updateUserDeposits
+    Депозит с ID 131 не принадлежит клиенту User{id=132, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:02:28.731726700
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 2490
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:02:40.758261100
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 132
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:02:40.777263600
+    project.RestAPIAuth / deleteUser
+    Пользователь не является администратором. Нет прав для удаления данных клиента по ID.
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:03:00.484668600
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:03:00.493669600
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:03:22.300700100
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 132
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:03:22.337726300
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=132, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:04:15.644468300
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:04:15.658468500
+    services.UserServiceImpl / userAuth
+    Пользователь с логином pavlov не авторизован
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:04:25.255684700
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=143, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:04:59.966861700
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 2504
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:05:20.284462
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:05:55.870306800
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:05:55.887307300
+    project.RestAPIAuth / updateUserDeposits
+    Депозит с ID 131 не принадлежит клиенту User{id=143, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:06:13.648476200
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:06:13.685476
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:06:51.560108
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:06:51.580141100
+    project.RestAPIAuth / updateUserDeposits
+    Депозит с ID 143 не принадлежит клиенту User{id=143, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:07:54.218183
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 2504
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:08:39.717722500
+    project.RestAPIAuth / getUserDeposits
+    REST-запрос Поиск данных клиента по ID: 143
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:08:39.739725300
+    project.RestAPIAuth / getUserDeposits
+    Успешный ответ для User{id=143, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:09:45.256755500
+    project.RestAPIAuth / updateUserDeposits
+    REST-запрос Обновление депозитов клиента : pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:09:45.287755500
+    project.RestAPIAuth / updateUserDeposits
+    Депозиты клиента обновлены
+    computerName: LENOVO-RENA user: pavlov
+2020-11-16T12:10:54.383478300
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 8466
+    computerName: LENOVO-RENA user: null
+2020-11-16T12:10:57.497235100
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-16T12:10:57.572238800
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 9 клиентов.
+    computerName: LENOVO-RENA user: adminsender2
