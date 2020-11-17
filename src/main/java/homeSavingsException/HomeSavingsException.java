@@ -6,11 +6,9 @@ public class HomeSavingsException extends Exception {
     private Exception exception;
 
     public HomeSavingsException(String message){
-        super();
         this.message = message;
     }
     public HomeSavingsException(String message, String codeException){
-        super();
         this.message = message;
         this.codeException = codeException;
     }
