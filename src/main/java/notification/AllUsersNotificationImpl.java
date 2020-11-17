@@ -1,9 +1,9 @@
 package notification;
 import log.Logging;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import dataClasses.AdminSender;
-import myException.MyException;
 import mailService.SendMail;
 import dataClasses.User;
 import services.BDServices.UserDAO;
@@ -67,14 +67,14 @@ public class AllUsersNotificationImpl implements AllUserNotification {
     /**
      * @param isRegular true - информирование о текущем статусе,
      *                  false - информирование об истекших и итекающих по сроку депозитах
-     * @throws MyException пробрасывает исключение MessagingException
+     * @throws HomeSavingsException пробрасывает исключение MessagingException
      */
     @Override
-    public void sendNotification(boolean isRegular) throws MyException{
+    public void sendNotification(boolean isRegular) throws HomeSavingsException {
         User userSender = userDAO.findUserByLogin(this.adminLogin);
         if (userSender == null) {
             System.out.println("Логин администратора почтовых уведомлений в базе не найден");
-            throw new MyException("Логин администратора почтовых уведомлений в базе не найден: " + adminLogin);
+            throw new HomeSavingsException("Логин администратора почтовых уведомлений в базе не найден: " + adminLogin);
         }
         logging.setUserName(adminLogin);
         logging.log("Начинаем рассылку уведомлений клиентам. Администратор: " + adminLogin);

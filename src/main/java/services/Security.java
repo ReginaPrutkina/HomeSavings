@@ -18,40 +18,44 @@ public class Security {
     @Value("30")
     private int maxMinutesUnActive;
 
-    public boolean containsUID(Integer sessionUID){
-        return UIDMap.containsKey(sessionUID);
-    }
-
     public Security(){
         UIDMap = new HashMap<>();
     }
 
     public Integer generateAndAddUID(CommonRequest commonRequest){
         Integer sessionUID;
-        //генерим UID  и проверяем, что его еще нет в мапе
+        //генерим UID
+        // проверяем, что его еще нет в мапе, или сессия  с таким UID "протухла",
+        // и ее можно использовть повторно
         do {
             sessionUID = randomInt();
-        }while (UIDMap.containsKey(sessionUID) && !isSessionOld(sessionUID));
+        }while (isSessionUIDValid(sessionUID));
+
         commonRequest.setLastUpdate(new Date());
         if (UIDMap.containsKey(sessionUID))
+            // Переиспользуем UID неактивной сессии
             UIDMap.replace(sessionUID, commonRequest);
         else
+            // Добавляем новый UID
             UIDMap.put(sessionUID, commonRequest);
 
         return sessionUID;
     }
 
+    public boolean isSessionUIDValid(Integer sessionUID){
+        if (sessionUID==null || sessionUID==0)
+            return false;
+        return UIDMap.containsKey(sessionUID) && this.isSessionActive(sessionUID);
+    }
+
+    private boolean isSessionActive(int sessionUID){
+        // true, если прошло  не более maxMinutesUnActive мин с lastUpdate
+        return ((new Date().getTime() - UIDMap.get(sessionUID).getLastUpdate().getTime()) <= (maxMinutesUnActive*60*1000));
+    }
+
     private Integer randomInt(){
         //случайное целое число от 1 до 10001
         return (int) Math.round(Math.random() * maxRandom  + 1);
-    }
-
-    public boolean isSessionOld(int sessionUID){
-        if ((UIDMap.get(sessionUID) == null) ||
-                (UIDMap.get(sessionUID).getLastUpdate() == null))
-            return false;
-        // true, если прошло более maxMinutesUnActive мин с lastUpdate
-        return ((new Date().getTime() - UIDMap.get(sessionUID).getLastUpdate().getTime()) > (maxMinutesUnActive*60*1000));
     }
 
     public Map<Integer, CommonRequest> getUIDMap() {

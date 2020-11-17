@@ -1,6 +1,6 @@
 package currencyService;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,7 +25,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
     }
 
     @Override
-    public Currency getCurrency(String currencyNumCode) throws MyException{
+    public Currency getCurrency(String currencyNumCode) throws HomeSavingsException {
         Currency currency;
         //  если валюты нет в еще мапе, пробуем добавить ее в мап
         if (!currencyMap.containsKey(currencyNumCode)) {
@@ -39,7 +39,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
     }
 
     //получение валюты по коду  из NodeCurrenciesList
-    private Currency parseCurrency(String currencyNumCode) throws MyException{
+    private Currency parseCurrency(String currencyNumCode) throws HomeSavingsException {
         for (int temp = 0; temp < currencyRatesCB.getNodeCurrenciesList().getLength(); temp++) {
             Node nNode = currencyRatesCB.getNodeCurrenciesList().item(temp);
             Element eElement = (Element) nNode;
@@ -53,7 +53,7 @@ public class CurrencyFactory implements GettingCurrency, CurrencyFactoryService 
                             eElement.getElementsByTagName("Name").item(0).getTextContent(),
                             Double.parseDouble(eElement.getElementsByTagName("Value").item(0).getTextContent().replace(",",".")));
             } catch (NumberFormatException ex){
-               throw new MyException("Ошибка получения валюты из XML парсинга", ex);
+               throw new HomeSavingsException("Ошибка получения валюты из XML парсинга", ex);
             }
         }
         return null;

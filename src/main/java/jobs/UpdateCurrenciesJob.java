@@ -2,7 +2,7 @@ package jobs;
 
 import currencyService.*;
 import log.Logging;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -37,14 +37,14 @@ public class UpdateCurrenciesJob {
             currencyFactory.clearCurrencyMap();
             //Сохраняем курсы в БД
             saveCurrencyRates();
-        } catch (MyException e) {
+        } catch (HomeSavingsException e) {
             logging.log(" Задача завершена с ошибкой.", e);
             return;
         }
         logging.log(" Задача завершена.");
     }
 
-    private void saveCurrencyRates() throws MyException {
+    private void saveCurrencyRates() throws HomeSavingsException {
         Currency currency = currencyFactory.getCurrency("840");
         // Проверяем, есть ли в базе данные за дату из нового курса
         List<Currency>  currencyList = currencyDAO.getCurrencyByCode("840", currency.getData());

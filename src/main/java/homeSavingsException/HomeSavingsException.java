@@ -1,20 +1,20 @@
-package myException;
+package homeSavingsException;
 
-public class MyException extends Exception {
+public class HomeSavingsException extends Exception {
     private String message;
     private String codeException;
     private Exception exception;
 
-    public MyException(String message){
+    public HomeSavingsException(String message){
         super();
         this.message = message;
     }
-    public MyException(String message, String codeException){
+    public HomeSavingsException(String message, String codeException){
         super();
         this.message = message;
         this.codeException = codeException;
     }
-    public MyException(String message, Exception exception){
+    public HomeSavingsException(String message, Exception exception){
         super(exception);
         this.message = message;
         this.exception = exception;

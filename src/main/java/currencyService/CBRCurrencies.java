@@ -1,8 +1,8 @@
 package currencyService;
 
+import homeSavingsException.HomeSavingsException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-import myException.MyException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -14,14 +14,14 @@ import java.util.Date;
 
 public class CBRCurrencies implements GetCurrencyRatesCB{
     // url = "http://cbr.ru/scripts/XML_daily.asp"  в xml - конфигурации
-   private String url;
+    private String url;
 
     private NodeList nodeCurrenciesList;
 
     private Date ratesDate;
 
     //Параметр конструктора url задается в xml -конфигурации SPRING
-        CBRCurrencies(String url) throws MyException {
+    CBRCurrencies(String url) throws HomeSavingsException {
         //считываем файл из url
         this.url = url;
         this.nodeCurrenciesList =  getXML();
@@ -38,9 +38,9 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
     }
 
     @Override
-    public NodeList getXML() throws MyException {
+    public NodeList getXML() throws HomeSavingsException {
         //считываем файл из url
-        NodeList nList = null;
+        NodeList nList;
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         try {
             BufferedInputStream fXmlFile = new BufferedInputStream(new URL(url).openStream());
@@ -52,7 +52,7 @@ public class CBRCurrencies implements GetCurrencyRatesCB{
             nList = doc.getElementsByTagName("Valute");
 
         } catch (Exception e) {
-            throw new MyException("Не удалось считать курсы ЦБ с сайта " + url, e);
+            throw new HomeSavingsException("Не удалось считать курсы ЦБ с сайта " + url, e);
 
         }
         return nList;

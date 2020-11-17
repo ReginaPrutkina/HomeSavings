@@ -1,7 +1,7 @@
 package currencyService;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 public interface GettingCurrency {
-   Currency getCurrency(String currencyNumCode) throws MyException;
+   Currency getCurrency(String currencyNumCode) throws HomeSavingsException;
 }

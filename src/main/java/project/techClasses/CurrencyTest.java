@@ -2,7 +2,7 @@ package project.techClasses;
 
 import currencyService.Currency;
 import currencyService.CurrencyFactoryService;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,6 @@ import services.BDServices.CurrencyDAOImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class CurrencyTest {
@@ -52,7 +51,7 @@ public class CurrencyTest {
                     System.out.println(cur);
                 }
             }
-            }catch (ParseException | MyException ex){
+            }catch (ParseException | HomeSavingsException ex){
             ex.printStackTrace();
         }
     }

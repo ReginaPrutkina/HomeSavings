@@ -1,7 +1,7 @@
 package notification;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 public interface AllUserNotification {
-    public void sendNotification(boolean isRegular) throws MyException;
+    void sendNotification(boolean isRegular) throws HomeSavingsException;
 }

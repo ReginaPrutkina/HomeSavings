@@ -1,7 +1,5 @@
 package log;
 
-import java.io.IOException;
-
 public interface Logging {
     void log(String description) ;
     void log(String description, Exception exception) ;

@@ -1,6 +1,6 @@
 package services.BDServices;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -13,9 +13,9 @@ public class HibernateUtils {
 
             } catch (Exception e) {
                 try {
-                    throw new MyException("ошибка связи с БД", e);
-                } catch (MyException myException) {
-                    myException.printStackTrace();
+                    throw new HomeSavingsException("ошибка связи с БД", e);
+                } catch (HomeSavingsException homeSavingsException) {
+                    homeSavingsException.printStackTrace();
                 }
             }
         }

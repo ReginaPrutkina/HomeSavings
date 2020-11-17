@@ -1,8 +1,8 @@
 package notification;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 public interface NotificationHTML {
-    String getRegularHTML() throws MyException;
-    String getWarningHTML() throws MyException;
+    String getRegularHTML() throws HomeSavingsException;
+    String getWarningHTML() throws HomeSavingsException;
 }

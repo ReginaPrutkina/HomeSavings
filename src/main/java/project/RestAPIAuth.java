@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import services.*;
 import services.BDServices.UserDAO;
 
@@ -30,19 +29,19 @@ public class RestAPIAuth {
     private Logging logging;
 
     @Autowired
-    PercentTypeFactory percentTypeFactory;
+    private PercentTypeFactory percentTypeFactory;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    CommonAnswer commonAnswer;
+    private CommonAnswer commonAnswer;
 
     @Autowired
-    Security security;
+    private Security security;
 
     @Autowired
-    DepositService depositService;
+    private DepositService depositService;
 
     /**
      * Авторизация клиента.
@@ -87,7 +86,7 @@ public class RestAPIAuth {
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
         //Проверка наличия сессии в мапе секьюрити
-        if (!isSessionUIDValid(sessionUID)) {
+        if (!security.isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer, HttpStatus.NOT_FOUND);
         }
@@ -125,7 +124,7 @@ public class RestAPIAuth {
         List<CommonAnswer> commonAnswers = new ArrayList<>();
         int sessionUID = request.getSessionUID();
         //Проверка наличия сессии в мапе секьюрити
-        if (!isSessionUIDValid(sessionUID)) {
+        if (!security.isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             commonAnswers.add(commonAnswer);
             return new ResponseEntity<>(commonAnswers, HttpStatus.NOT_FOUND);
@@ -222,7 +221,7 @@ public class RestAPIAuth {
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
         //Проверка наличия сессии в мапе секьюрити
-        if (!isSessionUIDValid(sessionUID)) {
+        if (!security.isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
@@ -264,7 +263,7 @@ public class RestAPIAuth {
         int sessionUID = request.getSessionUID();
         commonAnswer.clear();
         //Проверка наличия сессии в мапе секьюрити
-        if (!isSessionUIDValid(sessionUID)) {
+        if (!security.isSessionUIDValid(sessionUID)) {
             badSessionAnswer(sessionUID);
             return new ResponseEntity<>(commonAnswer,  HttpStatus.NOT_FOUND);
         }
@@ -312,12 +311,6 @@ public class RestAPIAuth {
                 return true;
         }
         return false;
-    }
-
-   private boolean isSessionUIDValid(Integer sessionUID){
-        if (sessionUID==null || sessionUID==0)
-            return false;
-        return security.containsUID(sessionUID) && !security.isSessionOld(sessionUID);
     }
 
     private void badSessionAnswer(int badUID){

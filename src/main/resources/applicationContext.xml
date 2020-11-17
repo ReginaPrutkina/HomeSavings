@@ -34,7 +34,7 @@
         <constructor-arg name = "adminLogin" value="adminSender1"/>
     </bean>
 
-    <bean id = "CurrencyFactory" class="currencyService.CurrencyFactory" autowire="byType">
+    <bean id = "CurrencyFactory" class="currencyService.CurrencyFactory">
         <constructor-arg name="currencyNumList" >
             <list>
                <value>840</value>

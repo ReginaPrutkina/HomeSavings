@@ -1,8 +1,7 @@
 package project.techClasses;
 
 import log.Logging;
-import myException.MyException;
-import notification.AllUsersNotificationImpl;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,8 +14,8 @@ public class TestLogException {
         Logging logging = (Logging) context.getBean("LogService");
 
         try {
-            throw new MyException("test ", new MyException("test1 ", new FileNotFoundException("Sample Exception")));
-        } catch (MyException e) {
+            throw new HomeSavingsException("test ", new HomeSavingsException("test1 ", new FileNotFoundException("Sample Exception")));
+        } catch (HomeSavingsException e) {
             logging.log(e.getMessage(),e);
             e.printStackTrace();
         }

@@ -2,7 +2,6 @@ package services;
 
 import businessLogicClasses.TypeOfPercent;
 import dataClasses.Deposit;
-import myException.MyException;
 
 public interface DepositService {
 

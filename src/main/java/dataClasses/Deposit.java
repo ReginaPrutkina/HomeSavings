@@ -3,7 +3,7 @@ package dataClasses;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -54,7 +54,7 @@ public class Deposit implements Serializable {
 
     public Deposit(){}
 
-    public Deposit(HashMap<String, String> fieldsMap) throws MyException {
+    public Deposit(HashMap<String, String> fieldsMap) throws HomeSavingsException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         try {
             this.id = Integer.parseInt(fieldsMap.get("id"));
@@ -68,7 +68,7 @@ public class Deposit implements Serializable {
             this.percentType = Integer.parseInt(fieldsMap.get("percentType"));
         }
         catch (ParseException e) {
-            throw new MyException( "Ошибка формата данных для депозита ", e);
+            throw new HomeSavingsException( "Ошибка формата данных для депозита ", e);
         }
     }
 

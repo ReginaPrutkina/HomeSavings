@@ -2,7 +2,7 @@ package notification;
 
 import currencyService.GettingCurrency;
 import dataClasses.Deposit;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import currencyService.Currency;
@@ -81,7 +81,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
         this.daysToEndOfDeposit = daysToEndOfDeposit;
     }
     @Override
-    public String getRegularText() throws MyException {
+    public String getRegularText() throws HomeSavingsException {
         StringBuilder tempStr = new StringBuilder();
         if (depositList.isEmpty())
             return "";
@@ -98,14 +98,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
         }
         tempStr.append(footerText(currencySet,"\n"));
           notificationText = tempStr.toString();
-    } catch ( MyException exception) {
-        throw (new MyException(exception.getMessage(), exception));
+    } catch ( HomeSavingsException exception) {
+        throw (new HomeSavingsException(exception.getMessage(), exception));
     }
         return notificationText;
-
     }
 
-    private String footerText(Set<String> currencySet, String endStr) throws MyException {
+    private String footerText(Set<String> currencySet, String endStr) throws HomeSavingsException {
         StringBuilder tempStr = new StringBuilder();
         try{
         tempStr.append("Всего: ").append(endStr);
@@ -128,14 +127,14 @@ public class NotificationService implements NotificationText, NotificationHTML {
             }
         }
         }
-        catch ( MyException exception) {
-            throw (new MyException(exception.getMessage(), exception));
+        catch ( HomeSavingsException exception) {
+            throw (new HomeSavingsException(exception.getMessage(), exception));
         }
 
         return tempStr.toString();
     }
     @Override
-    public String getWarningText() throws MyException {
+    public String getWarningText() throws HomeSavingsException {
         try{
         StringBuilder overEndDeposits= new StringBuilder();
         StringBuilder nearEndDeposit= new StringBuilder();
@@ -167,8 +166,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
         notificationText +="* Суммы на конец срока рассчитаны без учета снятий и пополнений";
 
         return notificationText;
-    } catch ( MyException exception) {
-        throw (new MyException(exception.getMessage(), exception));
+    } catch ( HomeSavingsException exception) {
+        throw (new HomeSavingsException(exception.getMessage(), exception));
     }
         }
 
@@ -190,7 +189,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
     }
 
     @Override
-    public String getRegularHTML() throws MyException {
+    public String getRegularHTML() throws HomeSavingsException {
         try{
         if (depositList.isEmpty())
             return "";
@@ -223,13 +222,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
         htmlStringBuilder.append("<p class = \"footnote\">"+ "* Суммы на конец срока рассчитаны без учета снятий и пополнений" +"</p></body></html>");
         notificationText = htmlStringBuilder.toString();
         return notificationText;
-    } catch ( MyException exception) {
-        throw (new MyException(exception.getMessage(), exception));
-    }
+    } catch ( HomeSavingsException exception) {
+        throw (new HomeSavingsException(exception.getMessage(), exception));
         }
+    }
 
     @Override
-    public String getWarningHTML() throws MyException {
+    public String getWarningHTML() throws HomeSavingsException {
         String tempStr;
         try{
         if (depositList.isEmpty())
@@ -286,13 +285,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
             this.notificationText = htmlStringBuilder.toString();
         else this.notificationText = "";
         return notificationText;
-    } catch ( MyException exception) {
-        throw (new MyException(exception.getMessage(), exception));
+    } catch ( HomeSavingsException exception) {
+        throw (new HomeSavingsException(exception.getMessage(), exception));
     }
     }
 
 
-    public String toFile(String notificationText) throws MyException {
+    public String toFile(String notificationText) throws HomeSavingsException {
         String fileName;
         if (notificationText.length() == 0 ) return "";
         fileName = ".\\" + "info.html";
@@ -302,13 +301,13 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
         } catch ( IOException exception) {
 
-            throw (new MyException(" Не удалось создать файл с информированием по депозитам ", exception));
+            throw (new HomeSavingsException(" Не удалось создать файл с информированием по депозитам ", exception));
         }
 
         return fileName;
      }
 
-    public String toFile(String notificationText, String fileName) throws MyException{
+    public String toFile(String notificationText, String fileName) throws HomeSavingsException {
 
         if (notificationText.length() ==0 )
             return "";
@@ -319,14 +318,14 @@ public class NotificationService implements NotificationText, NotificationHTML {
 
         } catch ( IOException exception) {
 
-            throw (new MyException(" Не удалось создать файл" + fileName + " с информированием по депозитам ", exception));
+            throw (new HomeSavingsException(" Не удалось создать файл" + fileName + " с информированием по депозитам ", exception));
         }
 
         return fileName;
     }
 
 
-     private String depositTextRow(int rowNum, Deposit deposit) throws MyException {
+     private String depositTextRow(int rowNum, Deposit deposit) throws HomeSavingsException {
         try{
          SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
          String currencyString;
@@ -346,8 +345,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
                  "  | " + formatter.format(deposit.getEndDate()) +
                  String.format("    |%15s |",depositService.getTypeOfPercentObject(deposit)) +
                  String.format("%30s ",deposit.getComment()) ;
-        } catch ( MyException exception) {
-            throw (new MyException(exception.getMessage(), exception));
+        } catch ( HomeSavingsException exception) {
+            throw (new HomeSavingsException(exception.getMessage(), exception));
         }
      }
 
@@ -380,7 +379,7 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "</tr></thead>";
     }
 
-    private String depositHTMLRow(int rowNum, Deposit deposit) throws MyException {
+    private String depositHTMLRow(int rowNum, Deposit deposit) throws HomeSavingsException {
         String currencyString;
         try{
         if (deposit.getCurrencyCode().equals("810"))
@@ -403,8 +402,8 @@ public class NotificationService implements NotificationText, NotificationHTML {
                 "<td>" + depositService.getEffectiveRate(deposit) + "%</td>" +
                 "<td>"+ String.format("%.2f",depositService.getSumOnEndOfPeriod(deposit)) +
                 "</td></tr>";
-        } catch ( MyException exception) {
-            throw (new MyException(exception.getMessage(), exception));
+        } catch ( HomeSavingsException exception) {
+            throw (new HomeSavingsException(exception.getMessage(), exception));
         }
     }
 

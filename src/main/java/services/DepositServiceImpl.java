@@ -5,7 +5,7 @@ import businessLogicClasses.TypeOfPercent;
 import currencyService.CurrencyFactory;
 import dataClasses.Deposit;
 import log.Logging;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -65,7 +65,7 @@ public class DepositServiceImpl implements  DepositService {
         try {
             return ((currencyCode == null) ||
                     (!currencyCode.equals("810") && (currencyFactory.getCurrency(currencyCode) == null)));
-        } catch (MyException e) {
+        } catch (HomeSavingsException e) {
             logging.log("Возникло ислючение при парсинге валюты с кодом "+ currencyCode, e);
         return true;
         }

@@ -1,8 +1,8 @@
 package notification;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 public interface NotificationText {
-    String getRegularText() throws MyException;
-    String getWarningText() throws MyException;
+    String getRegularText() throws HomeSavingsException;
+    String getWarningText() throws HomeSavingsException;
 }

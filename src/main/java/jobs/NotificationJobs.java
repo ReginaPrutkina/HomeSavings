@@ -1,7 +1,7 @@
 package jobs;
 
 import log.Logging;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import notification.AllUserNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -25,7 +25,7 @@ public class NotificationJobs {
         logging.log(" Запуск задачи по расписанию.");
         try {
             allUserNotification.sendNotification(true);
-        } catch (MyException e) {
+        } catch (HomeSavingsException e) {
           logging.log(" Задача завершена с ошибкой.", e);
           return;
         }
@@ -37,7 +37,7 @@ public class NotificationJobs {
         logging.log(" Запуск задачи по расписанию.");
         try {
             allUserNotification.sendNotification(false);
-        } catch (MyException e) {
+        } catch (HomeSavingsException e) {
             logging.log(" Задача завершена с ошибкой.", e);
             return;
         }

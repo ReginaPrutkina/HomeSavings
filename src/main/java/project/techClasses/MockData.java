@@ -1,7 +1,7 @@
 package project.techClasses;
 
 import dataClasses.Deposit;
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MockData {
     public List<Deposit> depositList = new ArrayList<>();
-    public MockData() throws MyException {
+    public MockData() throws HomeSavingsException {
         //Mock данные для списка вкладов
         HashMap<String, String> hashMapDeposit = new HashMap<>();
         hashMapDeposit.put("id", "1");

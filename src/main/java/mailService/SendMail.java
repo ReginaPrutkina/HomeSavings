@@ -1,6 +1,6 @@
 package mailService;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -96,7 +96,7 @@ public class SendMail {
         this.propPort = propPort;
     }
 
-    public void send(String subject, String text, String toEmail) throws MyException {
+    public void send(String subject, String text, String toEmail) throws HomeSavingsException {
         Session session = Session.getDefaultInstance(props, new Authenticator() {
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -120,11 +120,11 @@ public class SendMail {
             Transport.send(message);
             System.out.println("сообщение отправлено на адрес "+ toEmail);
         } catch (MessagingException e) {
-            throw new MyException( "Ошибка отправки сообщения", e);
+            throw new HomeSavingsException( "Ошибка отправки сообщения", e);
         }
     }
 
-    public void sendFile(String subject, String fileName, String toEmail) throws MyException {
+    public void sendFile(String subject, String fileName, String toEmail) throws HomeSavingsException {
         Session session = Session.getDefaultInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -164,7 +164,7 @@ public class SendMail {
             Transport.send(message);
             System.out.println("сообщение с вложенным файлом " + fileName +" отправлено на адрес "+ toEmail);
         } catch (MessagingException e) {
-            throw new MyException( "Ошибка отправки сообщения", e);
+            throw new HomeSavingsException( "Ошибка отправки сообщения", e);
         }
     }
 }

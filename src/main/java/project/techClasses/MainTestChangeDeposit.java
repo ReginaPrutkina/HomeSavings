@@ -1,6 +1,6 @@
 package project.techClasses;
 
-import myException.MyException;
+import homeSavingsException.HomeSavingsException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import notification.NotificationService;
@@ -26,7 +26,7 @@ try{
     testDepositChange.setUser(user);
     notificationService.setDepositList(user.getDeposits());
     System.out.println(notificationService.getRegularText());
-} catch (MyException e) {
+} catch (HomeSavingsException e) {
     e.printStackTrace();
 }
 
