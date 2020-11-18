@@ -2,6 +2,7 @@ package project;
 
 import businessLogicClasses.PercentTypeFactory;
 import businessLogicClasses.TypeOfPercent;
+import dataClasses.AdminSender;
 import dataClasses.Deposit;
 import dataClasses.User;
 import log.Logging;
@@ -58,6 +59,8 @@ public class RestAPIAuth {
     public ResponseEntity<CommonAnswer> authUser(
             @QueryParam(value = "login") String login,
             @QueryParam(value = "password") String password) {
+        logging.setUserName(login);
+        logging.log("REST-запрос: Аутентификации клиента. ");
         User user = userService.userAuth(login, password);
         commonAnswer.clear();
         if (user == null) {
@@ -73,7 +76,7 @@ public class RestAPIAuth {
     }
 
     /**
-     * Запрос данных клиента по ID доступен только админу
+     * Запрос данных клиента по ID клиента. Доступен только админу
      *
      * @param request: обязательные поля: UID сессии, User:ID клиента
      * @return commonAnswer с User-ом из мапы секрьрити или commonAnswer с текстом ошибки
@@ -111,7 +114,7 @@ public class RestAPIAuth {
     }
 
     /**
-     * Просмотр всех пользователей доступен только администратору
+     * Просмотр всех пользователей. Доступно только администратору
      *
      * @param request: обязательные поля: UID сессии
      * @return список всех клиентов и их депоитов из БД или commonAnswer с текстом ошибки
@@ -194,6 +197,8 @@ public class RestAPIAuth {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseEntity<CommonAnswer> registerUser(User user){
+        logging.setUserName(user.getLogin());
+        logging.log("REST-запрос: Регистрация клиента. ");
         User newUser = userService.registerUser(user);
         commonAnswer.clear();
         if (newUser == null){
@@ -208,8 +213,52 @@ public class RestAPIAuth {
         return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
     }
 
+
     /**
-     * удаление пользователей разрешено только для админа
+     * Регистрация нвого админа. Разрешено только из сессии зарегистрированного админа
+     *
+     * @param admin - новый админ для регистрации в БД
+     * @param sessionUID - UID сессии зарегистрированного админа
+     * @return  - commonAnswer с User-ом и сгенерированным UID сессии для нового админа
+     *            или commonAnswer с текстом ошибки
+     */
+    @PUT
+    @Path("/newAdmin")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResponseEntity<CommonAnswer> registerAdmin(AdminSender admin,
+                                                      @QueryParam(value = "sessionUID") int sessionUID) {
+        commonAnswer.clear();
+        //Проверка наличия сессии в мапе секьюрити
+        if (!security.isSessionUIDValid(sessionUID)) {
+            badSessionAnswer(sessionUID);
+            return new ResponseEntity<>(commonAnswer, HttpStatus.NOT_FOUND);
+        }
+        logging.setUserName(security.getUIDMap().get(sessionUID).getUser().getLogin());
+        logging.log("REST-запрос Регистрация нового админа: " + admin.getLogin());
+        // проверка на админа
+        if (!security.getUIDMap().get(sessionUID).getUser().getRole().equals("admin")) {
+            commonAnswer.setErrorText("Пользователь не является администратором. " +
+                    "Нет прав для регистрации нового администратора.");
+            logging.log(commonAnswer.getErrorText());
+            return new ResponseEntity<>(commonAnswer, HttpStatus.FORBIDDEN);
+        }
+        User newUser = userService.registerUser(admin);
+        commonAnswer.clear();
+        if (newUser == null){
+            commonAnswer.setErrorText("Клиент не прошел валидацию. Регистрация не успешна. ");
+            return new ResponseEntity<>(commonAnswer,  HttpStatus.FORBIDDEN);
+        }
+        //Генерим и записываем в секьюрити мапу уникальный ид сессии, передаем его в ответе
+        CommonRequest commonRequest = new CommonRequest();
+        commonRequest.setUser(admin);
+        commonAnswer.setSessionUID(security.generateAndAddUID(commonRequest));
+        commonAnswer.setUser(newUser);
+        return new ResponseEntity<>(commonAnswer,  HttpStatus.OK);
+    }
+
+    /**
+     * Удаление пользователя. Разрешено только для админа
      * @param request: обязательные поля: UID сессии, User:ID клиента
      * @return commonAnswer с пустым user
      */

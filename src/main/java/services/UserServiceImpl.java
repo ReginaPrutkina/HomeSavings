@@ -26,8 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserValid(User user) {
-        if (user.getEmail().isEmpty() || user.getFamily().isEmpty() ||
-                user.getName().isEmpty() || user.getLogin().isEmpty()) {
+        if ((user.getEmail() == null) || (user.getFamily() == null) ||
+                (user.getName() == null) || (user.getLogin() == null) ||
+                (user.getPasswordHash() == null) || (user.getRole() == null)) {
             System.out.println("Не заполнены обязательные поля");
             logging.log("Не заполнены обязательные поля");
             return false;
@@ -94,7 +95,7 @@ public class UserServiceImpl implements UserService {
         userDAO.save(user);
         System.out.println("Пользователь успешно прошел регистрацию");
         logging.setUserName(user.getLogin());
-        logging.log("Зарегистриован пользователь " + user.toString());
+        logging.log("Зарегистрирован пользователь " + user.toString());
         return userDAO.findUserByLogin(user.getLogin());
     }
 

@@ -2150,3 +2150,631 @@ homeSavingsException.HomeSavingsException: Логин администратор
     project.RestAPIAuth / badSessionAnswer
     Пользователь не авторизован или невалидный идентификатор сессии: 1031
     computerName: LENOVO-RENA user: null
+2020-11-17T15:08:50.004667800
+    jobs.NotificationJobs / informJob
+     Запуск задачи по расписанию.
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:08:52.789217700
+    log.LogToFile / log
+     Задача завершена с ошибкой.
+    computerName: LENOVO-RENA user: null
+homeSavingsException.HomeSavingsException: Логин администратора почтовых уведомлений в базе не найден: adminSender11
+	at notification.AllUsersNotificationImpl.sendNotification(AllUsersNotificationImpl.java:77)
+	at jobs.NotificationJobs.informJob(NotificationJobs.java:27)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:93)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2020-11-17T15:11:20.083001
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 1031
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:11:27.546705200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:16:57.900330100
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:16:57.914329500
+    services.UserServiceImpl / userAuth
+    Пользователь с логином pavlov не авторизован
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:36:08.466321800
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:36:08.483323800
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:37:16.756505400
+    services.UserServiceImpl / isUserValid
+    В базе есть зарегистированный пользователеь с таким логином
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:37:16.781507600
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:37:16.793508300
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:41:32.576842700
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:41:55.764254200
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:41:59.213920900
+    services.UserServiceImpl / isUserValid
+    В базе есть зарегистированный пользователеь с таким логином
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:41:59.230922400
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:42:19.456406300
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:42:34.537256500
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:42:34.563257200
+    services.UserServiceImpl / isUserValid
+    В базе есть зарегистированный пользователеь с таким логином
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:42:34.582256900
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='pavlov', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T15:58:26.818429100
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:58:26.842432
+    services.UserServiceImpl / isUserValid
+    Не заполнены обязательные поля
+    computerName: LENOVO-RENA user: null
+2020-11-17T15:58:26.880434500
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='null', email='pavlov@pavl.hh'}
+    computerName: LENOVO-RENA user: null
+2020-11-17T16:05:54.134410
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:05:57.080206500
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=146, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:06:38.185222600
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:07:16.695932700
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:07:25.341781100
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:07:33.127427100
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:07:37.730613500
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:07:37.748655100
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:07:37.757613900
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:08:42.010471600
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 146
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:08:42.061475100
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=146, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:09:04.078040100
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T16:09:21.466005300
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T16:09:21.484008300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T16:16:44.342400900
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:16:44.361401900
+    services.UserServiceImpl / isUserValid
+    Не заполнены обязательные поля
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:16:44.382402700
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:05.704001200
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:05.717002
+    services.UserServiceImpl / isUserValid
+    Не заполнены обязательные поля
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:05.730004700
+    services.UserServiceImpl / registerUser
+    Пользователь не может быть зарегистрирован User{id=null, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:16.435834100
+    project.RestAPIAuth / registerUser
+    REST-запрос: Регистрация клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:19.383057
+    services.UserServiceImpl / registerUser
+    Зарегистриован пользователь User{id=147, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:44.828659100
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:44.845663700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином fff
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:17:59.586339800
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 5554
+    computerName: LENOVO-RENA user: null
+2020-11-17T16:18:04.812966900
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:18:04.833966300
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:18:04.843968500
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:18:13.400344800
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 147
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:18:13.466350800
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=147, family='Павлов', name='Павел', login='fff', email='fffv@ff.hh'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:18:20.185026700
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:18:20.202010800
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: fff
+2020-11-17T16:18:20.213013200
+    services.UserServiceImpl / userAuth
+    Пользователь с логином fff не авторизован
+    computerName: LENOVO-RENA user: null
+2020-11-17T16:18:27.421477200
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T16:18:27.446491600
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T16:38:35.412214400
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:38:38.342578900
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:38:38.354581800
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:41:17.118397200
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:50:56.157274100
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 9631
+    computerName: LENOVO-RENA user: null
+2020-11-17T16:51:04.021832
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:51:07.195066800
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:51:07.205109600
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T16:51:19.241913200
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:10:41.650864800
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:10:44.931111200
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:10:44.943109700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:10:55.845433800
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:30:54.835807
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:30:58.278062300
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:30:58.290062200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:31:11.388320100
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:38:19.696341800
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:38:22.933582100
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:38:22.946581300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:38:31.258127900
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:46:31.124004300
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:46:34.162230100
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:46:34.175233200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:46:42.805323800
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:50:58.802035300
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 7219
+    computerName: LENOVO-RENA user: null
+2020-11-17T17:51:04.973954800
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:51:07.965871300
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:51:07.976871400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:51:24.991754100
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T17:51:25.059757100
+    services.UserServiceImpl / registerAdmin
+    Зарегистриован пользователь User{id=null, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T17:52:01.378480300
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T17:52:01.400481800
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T17:52:01.412481
+    services.UserServiceImpl / userAuth
+    Пользователь с логином adminsender4 не авторизован
+    computerName: LENOVO-RENA user: null
+2020-11-17T18:00:58.105725900
+    project.RestAPIAuth / badSessionAnswer
+    Пользователь не авторизован или невалидный идентификатор сессии: 4392
+    computerName: LENOVO-RENA user: null
+2020-11-17T18:01:05.877275
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:09.017512900
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:09.026508200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:17.290852800
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 148
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:17.362858100
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=148, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:27.627729900
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:01:27.682733500
+    services.UserServiceImpl / registerAdmin
+    Зарегистриован пользователь User{id=null, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T18:06:46.885928300
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:06:50.105169600
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:06:50.117170700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:09.626763
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 148
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:09.652765100
+    project.RestAPIAuth / deleteUser
+    Данные не найдены
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:14.162537200
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 149
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:14.215541
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=149, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:22.599228900
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:07:22.648231700
+    services.UserServiceImpl / registerAdmin
+    Зарегистриован пользователь User{id=null, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T18:10:23.135348900
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender3
+2020-11-17T18:10:23.149350700
+    services.UserServiceImpl / checkUserPassword
+    Неверный логин  или пароль
+    computerName: LENOVO-RENA user: adminsender3
+2020-11-17T18:10:23.160350600
+    services.UserServiceImpl / userAuth
+    Пользователь с логином adminsender3 не авторизован
+    computerName: LENOVO-RENA user: null
+2020-11-17T18:10:32.130055700
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender1
+2020-11-17T18:10:32.154058600
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender1
+2020-11-17T18:10:32.167059
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender1
+    computerName: LENOVO-RENA user: adminsender1
+2020-11-17T18:10:39.396961
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:10:39.418962700
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:10:39.428961700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:11:01.364301900
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender
+2020-11-17T18:11:01.386299700
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender
+2020-11-17T18:11:01.396301200
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender
+    computerName: LENOVO-RENA user: adminsender
+2020-11-17T18:11:20.870114900
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T18:11:20.896116100
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином pavlov
+    computerName: LENOVO-RENA user: pavlov
+2020-11-17T18:30:30.056078400
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:30:33.626348
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:30:33.639348700
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:30:52.686740800
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 150
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:30:52.733746200
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=150, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:32:44.179832600
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T18:32:44.238834600
+    services.UserServiceImpl / registerAdmin
+    Зарегистрирован пользователь User{id=151, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T18:33:03.497492
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T18:33:03.514494100
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T18:33:03.523492400
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender4
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:35:34.321486400
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T20:35:37.230702500
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T20:35:37.242703
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender2
+    computerName: LENOVO-RENA user: adminsender2
+2020-11-17T20:35:45.114421200
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:35:45.137421800
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:35:45.148421300
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender4
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:04.778759800
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 150
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:04.804757400
+    project.RestAPIAuth / deleteUser
+    Данные не найдены
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:13.707400900
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 151
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:13.766404400
+    project.RestAPIAuth / deleteUser
+    Удален клиент User{id=151, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:16.468431200
+    project.RestAPIAuth / deleteUser
+    REST-запрос Удаление данных клиента по ID: 151
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:16.489428400
+    project.RestAPIAuth / deleteUser
+    Данные не найдены
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:33.674872400
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:36:33.746876500
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 9 клиентов.
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:00.385701
+    project.RestAPIAuth / registerAdmin
+    REST-запрос Регистрация нового админа: adminsender4
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:00.439704200
+    services.UserServiceImpl / registerUser
+    Зарегистрирован пользователь User{id=152, family='Администратор4', name='Админ4', login='adminsender4', email='aadms4@gmail.com'}
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:23.000075800
+    project.RestAPIAuth / showUsers
+    REST-запрос Вывод данных по всем клиентам из БД. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:23.051078100
+    project.RestAPIAuth / showUsers
+    Успешный ответ. Найдено 10 клиентов.
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:32.596699900
+    project.RestAPIAuth / authUser
+    REST-запрос: Аутентификации клиента. 
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:32.636702900
+    services.UserServiceImpl / checkUserPassword
+    Пользователь авторизован как администратор
+    computerName: LENOVO-RENA user: adminsender4
+2020-11-17T20:37:32.646702900
+    services.UserServiceImpl / userAuth
+    Авторизован пользователь с логином adminsender4
+    computerName: LENOVO-RENA user: adminsender4
