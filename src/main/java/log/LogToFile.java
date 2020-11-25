@@ -89,18 +89,8 @@ public class LogToFile implements Logging {
     }
         @Override
         public void log(String description, Exception exception) {
-//            Path logFile = getLogFile();
-//            List<String> logList = new ArrayList<>();
-//            logList.add( "" + LocalDateTime.now());
-//            // берем из стека элемент массива [2] для вывода имени метода,
-//            // т.к. в [1] - текущий метод - logMethod
-//            StackTraceElement sTE = Thread.currentThread().getStackTrace()[2];
-//            logList.add("    "+sTE.getClassName() + " / " + sTE.getMethodName());
-//            logList.add("    "+ description);
-//            logList.add("    "+"computerName: " + computerName + " user: " + userName);
             this.log(description);
             try {
-//                Files.write(logFile, logList, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
                 PrintWriter pw = new PrintWriter(new BufferedOutputStream(new FileOutputStream(logFile.toFile(), true)));
                 exception.printStackTrace(pw);
                 pw.close();

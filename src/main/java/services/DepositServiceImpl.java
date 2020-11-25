@@ -47,7 +47,7 @@ public class DepositServiceImpl implements  DepositService {
     @Override
     public boolean isDepositValid(Deposit deposit) {
         return !(deposit.getBankName() == null ||
-                notCurrencyCodeValid(deposit.getCurrencyCode()) ||
+                currencyCodeNotValid(deposit.getCurrencyCode()) ||
                 deposit.getEndDate() == null ||
                 deposit.getStartDate() == null ||
                 deposit.getEndDate().before(deposit.getStartDate()) ||
@@ -56,12 +56,12 @@ public class DepositServiceImpl implements  DepositService {
     }
 
     /**
-     * Проверяем, что существует валюта в списке или рубли
+     * Проверяем, что  нет такой валюты в списке и это не рубли
      * @param currencyCode - числовой код валюты
      * @return  false, если валюта рубли или есть в списке валют ЦБ,
      *          true -  есле нет в списке валют или ошибка парсинга
      */
-    private boolean notCurrencyCodeValid(String currencyCode) {
+    private boolean currencyCodeNotValid(String currencyCode) {
         try {
             return ((currencyCode == null) ||
                     (!currencyCode.equals("810") && (currencyFactory.getCurrency(currencyCode) == null)));
